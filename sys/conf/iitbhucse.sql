@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 30, 2011 at 03:06 PM
+-- Generation Time: Jun 04, 2011 at 06:02 PM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.4
 
@@ -16,6 +16,33 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `collations`
+--
+
+CREATE TABLE IF NOT EXISTS `collations` (
+  `pgid` bigint(20) NOT NULL,
+  `key` varchar(255) NOT NULL,
+  `cntid` bigint(20) NOT NULL,
+  PRIMARY KEY (`pgid`,`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contents`
+--
+
+CREATE TABLE IF NOT EXISTS `contents` (
+  `cntid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `cnttype` int(11) NOT NULL,
+  `styleclass` varchar(255) NOT NULL,
+  `content` longtext NOT NULL,
+  PRIMARY KEY (`cntid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `groups`
 --
 
@@ -24,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `groups` (
   `gname` varchar(255) NOT NULL,
   `level` int(11) NOT NULL,
   PRIMARY KEY (`gid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -38,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `address` varchar(255) DEFAULT NULL,
   `time` bigint(20) NOT NULL,
   PRIMARY KEY (`lid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -69,6 +96,20 @@ CREATE TABLE IF NOT EXISTS `notifications` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pages`
+--
+
+CREATE TABLE IF NOT EXISTS `pages` (
+  `pgid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `owner` bigint(20) NOT NULL,
+  `style` longtext NOT NULL,
+  `template` longtext NOT NULL,
+  PRIMARY KEY (`pgid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `privileges`
 --
 
@@ -90,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `remarks` (
   `comment` text NOT NULL,
   `rating` int(11) NOT NULL,
   PRIMARY KEY (`rkid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -123,6 +164,7 @@ CREATE TABLE IF NOT EXISTS `storages` (
   `ctime` bigint(20) NOT NULL,
   `atime` bigint(20) NOT NULL,
   `mtime` bigint(20) NOT NULL,
+  `dirid` varchar(255) DEFAULT NULL,
   UNIQUE KEY `stgid` (`stgid`),
   UNIQUE KEY `filename` (`filename`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -139,4 +181,4 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;

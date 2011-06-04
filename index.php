@@ -1,38 +1,58 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Department of Computer Engineering IT BHU</title>
-		<link rel="stylesheet" type="text/css" href="ui/css/default.css" />
-		<link rel="stylesheet" type="text/css" href="ui/css/jquery.css" />
-		<link rel="stylesheet" type="text/css" href="ui/css/iitbhucse.css" />
-	</head>
-	<body>
+<?php 
+
+	require_once('init.php');
+	require_once(INITROOT . 'sys/lib/Document.class.php');
+	
+	$model['title'] = "Department of Computer Engineering IT BHU";
+	$model['styles'] = array('default.css', 'jquery.css', 'iitbhucse.css');
+	Document::header($model);
+	
+	echo <<<HOME
 		<p id="load-status"></p>
-		<h1>Welcome to Department of Computer Engineering IT BHU</h1>
-
-		<div id="test-container"></div>
-		<div id="menu-container"></div>
+		
+		<div id="header" >
+			<p class="large">Department of Computer Engineering</p>
+			<p>Institute of technology</p>
+			<p>Banaras Hindu University, Varanasi</p>
+		</div>
+		
+		<div id="menu-container">
+			<ul>
+				<li>Home</li>
+				<li>Faculty</li>
+				<li>Courses</li>
+				<li>Students</li>
+				<li>Activities</li>
+				<li>Placements</li>
+				<li>About</li>
+			</ul>
+		</div>
+		
+		<div id="quick-panel">
+			<p>Quick Links</p>
+		</div>
+		
 		<div id="main-container">
-			<div id="tree-container" ></div>
-			<div id="tab-container"></div>
+			<p>Welcome to Department of Computer Science</p>
 		</div>
-		<div id="footer">
-			<p>Powered by the enhanCSE</p>
-		</div>
+		
+HOME;
 
-		<ul id="validation">
-			<li>
-				<a href="http://validator.w3.org/check?uri=referer">
-					<img src="ui/img/validation/valid-xhtml10-blue.png" alt="Valid XHTML 1.0!" height="31" width="88" />
-				</a>
-			</li>
-
-			<li>
-				<a href="http://jigsaw.w3.org/css-validator/check/referer">
-					<img src="ui/img/validation/valid-css-blue.png" alt="Valid CSS!" height="31" width="88" />
-				</a>
-			</li>
-		</ul>	
+		$model = array();
+		$model['scripts'] = array(
+			'jQuery Core' => 'jquery-1.6.1.min.js',
+			'jQuery UI' => 'jquery-ui-1.8.13.min.js',
+			'jQuery Templates' => 'jquery.tmpl.js'
+		);
+		Document::footer($model);
+		
+?>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#load-status')
+				.html('Initializing ...')
+				.fadeOut(3000);
+		});
+	</script>
 	</body>
 </html>
