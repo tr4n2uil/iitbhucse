@@ -39,6 +39,7 @@
 HOME;
 
 		$model = array();
+		$model['footer'] = "<p>Powered by the enhanCSE Development Team</p>";
 		$model['scripts'] = array(
 			'jQuery Core' => 'jquery-1.6.1.min.js',
 			'jQuery UI' => 'jquery-ui-1.8.13.min.js',
