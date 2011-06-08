@@ -62,6 +62,7 @@
 			
 			ServiceClient.Registry.add('#htmlload', ServiceClient.jquery.navigator.HtmlLoad);
 			ServiceClient.Registry.add('login', IITBHUCSE.jquery.navigator.Login);
+			ServiceClient.Registry.add('reset', IITBHUCSE.jquery.navigator.Reset);
 		});
 	</script>
 	</body>

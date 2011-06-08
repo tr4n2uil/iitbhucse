@@ -4,12 +4,12 @@
 
 	if(!isset($_POST['username']) ||  !isset($_POST['email'])){
 		$result['success'] = false;
-		$result['msg'] = "Invalid Request";
+		$result['msg'] = '<p class="error">Invalid Request</p>';
 		echo json_encode($result);
 		exit;
 	}
 
-	require_once('../init.php');	
+	require_once('../../init.php');
 	
 	$message = <<<MESSAGE
 Hi,
@@ -33,15 +33,11 @@ MESSAGE;
 	
 	if($model['valid']){
 		$result['success'] = true;
-		$result['msg'] = array(
-			'module' => 'alert',
-			'args' => array(
-				'title' => "Success", 
-				'data' =>'Your account has been resetted succesfully. The new credentials have been mailed to your email.'));
+		$result['msg'] = '<p class="success">Your account has been resetted succesfully. The new credentials have been mailed to your email.</p>';
 	}
 	else {
 		$result['success'] = false;
-		$result['msg'] = "Invalid credentials";
+		$result['msg'] = '<p class="error">Invalid credentials</p>';
 	}
 
 	echo json_encode($result);

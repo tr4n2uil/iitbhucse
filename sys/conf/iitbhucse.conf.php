@@ -13,6 +13,13 @@
 	$mysql_pass 			= 	"krishna";
 	$mysql_host 			= 	"localhost";
 	
+	/** Production 
+	$mysql_database 	= 	"u897252034_cse";
+	$mysql_user 			= 	"u897252034_cse";
+	$mysql_pass 			= 	"enhancse3";
+	$mysql_host 			= 	"mysql.freezoka.net";
+	**/
+	
 	/**
 	 *	Mail configurations
 	 *
@@ -25,10 +32,10 @@
 	 *	@param mail_pass				SMTP password, if enhancse-core.mail.smtp service is used
 	**/
 	$mail_delegate 	= 	true;
-	$mail_value 		= 	"";
-	$mail_from 		= 	"";
-	$mail_user 		= 	"";
-	$mail_pass 		= 	"";
+	$mail_value 		= 	"http://localhost/execute.php?service=enhancse-core.mail.phpmailer";
+	$mail_from 		= 	"enhanCSE";
+	$mail_user 		= 	"enhancse@gmail.com";
+	$mail_pass 		= 	"enhancse3";
 	
 	/**
 	 * Cookie configurations
@@ -47,5 +54,7 @@
 	**/
 	$application_name 	= 	"IIT BHU CSE";
 	$application_url 		= 	"/iitbhucse";
+	
+	//$application_url 		= 	"/";
 	
 ?>
