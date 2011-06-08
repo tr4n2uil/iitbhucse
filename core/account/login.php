@@ -4,7 +4,7 @@
 
 	if(!isset($_POST['username']) ||  !isset($_POST['password'])){
 		$result['success'] = false;
-		$result['msg'] = "Invalid Request";
+		$result['msg'] = '<p class="error">Invalid Request</p>';
 		echo json_encode($result);
 		exit;
 	}
@@ -19,19 +19,18 @@
 	
 	if($model['valid']){
 		$result['success'] = true;
-		$result['msg'] = array(
-			'module' => 'login',
-			'args' => array(
-				'key' => $cookie_key_sent,
-				'sid' => $model['sessionid']));
+		$result['key'] = $cookie_key_sent;
+		$result['sessionid'] = $model['sessionid'];
+		$result['expires'] = 1;
+		$result['msg'] = '<p class="success">Login Successful</p>';
 		
-		//$op = $cl->load("log.record", ECROOT);
-		//$model['message'] = "USER LOGIN with uid=".$model['uid']." and username=".$model['username'];
-		//$model = $kernel->run($op, $model);
+		$op = $cl->load("log.record", ECROOT);
+		$model['message'] = "USER LOGIN with uid=".$model['uid']." and username=".$model['username'];
+		$model = $kernel->run($op, $model);
 	}
 	else {
 		$result['success'] = false;
-		$result['msg'] = "Invalid credentials";
+		$result['msg'] = '<p class="error">Invalid credentials</p>';
 	}
 
 	echo json_encode($result);

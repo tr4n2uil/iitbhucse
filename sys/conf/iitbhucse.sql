@@ -3,17 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 07, 2011 at 02:11 PM
+-- Generation Time: Jun 08, 2011 at 05:50 PM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.4
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `iitbhucse`
@@ -53,6 +47,46 @@ CREATE TABLE IF NOT EXISTS `contents` (
 
 --
 -- Dumping data for table `contents`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `courses`
+--
+
+CREATE TABLE IF NOT EXISTS `courses` (
+  `crsid` bigint(20) NOT NULL,
+  `crsname` varchar(255) NOT NULL,
+  `crsdescription` varchar(255) NOT NULL,
+  PRIMARY KEY (`crsid`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `courses`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `faculty`
+--
+
+CREATE TABLE IF NOT EXISTS `faculty` (
+  `fid` bigint(20) NOT NULL,
+  `fname` varchar(255) NOT NULL,
+  `fdesignation` int(11) NOT NULL,
+  `fqualification` varchar(255) NOT NULL,
+  `femail` varchar(255) NOT NULL,
+  `fphone` varchar(255) DEFAULT NULL,
+  `finterest` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`fid`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `faculty`
 --
 
 
@@ -211,6 +245,28 @@ CREATE TABLE IF NOT EXISTS `storages` (
 
 --
 -- Dumping data for table `storages`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `students`
+--
+
+CREATE TABLE IF NOT EXISTS `students` (
+  `stuid` bigint(20) NOT NULL,
+  `stname` varchar(255) NOT NULL,
+  `strollno` varchar(255) NOT NULL,
+  `stemail` varchar(255) NOT NULL,
+  `stcourse` int(11) NOT NULL,
+  `styear` int(11) NOT NULL,
+  `stinterest` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`stuid`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `students`
 --
 
 

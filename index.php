@@ -12,7 +12,14 @@
 	
 ?>
 		<div id="quick-panel">
-			<?php include(INITROOT. 'ui/html/login.html'); ?>
+			<?php 
+				if($model['valid'] && isset($model['uid'])){
+					echo '<p class="success" style="margin: 0.5em;"><a href="core/account/logout.php">Logout</a></p>';
+				}
+				else {
+					include(INITROOT. 'ui/html/login.html');
+				}
+			?>
 		</div>
 		
 		<div id="main-container">
@@ -27,6 +34,7 @@
 			'jQuery Core' => 'jquery-1.6.1.min.js',
 			'jQuery UI' => 'jquery-ui-1.8.13.min.js',
 			'jQuery Templates' => 'jquery.tmpl.js',
+			'jQuery Cookie' => 'jquery.cookie.js',
 			'jQuery ServiceClient' => 'jquery-serviceclient.js',
 			'IITBHUCSE Modules' => 'iitbhucse-jquery.js',
 			'IITBHUCSE Templates' => 'iitbhucse-templates.js'
@@ -47,7 +55,7 @@
 				attribute : 'id'
 			}]);
 			
-			ServiceClient.Registry.add('#login', IITBHUCSE.jquery.navigator.Login);
+			ServiceClient.Registry.add('login', IITBHUCSE.jquery.navigator.Login);
 		});
 	</script>
 	</body>
