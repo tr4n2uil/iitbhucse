@@ -1,0 +1,1 @@
+div#menu-container {	padding: 0.5em;}div#menu-container li {	display: inline;}div#menu-container a {	cursor: pointer;	padding: 5px 15px;}div#menu-container a:hover {	font-weight: bold;	border: solid 1px;}

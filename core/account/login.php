@@ -14,6 +14,7 @@
 	$op = $cl->load("user.login", ECROOT);
 	$model['username'] = $_POST['username'];
 	$model['password'] = $_POST['password'];
+	$model['interval'] = 1*24*60*60;	// 1 day session
 	$model = $kernel->run($op, $model);
 	
 	if($model['valid']){
@@ -25,7 +26,7 @@
 				'sid' => $model['sessionid']));
 		
 		//$op = $cl->load("log.record", ECROOT);
-		//$model['message'] = "USER LOGIN = ".$model['uid'].":".$model['username'];
+		//$model['message'] = "USER LOGIN with uid=".$model['uid']." and username=".$model['username'];
 		//$model = $kernel->run($op, $model);
 	}
 	else {
