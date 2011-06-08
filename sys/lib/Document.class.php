@@ -37,10 +37,11 @@ STYLE;
 	**/
 	public static function footer($model){
 		$scripts = $model['scripts'];
+		$footer = $model['footer'];
 		
 		echo <<<FOOTER
 		<div id="footer">
-			<p>Powered by the enhanCSE Development Team</p>
+			$footer
 		</div>
 
 		<ul id="validation">
@@ -59,6 +60,7 @@ SCRIPT;
 		}
 		
 		unset($model['scripts']);
+		unset($model['footer']);
 	}
 	
 }

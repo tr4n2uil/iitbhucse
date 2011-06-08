@@ -7,44 +7,28 @@
 	$model['styles'] = array('default.css', 'jquery.css', 'iitbhucse.css');
 	Document::header($model);
 	
-	echo <<<HOME
-		<p id="load-status"></p>
-		
-		<div id="header" >
-			<p class="large">Department of Computer Engineering</p>
-			<p>Institute of technology</p>
-			<p>Banaras Hindu University, Varanasi</p>
-		</div>
-		
-		<div id="menu-container">
-			<ul>
-				<li>Home</li>
-				<li>Faculty</li>
-				<li>Courses</li>
-				<li>Students</li>
-				<li>Activities</li>
-				<li>Placements</li>
-				<li>About</li>
-			</ul>
-		</div>
-		
+	include(INITROOT. 'ui/html/header.html');
+	include(INITROOT. 'ui/html/menu.html');
+	
+?>
 		<div id="quick-panel">
-			<p>Quick Links</p>
+			<?php include(INITROOT. 'ui/html/login.html'); ?>
 		</div>
 		
 		<div id="main-container">
-			<p>Welcome to Department of Computer Science</p>
+			<?php include(INITROOT. 'ui/html/home.html'); ?>
 		</div>
 		
-HOME;
+<?php 
 
 		$model = array();
+		$model['footer'] = "<p>Powered by the enhanCSE Development Team</p>";
 		$model['scripts'] = array(
 			'jQuery Core' => 'jquery-1.6.1.min.js',
 			'jQuery UI' => 'jquery-ui-1.8.13.min.js',
 			'jQuery Templates' => 'jquery.tmpl.js'
 		);
-		Document::footer($model);
+		Document::footer($model);	
 		
 ?>
 	<script type="text/javascript">

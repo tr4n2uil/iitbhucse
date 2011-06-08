@@ -9,7 +9,7 @@
 	 * Initialize ServicePackages and include the essential classes
 	**/
 	require_once(INITROOT. '../services/enhancse-core/init.php');
-	require_once(INITROOT. '../services/enhancse-util/init.php');
+	require_once(INITROOT. '../services/iitbhucse-core/init.php');
 	require_once(SBKERNEL);
 	require_once(SBCOMLOADER);
 	require_once(SBMYSQL);
