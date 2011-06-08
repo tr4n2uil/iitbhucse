@@ -53,8 +53,14 @@
 				selector : 'form.navigate',
 				event : 'submit',
 				attribute : 'id'
+			},{
+				service : ServiceClient.jquery.module.NavigatorInit,
+				selector : 'a.navigate',
+				event : 'click',
+				attribute : 'href'
 			}]);
 			
+			ServiceClient.Registry.add('#htmlload', ServiceClient.jquery.navigator.HtmlLoad);
 			ServiceClient.Registry.add('login', IITBHUCSE.jquery.navigator.Login);
 		});
 	</script>
