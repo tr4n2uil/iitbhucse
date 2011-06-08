@@ -3,11 +3,17 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 04, 2011 at 06:02 PM
+-- Generation Time: Jun 07, 2011 at 02:11 PM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.4
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `iitbhucse`
@@ -26,6 +32,11 @@ CREATE TABLE IF NOT EXISTS `collations` (
   PRIMARY KEY (`pgid`,`key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `collations`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -38,7 +49,12 @@ CREATE TABLE IF NOT EXISTS `contents` (
   `styleclass` varchar(255) NOT NULL,
   `content` longtext NOT NULL,
   PRIMARY KEY (`cntid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `contents`
+--
+
 
 -- --------------------------------------------------------
 
@@ -51,7 +67,12 @@ CREATE TABLE IF NOT EXISTS `groups` (
   `gname` varchar(255) NOT NULL,
   `level` int(11) NOT NULL,
   PRIMARY KEY (`gid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `groups`
+--
+
 
 -- --------------------------------------------------------
 
@@ -65,7 +86,12 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `address` varchar(255) DEFAULT NULL,
   `time` bigint(20) NOT NULL,
   PRIMARY KEY (`lid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `logs`
+--
+
 
 -- --------------------------------------------------------
 
@@ -80,18 +106,10 @@ CREATE TABLE IF NOT EXISTS `members` (
   KEY `gid_2` (`gid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `notifications`
+-- Dumping data for table `members`
 --
 
-CREATE TABLE IF NOT EXISTS `notifications` (
-  `nid` bigint(20) NOT NULL,
-  `nname` varchar(255) NOT NULL,
-  `ndescription` text NOT NULL,
-  UNIQUE KEY `nid` (`nid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -103,9 +121,14 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `pgid` bigint(20) NOT NULL AUTO_INCREMENT,
   `owner` bigint(20) NOT NULL,
   `style` longtext NOT NULL,
-  `template` longtext NOT NULL,
+  `tplid` bigint(20) NOT NULL,
   PRIMARY KEY (`pgid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `pages`
+--
+
 
 -- --------------------------------------------------------
 
@@ -114,10 +137,17 @@ CREATE TABLE IF NOT EXISTS `pages` (
 --
 
 CREATE TABLE IF NOT EXISTS `privileges` (
-  `type` bigint(20) NOT NULL,
+  `type` varchar(255) NOT NULL,
   `uid` bigint(20) NOT NULL,
   UNIQUE KEY `type` (`type`,`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `privileges`
+--
+
+INSERT INTO `privileges` (`type`, `uid`) VALUES
+('ENHANCSE_ADMIN', 1);
 
 -- --------------------------------------------------------
 
@@ -131,7 +161,12 @@ CREATE TABLE IF NOT EXISTS `remarks` (
   `comment` text NOT NULL,
   `rating` int(11) NOT NULL,
   PRIMARY KEY (`rkid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `remarks`
+--
+
 
 -- --------------------------------------------------------
 
@@ -146,6 +181,11 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   `expiry` bigint(20) NOT NULL,
   PRIMARY KEY (`sessionid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sessions`
+--
+
 
 -- --------------------------------------------------------
 
@@ -169,6 +209,29 @@ CREATE TABLE IF NOT EXISTS `storages` (
   UNIQUE KEY `filename` (`filename`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `storages`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `templates`
+--
+
+CREATE TABLE IF NOT EXISTS `templates` (
+  `tplid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `tplname` varchar(255) NOT NULL,
+  `template` longtext NOT NULL,
+  PRIMARY KEY (`tplid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `templates`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -181,4 +244,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`uid`, `username`, `password`, `email`) VALUES
+(1, 'enhancse', 'fc7c70a196d8c1bf619bef2aed0bf9e2', 'vibhaj.itbhu@gmail.com');

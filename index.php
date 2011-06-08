@@ -4,7 +4,7 @@
 	require_once(INITROOT . 'sys/lib/Document.class.php');
 	
 	$model['title'] = "Department of Computer Engineering IT BHU";
-	$model['styles'] = array('default.css', 'jquery.css', 'iitbhucse.css');
+	$model['styles'] = array('default.css', 'jquery.css', 'iitbhucse-styles.css', 'redmond/jquery-ui-1.8.13.custom.css');
 	Document::header($model);
 	
 	include(INITROOT. 'ui/html/header.html');
@@ -26,7 +26,10 @@
 		$model['scripts'] = array(
 			'jQuery Core' => 'jquery-1.6.1.min.js',
 			'jQuery UI' => 'jquery-ui-1.8.13.min.js',
-			'jQuery Templates' => 'jquery.tmpl.js'
+			'jQuery Templates' => 'jquery.tmpl.js',
+			'jQuery ServiceClient' => 'jquery-serviceclient.js',
+			'IITBHUCSE Modules' => 'iitbhucse-jquery.js',
+			'IITBHUCSE Templates' => 'iitbhucse-templates.js'
 		);
 		Document::footer($model);	
 		
@@ -36,6 +39,15 @@
 			$('#load-status')
 				.html('Initializing ...')
 				.fadeOut(3000);
+			
+			ServiceClient.Kernel.run([{
+				service : ServiceClient.jquery.module.NavigatorInit,
+				selector : 'form.navigate',
+				event : 'submit',
+				attribute : 'id'
+			}]);
+			
+			ServiceClient.Registry.add('#login', IITBHUCSE.jquery.navigator.Login);
 		});
 	</script>
 	</body>

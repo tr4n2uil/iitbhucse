@@ -8,7 +8,7 @@
 	require_once('../../init.php');
 	
 	$op = $cl->load("session.invalidate", ECROOT);
-	$model['sessionid'] = substr($_COOKIE[$cookie_key], 2);
+	$model['sessionid'] = $_COOKIE[$cookie_key];
 	$model = $kernel->run($op, $model);
 	
 	if($model['valid']){
