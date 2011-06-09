@@ -10,5 +10,6 @@ IITBHUCSE.jquery.template = {};
 
 IITBHUCSE.urls = {
 	base : '/iitbhucse/',
+	//base : '/',
 	login : 'core/account/login.php'
 };
