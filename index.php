@@ -14,7 +14,7 @@
 		<div id="quick-panel">
 			<?php 
 				if($model['valid'] && isset($model['uid'])){
-					echo '<p class="success" style="margin: 0.5em;"><a href="core/account/logout.php">Logout</a></p>';
+					include(INITROOT. 'ui/html/account.html');
 				}
 				else {
 					include(INITROOT. 'ui/html/login.html');
