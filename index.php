@@ -52,7 +52,7 @@
 				service : ServiceClient.jquery.module.NavigatorInit,
 				selector : 'form.navigate',
 				event : 'submit',
-				attribute : 'id'
+				attribute : 'title'
 			},{
 				service : ServiceClient.jquery.module.NavigatorInit,
 				selector : 'a.navigate',
@@ -61,8 +61,10 @@
 			}]);
 			
 			ServiceClient.Registry.add('#htmlload', ServiceClient.jquery.navigator.HtmlLoad);
-			ServiceClient.Registry.add('login', IITBHUCSE.jquery.navigator.Login);
-			ServiceClient.Registry.add('reset', IITBHUCSE.jquery.navigator.Reset);
+			ServiceClient.Registry.add('#tplload', ServiceClient.jquery.navigator.TplLoad);
+			ServiceClient.Registry.add('#submitload', ServiceClient.jquery.navigator.SubmitLoad);
+			
+			ServiceClient.Registry.save('mdl-login', IITBHUCSE.jquery.module.Login);
 		});
 	</script>
 	</body>
