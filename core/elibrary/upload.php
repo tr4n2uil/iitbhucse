@@ -9,7 +9,8 @@
 				service : window.top.window.ServiceClient.jquery.module.Status,
 				selector : '#load-status',
 				value : 'Invalid Request',
-				hide : 10000
+				hide : 1000,
+				delay : 10000
 			}]);
 		</script>
 SCRIPT;
@@ -36,7 +37,8 @@ SCRIPT;
 				service : window.top.window.ServiceClient.jquery.module.Status,
 				selector : '#load-status',
 				value : '$msg',
-				hide : 10000
+				hide : 1000,
+				delay : 10000
 			}]);
 		</script>
 SCRIPT;

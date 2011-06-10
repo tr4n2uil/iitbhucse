@@ -71,11 +71,20 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			
+			ServiceClient.Registry.add('#htmlload', ServiceClient.jquery.navigator.HtmlLoad);
+			ServiceClient.Registry.add('#tplload', ServiceClient.jquery.navigator.TplLoad);
+			ServiceClient.Registry.add('#submitload', ServiceClient.jquery.navigator.SubmitLoad);
+			ServiceClient.Registry.add('#upload', ServiceClient.jquery.navigator.Upload);
+			
+			ServiceClient.Registry.save('mdl-login', IITBHUCSE.jquery.module.Login);
+			
+			ServiceClient.Registry.save('tpl-test', ServiceClient.jquery.template.Test);
+			ServiceClient.Registry.save('tpl-admin-std', IITBHUCSE.jquery.template.AdminStudent);
+			
 			ServiceClient.Kernel.run([{
 				service : ServiceClient.jquery.module.Status,
 				selector : '#load-status',
 				value : 'Initializing ...',
-				hide : 3000
 			},{
 				service : ServiceClient.jquery.module.NavigatorInit,
 				selector : 'a.navigate',
@@ -86,14 +95,14 @@
 				selector : 'form.navigate',
 				event : 'submit',
 				attribute : 'title'
+			},{
+				service : ServiceClient.jquery.module.Status,
+				selector : '#load-status',
+				value : 'Initializing ...',
+				hide : 1000,
+				delay : 5000
 			}]);
 			
-			ServiceClient.Registry.add('#htmlload', ServiceClient.jquery.navigator.HtmlLoad);
-			ServiceClient.Registry.add('#tplload', ServiceClient.jquery.navigator.TplLoad);
-			ServiceClient.Registry.add('#submitload', ServiceClient.jquery.navigator.SubmitLoad);
-			ServiceClient.Registry.add('#upload', ServiceClient.jquery.navigator.Upload);
-			
-			ServiceClient.Registry.save('mdl-login', IITBHUCSE.jquery.module.Login);
 		});
 	</script>
 	</body>
