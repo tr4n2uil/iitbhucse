@@ -15,6 +15,32 @@
 			<?php 
 				if($model['valid'] && isset($model['uid'])){
 					include(INITROOT. 'ui/html/account.html');
+					
+					$op = $cl->load("privilege.check", ECROOT);
+					$model['privtype'] = 'ENHANCSE_ADMIN';
+					$model = $kernel->run($op, $model);
+					if($model['valid']){
+						include(INITROOT. 'ui/html/enhancse-admin.html');
+					}
+					
+					$model['privtype'] = 'FACULTY_ADMIN';
+					$model = $kernel->run($op, $model);
+					if($model['valid']){
+						include(INITROOT. 'ui/html/faculty-admin.html');
+					}
+					
+					$model['privtype'] = 'EMAGAZINE_ADMIN';
+					$model = $kernel->run($op, $model);
+					if($model['valid']){
+						include(INITROOT. 'ui/html/emagazine-admin.html');
+					}
+					
+					$model['privtype'] = 'LIBRARY_ADMIN';
+					$model = $kernel->run($op, $model);
+					if($model['valid']){
+						include(INITROOT. 'ui/html/library-admin.html');
+					}
+					
 				}
 				else {
 					include(INITROOT. 'ui/html/login.html');
