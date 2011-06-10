@@ -14,7 +14,33 @@
 		<div id="quick-panel">
 			<?php 
 				if($model['valid'] && isset($model['uid'])){
-					echo '<p class="success" style="margin: 0.5em;"><a href="core/account/logout.php">Logout</a></p>';
+					include(INITROOT. 'ui/html/account.html');
+					
+					$op = $cl->load("privilege.check", ECROOT);
+					$model['privtype'] = 'ENHANCSE_ADMIN';
+					$model = $kernel->run($op, $model);
+					if($model['valid']){
+						include(INITROOT. 'ui/html/enhancse-admin.html');
+					}
+					
+					$model['privtype'] = 'FACULTY_ADMIN';
+					$model = $kernel->run($op, $model);
+					if($model['valid']){
+						include(INITROOT. 'ui/html/faculty-admin.html');
+					}
+					
+					$model['privtype'] = 'EMAGAZINE_ADMIN';
+					$model = $kernel->run($op, $model);
+					if($model['valid']){
+						include(INITROOT. 'ui/html/emagazine-admin.html');
+					}
+					
+					$model['privtype'] = 'LIBRARY_ADMIN';
+					$model = $kernel->run($op, $model);
+					if($model['valid']){
+						include(INITROOT. 'ui/html/library-admin.html');
+					}
+					
 				}
 				else {
 					include(INITROOT. 'ui/html/login.html');
@@ -52,7 +78,7 @@
 				service : ServiceClient.jquery.module.NavigatorInit,
 				selector : 'form.navigate',
 				event : 'submit',
-				attribute : 'id'
+				attribute : 'title'
 			},{
 				service : ServiceClient.jquery.module.NavigatorInit,
 				selector : 'a.navigate',
@@ -61,8 +87,10 @@
 			}]);
 			
 			ServiceClient.Registry.add('#htmlload', ServiceClient.jquery.navigator.HtmlLoad);
-			ServiceClient.Registry.add('login', IITBHUCSE.jquery.navigator.Login);
-			ServiceClient.Registry.add('reset', IITBHUCSE.jquery.navigator.Reset);
+			ServiceClient.Registry.add('#tplload', ServiceClient.jquery.navigator.TplLoad);
+			ServiceClient.Registry.add('#submitload', ServiceClient.jquery.navigator.SubmitLoad);
+			
+			ServiceClient.Registry.save('mdl-login', IITBHUCSE.jquery.module.Login);
 		});
 	</script>
 	</body>

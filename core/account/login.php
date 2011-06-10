@@ -19,9 +19,14 @@
 	
 	if($model['valid']){
 		$result['success'] = true;
-		$result['key'] = $cookie_key_sent;
-		$result['sessionid'] = $model['sessionid'];
-		$result['expires'] = 1;
+		$result['run'] = array(
+			array(
+				'service' => 'mdl-login',
+				'key' => $cookie_key_sent,
+				'sessionid' => $model['sessionid'],
+				'expires' => 1
+			)
+		);
 		$result['msg'] = '<p class="success">Login Successful</p>';
 		
 		$op = $cl->load("log.record", ECROOT);
