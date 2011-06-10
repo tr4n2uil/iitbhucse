@@ -70,25 +70,28 @@
 ?>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('#load-status')
-				.html('Initializing ...')
-				.fadeOut(3000);
 			
 			ServiceClient.Kernel.run([{
-				service : ServiceClient.jquery.module.NavigatorInit,
-				selector : 'form.navigate',
-				event : 'submit',
-				attribute : 'title'
+				service : ServiceClient.jquery.module.Status,
+				selector : '#load-status',
+				value : 'Initializing ...',
+				hide : 3000
 			},{
 				service : ServiceClient.jquery.module.NavigatorInit,
 				selector : 'a.navigate',
 				event : 'click',
 				attribute : 'href'
+			},{
+				service : ServiceClient.jquery.module.NavigatorInit,
+				selector : 'form.navigate',
+				event : 'submit',
+				attribute : 'title'
 			}]);
 			
 			ServiceClient.Registry.add('#htmlload', ServiceClient.jquery.navigator.HtmlLoad);
 			ServiceClient.Registry.add('#tplload', ServiceClient.jquery.navigator.TplLoad);
 			ServiceClient.Registry.add('#submitload', ServiceClient.jquery.navigator.SubmitLoad);
+			ServiceClient.Registry.add('#upload', ServiceClient.jquery.navigator.Upload);
 			
 			ServiceClient.Registry.save('mdl-login', IITBHUCSE.jquery.module.Login);
 		});
