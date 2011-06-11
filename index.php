@@ -7,49 +7,48 @@
 	$model['styles'] = array('default.css', 'jquery.css', 'iitbhucse-styles.css', 'redmond/jquery-ui-1.8.13.custom.css');
 	Document::header($model);
 	
-	include(INITROOT. 'ui/html/header.html');
-	include(INITROOT. 'ui/html/menu.html');
-	
+	include(INITROOT. 'ui/html/main-header.html');
+	include(INITROOT. 'ui/html/main-menu.html');
 ?>
 		<div id="quick-panel">
 			<?php 
 				if($model['valid'] && isset($model['uid'])){
-					include(INITROOT. 'ui/html/account.html');
+					include(INITROOT. 'ui/html/quick-account.html');
 					
 					$op = $cl->load("privilege.check", ECROOT);
 					$model['privtype'] = 'ENHANCSE_ADMIN';
 					$model = $kernel->run($op, $model);
 					if($model['valid']){
-						include(INITROOT. 'ui/html/enhancse-admin.html');
+						include(INITROOT. 'ui/html/quick-admin.html');
 					}
 					
 					$model['privtype'] = 'FACULTY_ADMIN';
 					$model = $kernel->run($op, $model);
 					if($model['valid']){
-						include(INITROOT. 'ui/html/faculty-admin.html');
+						include(INITROOT. 'ui/html/quick-faculty.html');
 					}
 					
 					$model['privtype'] = 'EMAGAZINE_ADMIN';
 					$model = $kernel->run($op, $model);
 					if($model['valid']){
-						include(INITROOT. 'ui/html/emagazine-admin.html');
+						include(INITROOT. 'ui/html/quick-emagazine.html');
 					}
 					
 					$model['privtype'] = 'LIBRARY_ADMIN';
 					$model = $kernel->run($op, $model);
 					if($model['valid']){
-						include(INITROOT. 'ui/html/library-admin.html');
+						include(INITROOT. 'ui/html/quick-library.html');
 					}
 					
 				}
 				else {
-					include(INITROOT. 'ui/html/login.html');
+					include(INITROOT. 'ui/html/quick-login.html');
 				}
 			?>
 		</div>
 		
 		<div id="main-container">
-			<?php include(INITROOT. 'ui/html/home.html'); ?>
+			<?php include(INITROOT. 'ui/html/main-home.html'); ?>
 		</div>
 		
 <?php 
@@ -73,16 +72,17 @@
 			
 			ServiceClient.Registry.add('#htmlload', ServiceClient.jquery.navigator.HtmlLoad);
 			ServiceClient.Registry.add('#tplload', ServiceClient.jquery.navigator.TplLoad);
-			ServiceClient.Registry.add('#submitload', ServiceClient.jquery.navigator.SubmitLoad);
+			ServiceClient.Registry.add('#formsubmit', ServiceClient.jquery.navigator.FormSubmit);
 			ServiceClient.Registry.add('#upload', ServiceClient.jquery.navigator.Upload);
 			
 			ServiceClient.Registry.save('mdl-login', IITBHUCSE.jquery.module.Login);
 			
 			ServiceClient.Registry.save('tpl-test', ServiceClient.jquery.template.Test);
-			ServiceClient.Registry.save('tpl-admin-std', IITBHUCSE.jquery.template.AdminStudent);
+			ServiceClient.Registry.save('tpl-std-bws', IITBHUCSE.jquery.template.StudentBrowse);
+			ServiceClient.Registry.save('tpl-std-all', IITBHUCSE.jquery.template.StudentAll);
 			
 			ServiceClient.Kernel.run([{
-				service : ServiceClient.jquery.module.Status,
+				service : ServiceClient.jquery.module.AlertStatus,
 				selector : '#load-status',
 				value : 'Initializing ...',
 			},{
@@ -94,13 +94,14 @@
 				service : ServiceClient.jquery.module.NavigatorInit,
 				selector : 'form.navigate',
 				event : 'submit',
-				attribute : 'title'
+				attribute : 'id',
+				escaped : true
 			},{
-				service : ServiceClient.jquery.module.Status,
+				service : ServiceClient.jquery.module.AlertStatus,
 				selector : '#load-status',
 				value : 'Initializing ...',
 				hide : 1000,
-				delay : 5000
+				delay : 1000
 			}]);
 			
 		});

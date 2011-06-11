@@ -7,6 +7,7 @@ IITBHUCSE.jquery.renderer = {};
 IITBHUCSE.jquery.navigator = {};
 IITBHUCSE.jquery.requestor = {};
 IITBHUCSE.jquery.template = {};
+IITBHUCSE.jquery.helper = {};
 
 IITBHUCSE.urls = {
 	base : '/iitbhucse/',
