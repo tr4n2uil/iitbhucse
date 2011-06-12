@@ -56,7 +56,7 @@ FOOTER;
 			document.getElementById('load-status').innerHTML = 'Loading $key ...';
 		</script>
 		<script type="text/javascript" src="ui/js/$value"></script>
-		<iframe id="upload_target" name="upload_target" src="#" style="width:0;height:0;border:0px solid #fff;"></iframe>
+		<iframe id="upload_target" name="upload_target" style="width:0;height:0;border:0px solid #fff;"></iframe>
 SCRIPT;
 		}
 		

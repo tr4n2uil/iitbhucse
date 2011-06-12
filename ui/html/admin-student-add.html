@@ -1,0 +1,32 @@
+<div id="admin-std-panel" class="form-panel">
+		<form action="core/admin/student-add.php" method="post" class="navigate" title="#submitload:sel=#admin-std-panel">
+			<fieldset >
+				<legend>Add Student</legend>
+				<label>Username
+					<input type="text" name="stusername" />
+				</label>
+				<label>Name
+					<input type="text" name="stname" />
+				</label>
+				<label>Roll No
+					<input type="text" name="strollno"/>
+				</label>
+				<label>Email
+				<input type="text" name="stemail" />
+				</label>
+				Course
+				<label><input type="radio" name="stcourse"  value="1" />B Tech</label>
+				<label><input type="radio" name="stcourse" value="2" />IDD</label>
+				<label><input type="radio" name="stcourse"  value="3" />PhD</label>
+				<label>Year
+					<input type="text" name="styear" />
+				</label>
+				Status
+				<label><input type="radio" name="ststatus" value="1" />Enrolled</label>
+				<label><input type="radio" name="ststatus" value="2" />Alumnus</label>
+				<input name="submit" type="submit" value="Submit" />
+				<input name="reset" type="reset" value="Reset" />
+				<div class="status"></div>
+			</fieldset>
+		</form>
+	</div>
