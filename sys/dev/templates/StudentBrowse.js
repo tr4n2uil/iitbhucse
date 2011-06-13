@@ -8,7 +8,7 @@ IITBHUCSE.jquery.template.StudentBrowse = $.template('\
 			<ul>\
 			{{each allyear}}\
 	<li><a class="navigate" \
-	href="#tplload:container=#grid-panel:tpl=tpl-std-all:loadurl=core/student/student-all.php:param=styear~${styear}"\
+	href="#tplload:cntr=#grid-panel:tpl=tpl-std-all:url=core/student/student-all.php:arg=styear~${styear}"\
 		>${styear}</a></li>\
 			{{/each}}\
 			</ul>\
