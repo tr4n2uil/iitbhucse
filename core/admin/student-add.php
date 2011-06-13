@@ -59,11 +59,13 @@ MESSAGE;
 	$model['username'] = $_POST['stusername'];
 	$model['subject'] = "[IIT BHU CSE] Account Registration";
 	$model['message'] = $message;
+	// TO DO Decide if mail will be send considering hosting issues
+	$model['mail'] = false;
 	$model = $kernel->run($op, $model);
 	
 	if($model['valid']){
 		$result['success'] = true;
-		$result['msg'] = '<p class="success">The account has been created succesfully.<br />The new credentials have been mailed to the email.<br />[Password : '.$model['password'].']</p>';
+		$result['msg'] = '<p class="success">The account has been created succesfully.<br />'./*The new credentials have been mailed to the email.<br />*/'[Password : '.$model['password'].']</p>';
 	}
 	else {
 		$result['success'] = false;
