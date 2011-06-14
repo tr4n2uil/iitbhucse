@@ -75,9 +75,11 @@
 			ServiceClient.Registry.add('#formsubmit', ServiceClient.jquery.navigator.FormSubmit);
 			ServiceClient.Registry.add('#upload', ServiceClient.jquery.navigator.Upload);
 			
-			ServiceClient.Registry.save('mdl-login', IITBHUCSE.jquery.module.Login);
+			ServiceClient.Registry.save('mdl-login', ServiceClient.jquery.module.CookieLogin);
 			
 			ServiceClient.Registry.save('tpl-test', ServiceClient.jquery.template.Test);
+			ServiceClient.Registry.save('tpl-rsrc-all', IITBHUCSE.jquery.template.ResourceAll);
+			ServiceClient.Registry.save('tpl-rsrc-edt', IITBHUCSE.jquery.template.ResourceEdit);
 			ServiceClient.Registry.save('tpl-std-bws', IITBHUCSE.jquery.template.StudentBrowse);
 			ServiceClient.Registry.save('tpl-std-all', IITBHUCSE.jquery.template.StudentAll);
 			
