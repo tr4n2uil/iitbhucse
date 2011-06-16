@@ -52,7 +52,7 @@
 	/**
 	 * Check for valid privilege 
 	**/
-	$op = $cl->load("privilege.check", ICROOT);
+	$op = $cl->load("privilege.check", ECROOT);
 	$model['privtype'] = 'ENHANCSE_ADMIN';
 	$model = $kernel->run($op, $model);
 	if(!$model['valid']){
