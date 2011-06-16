@@ -52,7 +52,7 @@
 	/**
 	 * Check for valid privilege 
 	**/
-	$op = $cl->load("privilege.check", ICROOT);
+	$op = $cl->load("privilege.check", ECROOT);
 	$model['privtype'] = 'ENHANCSE_ADMIN';
 	$model = $kernel->run($op, $model);
 	if(!$model['valid']){
@@ -137,7 +137,7 @@
 			
 		case 'all' :
 			$op = $cl->load("faculty.all", ICROOT);
-			$model['fstatus'] = 1;
+			$model['fstatus'] = (1 or 2);
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
