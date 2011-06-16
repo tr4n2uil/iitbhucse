@@ -9,16 +9,16 @@
 	if(isset($_POST['do'])){
 		switch($_POST['do']){
 			case 'add' :
-				if(isset($_POST['rsrcname']) && isset($_POST['resource']))
+				if(isset($_POST['username']) && isset($_POST['email']))
 					$request = true;
 				break;
 			case 'edit' :
-				if(isset($_POST['rsrcid']) && isset($_POST['resource']))
+				if(isset($_POST['uid']) && isset($_POST['newusername']) && isset($_POST['newpassword']))
 					$request = true;
 				break;
-			case 'get' :
 			case 'rem' :
-				if(isset($_POST['rsrcid']))
+			case 'get' :
+				if(isset($_POST['uid']))
 					$request = true;
 				break;
 			case 'all' :
@@ -47,11 +47,12 @@
 		echo json_encode($result);
 		exit;
 	}
+	$user = $model['uid'];
 	
 	/**
 	 * Check for valid privilege 
 	**/
-	$op = $cl->load("privilege.check", ECROOT);
+	$op = $cl->load("privilege.check", ICROOT);
 	$model['privtype'] = 'ENHANCSE_ADMIN';
 	$model = $kernel->run($op, $model);
 	if(!$model['valid']){
@@ -63,14 +64,15 @@
 	
 	switch($_POST['do']){
 		case 'add' :
-			$op = $cl->load("resource.create", ECROOT);
-			$model['rsrcname'] = $_POST['rsrcname'];
-			$model['resource'] = $_POST['resource'];
+			$op = $cl->load("user.register", ICROOT);
+			$model['username'] = $_POST['username'];
+			$model['email'] = $_POST['email'];
+			$model['mail'] = false;
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['msg'] = '<p class="success">Resource created successfully. ID='.$model['rsrcid'].'</p>';
+				$result['msg'] = '<p class="success">The account has been created succesfully.<br />Password : '.$model['password'].'</p>';
 			}
 			else {
 				$result['success'] = false;
@@ -79,44 +81,46 @@
 			break;
 			
 		case 'edit' :
-			$op = $cl->load("resource.edit", ECROOT);
-			$model['rsrcid'] = $_POST['rsrcid'];
-			$model['resource'] = $_POST['resource'];
+			$op = $cl->load("user.edit", ICROOT);
+			$model['uid'] = $_POST['uid'];
+			$model['admin'] = true;
+			$model['newusername'] = $_POST['newusername'];
+			$model['newpassword'] = $_POST['newpassword'];
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['msg'] = '<p class="success">Resource edited successfully</p>';
+				$result['msg'] = '<p class="success">User credentials edited successfully</p>';
 			}
 			else {
 				$result['success'] = false;
 				$result['msg'] = '<p class="error">'.$model['msg'].'</p>';
 			}
 			break;
-			
+		
 		case 'get' :
-			$op = $cl->load("resource.get", ECROOT);
-			$model['rsrcid'] = $_POST['rsrcid'];
+			$op = $cl->load("student.all", ICROOT);
+			$model['styear'] = $_POST['styear'];
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['resource'] = $model['resource'];
+				$result['user'] = $model['user'];
 			}
 			else {
 				$result['success'] = false;
 				$result['template'] = '<p class="error">'.$model['msg'].'</p>';
 			}
 			break;
-		
+			
 		case 'rem' :
-			$op = $cl->load("resource.delete", ECROOT);
-			$model['rsrcid'] = $_POST['rsrcid'];
+			$op = $cl->load("user.delete", ICROOT);
+			$model['uid'] = $_POST['uid'];
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['template'] = '<p class="success">Resource deleted successfully. ID='.$model['rsrcid'].'</p>';
+				$result['template'] = '<p class="success">User deleted successfully. ID='.$model['uid'].'</p>';
 			}
 			else {
 				$result['success'] = false;
@@ -125,12 +129,12 @@
 			break;
 			
 		case 'all' :
-			$op = $cl->load("resource.all", ECROOT);
+			$op = $cl->load("student.all", ICROOT);
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['resources'] = $model['resources'];
+				$result['students'] = $model['students'];
 			}
 			else {
 				$result['success'] = false;

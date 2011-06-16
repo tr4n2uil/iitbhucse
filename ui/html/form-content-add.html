@@ -1,0 +1,43 @@
+<div id="admin-cnt-panel" class="horizontal-menu form-panel" >
+		<form action="core/admin/content.php" method="post" class="navigate" 
+				id="_formsubmit:sel._admin-cnt-panel">
+			<fieldset >
+				<input type="hidden" name="do" value="add"/>
+				<legend>Add Content</legend>
+				<label>Name
+					<input type="text" name="cntname" />
+				</label>
+				<label>Style Type
+					<select name="cntstype" >
+						<option value="1" >Inline</option>
+						<option value="2" >Resource</option>
+						<option value="3" >File</option>
+					</select>
+				</label>
+				<label>Style</label>
+				<textarea name="cntstyle" rows="15" cols="80"></textarea>
+				<label>Template Type
+					<select name="cntttype" >
+						<option value="1" >Inline</option>
+						<option value="2" >Resource</option>
+						<option value="3" >File</option>
+					</select>
+				</label>
+				<label>Template</label>
+				<textarea name="cnttpl" rows="15" cols="80"></textarea>
+				<label>Data Type
+					<select name="cntdtype" >
+						<option value="1" >Inline</option>
+						<option value="2" >Resource</option>
+						<option value="3" >File</option>
+						<option value="4" >Query</option>
+					</select>
+				</label>
+				<label>Data</label>
+				<textarea name="cntdata" rows="15" cols="80"></textarea>
+				<input name="submit" type="submit" value="Submit" />
+				<input name="reset" type="reset" value="Reset" />
+				<div class="status"></div>
+			</fieldset>
+		</form>
+</div>

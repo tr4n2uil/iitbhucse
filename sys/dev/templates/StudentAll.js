@@ -3,30 +3,19 @@
  *
 **/
 IITBHUCSE.jquery.template.StudentAll = $.template('\
-	<div class="faculty-content">\
-				{{each students}}\
-					<div class="student-name">${stname}</div>\
-					<div class="student-rollno">${strollno}</div>\
-					<div class="student-email">${stemail}</div>\
-					<div class="student-course">${IITBHUCSE.jquery.helper.getCourse(stcourse)}</div>\
-					<div class="student-year">${styear}</div>\
-					<div class="student-interests">${stinterest}</div>\
+	<div id="student-container">\
+		<div id="edit-panel"></div>\
+		<div id="student-all-container" class="horizontal-menu"><fieldset>\
+			<legend>All Students</legend>\
+			<ul>\
+			<li><a href="#htmlload:cntr=#edit-panel:url=ui/html/form-student-add.html" \
+			class="navigate" >Create New ...</a></li>\
+			{{each students}}\
+	<li><a class="navigate" \
+	href="#tplload:cntr=#edit-panel:tpl=tpl-std-edt:url=core/admin/student.php:arg=do~get&styear~${$value.styear}"\
+		>${$value.styear}</a></li>\
+			{{/each}}\
+			</ul>\
+		</fieldset></div>\
 	</div>');
-
-/**
- *	@helper getCourse
- *
-**/
-IITBHUCSE.jquery.helper.getCourse = function(index){
-	switch(index){
-		case '1' :
-			return 'B Tech';
-		case '2' :
-			return 'IDD';
-		case '3' :
-			return 'PhD';
-		default :
-			return 'Unknown';
-	}
-}
 

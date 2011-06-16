@@ -3,7 +3,15 @@
  *
 **/
 IITBHUCSE.jquery.template.ResourceEdit = $.template('\
-	<div id="admin-rsrc-panel" class="form-panel" >\
+	<div id="admin-rsrc-panel">\
+		<div id="resource-options-container" class="horizontal-menu"><fieldset>\
+			<legend>Resource #${resource.rsrcid} Options</legend>\
+			<ul>\
+				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/resource.php:arg=do~rem&rsrcid~${resource.rsrcid}" \
+				class="navigate" >Delete</a></li>\
+			</ul>\
+		</fieldset></div>\
+		<div id="resource-edit-container" class="horizontal-menu form-panel">\
 		<form action="core/admin/resource.php" method="post" class="navigate" \
 				id="_formsubmit:sel._admin-rsrc-panel">\
 			<fieldset >\
@@ -14,11 +22,12 @@ IITBHUCSE.jquery.template.ResourceEdit = $.template('\
 					<input type="text" name="rsrcname" value="${resource.rsrcname}" disabled="disabled"/>\
 				</label>\
 				<label>Content</label>\
-				<textarea name="resource" rows="15" cols="80">${resource.resource}</textarea>\
+				<textarea name="resource" rows="15">${resource.resource}</textarea>\
 				<input name="submit" type="submit" value="Submit" />\
 				<input name="reset" type="reset" value="Reset" />\
 				<div class="status"></div>\
 			</fieldset>\
 		</form>\
+	</div>\
 </div>');
 
