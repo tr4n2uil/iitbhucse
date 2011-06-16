@@ -3,43 +3,19 @@
  *
 **/
 IITBHUCSE.jquery.template.FacultyAll = $.template('\
-	<div class="faculty-content">\
-				{{each present}}\
-					<div class="faculty-name">${fname}</div>\
-					<div class="faculty-qualification">${fqualification}</div>\
-					<div class="faculty-designation">${IITBHUCSE.jquery.helper.getDesignation(fdesignation)}</div>\
-					<div class="faculty-email">${femail}</div>\
-					<div class="faculty-phone">${fphone}</div>\
-					<div class="faculty-interests">${finterests}</div>\
-				{{/each}}\
-				
-				{{each old}}\
-					<div class="faculty-name">${fname}</div>\
-					<div class="faculty-qualification">${fqualification}</div>\
-					<div class="faculty-designation">${IITBHUCSE.jquery.helper.getDesignation(fdesignation)}</div>\
-					<div class="faculty-email">${femail}</div>\
-					<div class="faculty-phone">${fphone}</div>\
-					<div class="faculty-interests">${finterests}</div>\
-				{{/each}}\
-			
+	<div id="faculty-container">\
+		<div id="edit-panel"></div>\
+		<div id="faculty-all-container" class="horizontal-menu"><fieldset>\
+			<legend>All Faculty Members</legend>\
+			<ul>\
+			<li><a href="#htmlload:cntr=#edit-panel:url=ui/html/form-faculty-add.html" \
+			class="navigate" >Create New ...</a></li>\
+			{{each faculty}}\
+	<li><a class="navigate" \
+	href="#tplload:cntr=#edit-panel:tpl=tpl-fac-edt:url=core/admin/faculty.php:arg=do~get&fid~${$value.fid}"\
+		>${$value.fname}</a></li>\
+			{{/each}}\
+			</ul>\
+		</fieldset></div>\
 	</div>');
-
-/**
- *	@helper getDesignation
- *
-**/
-IITBHUCSE.jquery.helper.getDesignation = function(index){
-	switch(index){
-		case '1' :
-			return 'Professor';
-		case '2' :
-			return 'Assist. Professor';
-		case '3' :
-			return 'Reader';
-		case '4' :
-			return 'Lecturer';
-		default :
-			return 'Unknown';
-	}
-}
 

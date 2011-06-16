@@ -84,6 +84,8 @@
 			ServiceClient.Registry.save('tpl-cnt-edt', IITBHUCSE.jquery.template.ContentEdit);
 			ServiceClient.Registry.save('tpl-usr-all', IITBHUCSE.jquery.template.UserAll);
 			ServiceClient.Registry.save('tpl-usr-edt', IITBHUCSE.jquery.template.UserEdit);
+			ServiceClient.Registry.save('tpl-fac-all', IITBHUCSE.jquery.template.FacultyAll);
+			ServiceClient.Registry.save('tpl-fac-edt', IITBHUCSE.jquery.template.FacultyEdit);
 			
 			ServiceClient.Registry.save('tpl-std-bws', IITBHUCSE.jquery.template.StudentBrowse);
 			ServiceClient.Registry.save('tpl-std-vw', IITBHUCSE.jquery.template.StudentView);
