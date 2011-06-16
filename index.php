@@ -80,8 +80,13 @@
 			ServiceClient.Registry.save('tpl-test', ServiceClient.jquery.template.Test);
 			ServiceClient.Registry.save('tpl-rsrc-all', IITBHUCSE.jquery.template.ResourceAll);
 			ServiceClient.Registry.save('tpl-rsrc-edt', IITBHUCSE.jquery.template.ResourceEdit);
+			ServiceClient.Registry.save('tpl-cnt-all', IITBHUCSE.jquery.template.ContentAll);
+			ServiceClient.Registry.save('tpl-cnt-edt', IITBHUCSE.jquery.template.ContentEdit);
+			ServiceClient.Registry.save('tpl-usr-all', IITBHUCSE.jquery.template.UserAll);
+			ServiceClient.Registry.save('tpl-usr-edt', IITBHUCSE.jquery.template.UserEdit);
+			
 			ServiceClient.Registry.save('tpl-std-bws', IITBHUCSE.jquery.template.StudentBrowse);
-			ServiceClient.Registry.save('tpl-std-all', IITBHUCSE.jquery.template.StudentAll);
+			ServiceClient.Registry.save('tpl-std-vw', IITBHUCSE.jquery.template.StudentView);
 			
 			ServiceClient.Kernel.run([{
 				service : ServiceClient.jquery.module.AlertStatus,

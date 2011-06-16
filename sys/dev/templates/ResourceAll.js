@@ -5,7 +5,8 @@
 IITBHUCSE.jquery.template.ResourceAll = $.template('\
 	<div id="resource-container">\
 		<div id="edit-panel"></div>\
-		<div id="resource-all-container" class="horizontal-menu">\
+		<div id="resource-all-container" class="horizontal-menu"><fieldset>\
+			<legend>All Resources</legend>\
 			<ul>\
 			<li><a href="#htmlload:cntr=#edit-panel:url=ui/html/form-resource-add.html" \
 			class="navigate" >Create New ...</a></li>\
@@ -15,6 +16,6 @@ IITBHUCSE.jquery.template.ResourceAll = $.template('\
 		>${$value.rsrcname}</a></li>\
 			{{/each}}\
 			</ul>\
-		</div>\
+		</fieldset></div>\
 	</div>');
 

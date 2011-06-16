@@ -5,7 +5,7 @@
 	/**
 	 * Check for valid request 
 	**/
-	if(!isset($_POST['styear']) && !isset($_POST['allyear'])){
+	if(!(isset($_POST['styear']) && isset($_POST['stcourse'])) && !isset($_POST['allyear'])){
 		$result['success'] = false;
 		$result['msg'] = "Invalid Request";
 		echo json_encode($result);
@@ -30,17 +30,20 @@
 		}
 	}
 	
-	if(isset($_POST['styear'])){
+	if(isset($_POST['styear']) && isset($_POST['stcourse'])){
 		/**
 		 * Get students for the year
 		**/
 		$op = $cl->load("student.all", ICROOT);
 		$model['styear'] = $_POST['styear'];
+		$model['stcourse'] = $_POST['stcourse'];
 		$model = $kernel->run($op, $model);
 		
 		if($model['valid']){
 			$result['success'] = true;
 			$result['students'] = $model['students'];
+			$result['styear'] = $model['styear'];
+			$result['stcourse'] = $model['stcourse'];
 		}
 		else {
 			$result['success'] = false;
