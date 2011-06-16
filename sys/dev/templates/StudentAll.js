@@ -3,16 +3,14 @@
  *
 **/
 IITBHUCSE.jquery.template.StudentAll = $.template('\
-	<div>\
-			<table class="site"><thead><tr><th>ID</th><th>Name</th><th>Roll No</th><th>Email</th>\
-										<th>Course</th><th>Year</th><th>Interests</th><th>Resume</th></tr></thead>\
-			<tbody>\
+	<div class="faculty-content">\
 				{{each students}}\
-					<tr><td>${stuid}</td><td>${stname}</td><td>${strollno}</td><td>${stemail}</td>\
-						<td>${IITBHUCSE.jquery.helper.getCourse(stcourse)}</td><td>${styear}</td>\
-						<td>${stinterest}</td><td><a href="#${stresume}">Download</a></td></tr>\
-				{{/each}}\
-			</tbody></table>\
+					<div class="student-name">${stname}</div>\
+					<div class="student-rollno">${strollno}</div>\
+					<div class="student-email">${stemail}</div>\
+					<div class="student-course">${IITBHUCSE.jquery.helper.getCourse(stcourse)}</div>\
+					<div class="student-year">${styear}</div>\
+					<div class="student-interests">${stinterest}</div>\
 	</div>');
 
 /**
