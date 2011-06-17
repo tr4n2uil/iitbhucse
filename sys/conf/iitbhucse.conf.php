@@ -10,7 +10,7 @@
 	**/
 	$mysql_database 	= 	"iitbhucse";
 	$mysql_user 			= 	"root";
-	$mysql_pass 			= 	"krishna";
+	$mysql_pass 			= 	"shivang";
 	$mysql_host 			= 	"localhost";
 	
 	/** Production 
