@@ -9,16 +9,16 @@
 	if(isset($_POST['do'])){
 		switch($_POST['do']){
 			case 'add' :
-				if(isset($_POST['fname']) && isset($_POST['fdesignation']) && isset($_POST['fqualification']) && isset($_POST['femail']))
+				if(isset($_POST['crsid']) && isset($_POST['crsname']) && isset($_POST['crsdescription']) && isset($_POST['crspart']))
 					$request = true;
 				break;
 			case 'edit' :
-				if(isset($_POST['fid']) && isset($_POST['newfname']) && isset($_POST['newfdesignation']) && isset($_POST['newfqualification'])) 
+				if(isset($_POST['crsid']) && isset($_POST['newcrsname']) && isset($_POST['newcrsdescription']) && isset($_POST['newcrspart'])) 
 					$request = true;
 				break;
 			case 'rem' :
 			case 'get' :
-				if(isset($_POST['fid']))
+				if(isset($_POST['crsid']))
 					$request = true;
 				break;
 			case 'all' :
@@ -64,22 +64,16 @@
 	
 	switch($_POST['do']){
 		case 'add' :
-			$op = $cl->load("faculty.create", ICROOT);
-			$model['fname'] = $_POST['fname'];
-			$model['username'] = $_POST['username'];
-			$model['femail'] = $_POST['femail'];
-			$model['fqualification'] = $_POST['fqualification'];
-			$model['fdesignation'] = $_POST['fdesignation'];
-			$model['fphone'] = $_POST['fphone'];
-			$model['fstatus'] = $_POST['fstatus'];
-			$model['finterest'] = $_POST['finterest'];
-			
-			$model['mail'] = false;
+			$op = $cl->load("course.create", ICROOT);
+			$model['crsid'] = $_POST['crsid'];
+			$model['crsname'] = $_POST['crsname'];
+			$model['crsdescription'] = $_POST['crsdescription'];
+			$model['crspart'] = $_POST['crspart'];
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['msg'] = '<p class="success">Faculty created successfully</p>';
+				$result['msg'] = '<p class="success">Course created successfully</p>';
 			}
 			else {
 				$result['success'] = false;
@@ -88,20 +82,17 @@
 			break;
 			
 		case 'edit' :
-			$op = $cl->load("faculty.edit", ICROOT);
-			$model['fid'] = $_POST['fid'];
+			$op = $cl->load("course.edit", ICROOT);
+			$model['crsid'] = $_POST['crsid'];
 			$model['admin'] = true;
-			$model['fname'] = $_POST['newfname'];
-			$model['fqualification'] = $_POST['newfqualification'];
-			$model['fdesignation'] = $_POST['newfdesignation'];
-			$model['fphone'] = $_POST['newfphone'];
-			$model['finterest'] = $_POST['newfinterest'];
-			$model['fstatus'] = $_POST['newfstatus'];
+			$model['crsname'] = $_POST['newcrsname'];
+			$model['crsdescription'] = $_POST['newcrsdescription'];
+			$model['crspart'] = $_POST['newcrspart'];
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['msg'] = '<p class="success">Faculty credentials edited successfully</p>';
+				$result['msg'] = '<p class="success">Course credentials edited successfully</p>';
 			}
 			else {
 				$result['success'] = false;
@@ -110,13 +101,13 @@
 			break;
 		
 		case 'get' :
-			$op = $cl->load("faculty.info", ICROOT);
-			$model['fid'] = $_POST['fid'];
+			$op = $cl->load("course.info", ICROOT);
+			$model['crsid'] = $_POST['crsid'];
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['faculty'] = $model['faculty'];
+				$result['course'] = $model['course'];
 			}
 			else {
 				$result['success'] = false;
@@ -125,13 +116,13 @@
 			break;
 			
 		case 'rem' :
-			$op = $cl->load("faculty.delete", ICROOT);
-			$model['fid'] = $_POST['fid'];
+			$op = $cl->load("course.delete", ICROOT);
+			$model['crsid'] = $_POST['crsid'];
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['template'] = '<p class="success">Faculty deleted successfully. ID='.$model['fid'].'</p>';
+				$result['template'] = '<p class="success">Course deleted successfully. ID='.$model['fid'].'</p>';
 			}
 			else {
 				$result['success'] = false;
@@ -140,13 +131,12 @@
 			break;
 			
 		case 'all' :
-			$op = $cl->load("faculty.all", ICROOT);
-			$model['fstatus'] = 1;
+			$op = $cl->load("Course.all", ICROOT);
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['faculty'] = $model['status'];
+				$result['courses'] = $model['status'];
 			}
 			else {
 				$result['success'] = false;
