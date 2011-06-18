@@ -9,11 +9,14 @@
 			<label>Name
 				<input type="text" name="fname" class="field"/>
 			</label>
-			Designation
-			<label>	<input type="radio" name="fdesignation" class="field" value="1">Professor</label>
-			<label>	<input type="radio" name="fdesignation" class="field" value="2">Assist. Professor</label>
-			<label>	<input type="radio" name="fdesignation" class="field" value="3">Reader</label>
-			<label>	<input type="radio" name="fdesignation" class="field" value="4">Lecturer</label>
+			<label>Designation
+			<select name="fdesignation">
+			<option value="1" >Professor</option>
+			<option value="2" >Assist. Professor</option>
+			<option value="3" >Reader</option>
+			<option value="4" >Lecturer</option>
+			</select>
+			</label>
 			<label>Qualification
 				<input type="text" name="fqualification" class="field"/>
 			</label>
@@ -23,9 +26,12 @@
 			<label>Phone No
 				<input type="text" name="fphone" class="field"/>
 			</label>
-			Status
-			<label>	<input type="radio" name="fstatus" class="field" value="1">Teaching</label>
-			<label>	<input type="radio" name="fstatus" class="field" value="2">Retired</label>
+			<label>Status
+			<select name="fstatus">
+			<option value="1">Teaching</option>
+			<option value="2">Retired</option>
+			</select>
+			</label>
 			<label>Interests
 				<textarea name="finterest" class="field"></textarea>
 			</label>

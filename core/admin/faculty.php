@@ -13,7 +13,7 @@
 					$request = true;
 				break;
 			case 'edit' :
-				if(isset($_POST['fid']) && isset($_POST['newfname']) && isset($_POST['newfdesignation']) && isset($_POST['newfqualification'])) 
+				if(isset($_POST['fid']) && isset($_POST['fname']) && isset($_POST['fdesignation']) && isset($_POST['fqualification'])) 
 					$request = true;
 				break;
 			case 'rem' :
@@ -91,12 +91,12 @@
 			$op = $cl->load("faculty.edit", ICROOT);
 			$model['fid'] = $_POST['fid'];
 			$model['admin'] = true;
-			$model['fname'] = $_POST['newfname'];
-			$model['fqualification'] = $_POST['newfqualification'];
-			$model['fdesignation'] = $_POST['newfdesignation'];
-			$model['fphone'] = $_POST['newfphone'];
-			$model['finterest'] = $_POST['newfinterest'];
-			$model['fstatus'] = $_POST['newfstatus'];
+			$model['fname'] = $_POST['fname'];
+			$model['fqualification'] = $_POST['fqualification'];
+			$model['fdesignation'] = $_POST['fdesignation'];
+			$model['fphone'] = $_POST['fphone'];
+			$model['finterest'] = $_POST['finterest'];
+			$model['fstatus'] = $_POST['fstatus'];
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
@@ -141,7 +141,7 @@
 			
 		case 'all' :
 			$op = $cl->load("faculty.all", ICROOT);
-			$model['fstatus'] = 1;
+			$model['fstatus'] = "1 or 2";
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
