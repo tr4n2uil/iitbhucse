@@ -13,7 +13,7 @@
 					$request = true;
 				break;
 			case 'edit' :
-				if(isset($_POST['crsid']) && isset($_POST['newcrsname']) && isset($_POST['newcrsdescription']) && isset($_POST['newcrspart'])) 
+				if(isset($_POST['crsname']) && isset($_POST['crsdescription']) && isset($_POST['crspart'])) 
 					$request = true;
 				break;
 			case 'rem' :
@@ -85,9 +85,9 @@
 			$op = $cl->load("course.edit", ICROOT);
 			$model['crsid'] = $_POST['crsid'];
 			$model['admin'] = true;
-			$model['crsname'] = $_POST['newcrsname'];
-			$model['crsdescription'] = $_POST['newcrsdescription'];
-			$model['crspart'] = $_POST['newcrspart'];
+			$model['crsname'] = $_POST['crsname'];
+			$model['crsdescription'] = $_POST['crsdescription'];
+			$model['crspart'] = $_POST['crspart'];
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
@@ -122,7 +122,7 @@
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['template'] = '<p class="success">Course deleted successfully. ID='.$model['fid'].'</p>';
+				$result['template'] = '<p class="success">Course deleted successfully. ID='.$model['crsid'].'</p>';
 			}
 			else {
 				$result['success'] = false;
@@ -136,7 +136,7 @@
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['courses'] = $model['status'];
+				$result['courses'] = $model['courses'];
 			}
 			else {
 				$result['success'] = false;
