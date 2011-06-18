@@ -9,16 +9,16 @@
 	if(isset($_POST['do'])){
 		switch($_POST['do']){
 			case 'add' :
-				if(isset($_POST['username']) && isset($_POST['email']))
+				if(isset($_POST['username']) && isset($_POST['stemail']) && isset($_POST['stname']) && isset($_POST['stcourse']) && isset($_POST['styear']) && isset($_POST['strollno']) && isset($_POST['ststatus']))
 					$request = true;
 				break;
 			case 'edit' :
-				if(isset($_POST['uid']) && isset($_POST['newusername']) && isset($_POST['newpassword']))
+				if(isset($_POST['stuid']) && isset($_POST['stname']) && isset($_POST['stcourse']) && isset($_POST['styear']) && isset($_POST['strollno']) && isset($_POST['ststatus']))
 					$request = true;
 				break;
 			case 'rem' :
 			case 'get' :
-				if(isset($_POST['uid']))
+				if(isset($_POST['stuid']))
 					$request = true;
 				break;
 			case 'all' :
@@ -52,7 +52,7 @@
 	/**
 	 * Check for valid privilege 
 	**/
-	$op = $cl->load("privilege.check", ICROOT);
+	$op = $cl->load("privilege.check", ECROOT);
 	$model['privtype'] = 'ENHANCSE_ADMIN';
 	$model = $kernel->run($op, $model);
 	if(!$model['valid']){
@@ -64,15 +64,20 @@
 	
 	switch($_POST['do']){
 		case 'add' :
-			$op = $cl->load("user.register", ICROOT);
+			$op = $cl->load("student.create", ICROOT);
 			$model['username'] = $_POST['username'];
-			$model['email'] = $_POST['email'];
+			$model['stname'] = $_POST['stname'];
+			$model['stemail'] = $_POST['stemail'];
+			$model['strollno'] = $_POST['strollno'];
+			$model['stcourse'] = $_POST['stcourse'];
+			$model['styear'] = $_POST['styear'];
+			$model['ststatus'] = $_POST['ststatus'];
 			$model['mail'] = false;
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['msg'] = '<p class="success">The account has been created succesfully.<br />Password : '.$model['password'].'</p>';
+				$result['msg'] = '<p class="success">Student account created succesfully.</p>';
 			}
 			else {
 				$result['success'] = false;
@@ -81,16 +86,31 @@
 			break;
 			
 		case 'edit' :
-			$op = $cl->load("user.edit", ICROOT);
-			$model['uid'] = $_POST['uid'];
+			$op = $cl->load("student.edit", ICROOT);
+			$model['stuid'] = $_POST['stuid'];
 			$model['admin'] = true;
-			$model['newusername'] = $_POST['newusername'];
-			$model['newpassword'] = $_POST['newpassword'];
+			$model['stname'] = $_POST['stname'];
+			$model['strollno'] = $_POST['strollno'];
+			$model['stcourse'] = $_POST['stcourse'];
+			$model['styear'] = $_POST['styear'];
+			$model['ststatus'] = $_POST['ststatus'];
+			if(isset($_POST['stcgpa'])){
+				$model['stcgpa'] = $_POST['stcgpa'];
+			}
+			if(isset($_POST['stinternship'])){
+				$model['stinternship'] = $_POST['stinternship'];
+			}
+			if(isset($_POST['stplacement'])){
+				$model['stplacement'] = $_POST['stplacement'];
+			}
+			if(isset($_POST['stinterest'])){
+				$model['stinterest'] = $_POST['stinterest'];
+			}
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['msg'] = '<p class="success">User credentials edited successfully</p>';
+				$result['msg'] = '<p class="success">Student credentials edited successfully</p>';
 			}
 			else {
 				$result['success'] = false;
@@ -99,13 +119,13 @@
 			break;
 		
 		case 'get' :
-			$op = $cl->load("student.all", ICROOT);
-			$model['styear'] = $_POST['styear'];
+			$op = $cl->load("student.info", ICROOT);
+			$model['stuid'] = $_POST['stuid'];
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['user'] = $model['user'];
+				$result['student'] = $model['student'];
 			}
 			else {
 				$result['success'] = false;
@@ -114,13 +134,13 @@
 			break;
 			
 		case 'rem' :
-			$op = $cl->load("user.delete", ICROOT);
-			$model['uid'] = $_POST['uid'];
+			$op = $cl->load("student.delete", ICROOT);
+			$model['stuid'] = $_POST['stuid'];
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['template'] = '<p class="success">User deleted successfully. ID='.$model['uid'].'</p>';
+				$result['template'] = '<p class="success">Student deleted successfully. ID='.$model['stuid'].'</p>';
 			}
 			else {
 				$result['success'] = false;
@@ -130,6 +150,8 @@
 			
 		case 'all' :
 			$op = $cl->load("student.all", ICROOT);
+			$model['stcourse'] = "1 or 2";
+			$model['admin'] = true;
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){

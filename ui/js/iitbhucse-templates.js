@@ -285,24 +285,30 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 					<input type="text" name="femail" value="${faculty.femail}" disabled="disabled"/>\
 				</label>\
 				<label>Name\
-					<input type="text" name="newfname" value="${faculty.fname}"/>\
+					<input type="text" name="fname" value="${faculty.fname}"/>\
 				</label>\
-				Designation\
-				<label>	<input type="radio" {{if ServiceClient.jquery.helper.equals(faculty.fdesignation, 1)}}checked="checked"{{/if}} name="newfdesignation" class="field" value="1">Professor</label>\
-				<label>	<input type="radio" {{if ServiceClient.jquery.helper.equals(faculty.fdesignation, 2)}}checked="checked"{{/if}} name="newfdesignation" class="field" value="2">Assist. Professor</label>\
-				<label>	<input type="radio" {{if ServiceClient.jquery.helper.equals(faculty.fdesignation, 3)}}checked="checked"{{/if}} name="newfdesignation" class="field" value="3">Reader</label>\
-				<label>	<input type="radio" {{if ServiceClient.jquery.helper.equals(faculty.fdesignation, 4)}}checked="checked"{{/if}} name="newfdesignation" class="field" value="4">Lecturer</label>\
+				<label>Designation\
+				<select name="fdesignation" >\
+						<option value="1" {{if ServiceClient.jquery.helper.equals(faculty.fdesignation, 1)}}selected="selected"{{/if}}>Professor</option>\
+						<option value="2" {{if ServiceClient.jquery.helper.equals(faculty.fdesignation, 2)}}selected="selected"{{/if}}>Assist. Professor</option>\
+						<option value="3" {{if ServiceClient.jquery.helper.equals(faculty.fdesignation, 3)}}selected="selected"{{/if}}>Reader</option>\
+						<option value="4" {{if ServiceClient.jquery.helper.equals(faculty.fdesignation, 4)}}selected="selected"{{/if}}>Lecturer</option>\
+					</select>\
+				</label>\
 				<label>Qualification\
-					<input type="text" name="newfqualification" class="field" value="${faculty.fqualification}"/>\
+					<input type="text" name="fqualification" class="field" value="${faculty.fqualification}"/>\
 				</label>\
 				<label>Phone No\
-					<input type="text" name="newfphone" class="field" value="${faculty.fphone}" />\
+					<input type="text" name="fphone" class="field" value="${faculty.fphone}" />\
 				</label>\
-				Status\
-				<label>	<input type="radio" {{if ServiceClient.jquery.helper.equals(faculty.fstatus, 1)}}checked="checked"{{/if}} name="newfstatus" class="field" value="1">Teaching</label>\
-				<label>	<input type="radio" {{if ServiceClient.jquery.helper.equals(faculty.fstatus, 2)}}checked="checked"{{/if}} name="newfstatus" class="field" value="2">Retired</label>\
+				<label>Status\
+				<select name="fstatus">\
+				<option value="1" {{if ServiceClient.jquery.helper.equals(faculty.fstatus, 1)}}selected="selected"{{/if}}>Teaching</option>\
+				<option value="2" {{if ServiceClient.jquery.helper.equals(faculty.fstatus, 2)}}selected="selected"{{/if}}>Retired</option>\
+				</select>\
+				</label>\
 				<label>Interests\
-					<textarea name="newfinterest" rows="3">${faculty.finterest}</textarea>\
+					<textarea name="finterest" rows="3" class="field">${faculty.finterest}</textarea>\
 				</label>\
 				<input name="submit" type="submit" value="Submit" />\
 				<input name="reset" type="reset" value="Reset" />\
@@ -311,6 +317,8 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 		</form>\
 	</div>\
 </div>');
+
+
 
 
 
@@ -336,4 +344,157 @@ IITBHUCSE.jquery.template.FacultyAll = $.template('\
 	</div>');
 
 
+	/**
+ *	@template CourseAll
+ *
+**/
+IITBHUCSE.jquery.template.CourseAll = $.template('\
+	<div id="course-container">\
+		<div id="edit-panel"></div>\
+		<div id="course-all-container" class="horizontal-menu"><fieldset>\
+			<legend>All Courses</legend>\
+			<ul>\
+			<li><a href="#htmlload:cntr=#edit-panel:url=ui/html/form-course-add.html" \
+			class="navigate" >Create New ...</a></li>\
+			{{each courses}}\
+	<li><a class="navigate" \
+	href="#tplload:cntr=#edit-panel:tpl=tpl-crs-edt:url=core/admin/course.php:arg=do~get&crsid~${$value.crsid}"\
+		>${$value.crsid}</a></li>\
+			{{/each}}\
+			</ul>\
+		</fieldset></div>\
+	</div>');
+
+
+
+/**
+ *	@template CourseEdit
+ *
+**/
+IITBHUCSE.jquery.template.CourseEdit = $.template('\
+	<div id="admin-crs-panel">\
+		<div id="course-options-container" class="horizontal-menu"><fieldset>\
+			<legend>Course #${course.crsid} Options</legend>\
+			<ul>\
+				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/course.php:arg=do~rem&crsid~${course.crsid}" \
+				class="navigate" >Delete</a></li>\
+			</ul>\
+		</fieldset></div>\
+		<div id="course-edit-container" class="horizontal-menu form-panel">\
+		<form action="core/admin/course.php" method="post" class="navigate" \
+				id="_formsubmit:sel._admin-crs-panel">\
+			<fieldset >\
+				<legend>Edit Course #${course.crsid} Credentials</legend>\
+				<input type="hidden" name="do" value="edit"/>\
+				<input type="hidden" name="crsid" value="${course.crsid}" />\
+				<label>Course Name\
+					<input type="text" name="crsname" class="field" value="${course.crsname}" />\
+				</label>\
+				<label>Course Description\
+					<textarea name="crsdescription" class="field" >${course.crsdescription}</textarea>\
+				</label>\
+				<label>Course Part\
+					<select name="crspart" >\
+						<option value="1" {{if ServiceClient.jquery.helper.equals(course.crspart, 1)}}selected="selected"{{/if}}>Part I</option>\
+						<option value="2" {{if ServiceClient.jquery.helper.equals(course.crspart, 2)}}selected="selected"{{/if}}>Part II</option>\
+						<option value="3" {{if ServiceClient.jquery.helper.equals(course.crspart, 3)}}selected="selected"{{/if}}>Part III</option>\
+						<option value="4" {{if ServiceClient.jquery.helper.equals(course.crspart, 4)}}selected="selected"{{/if}}>Part IV</option>\
+						<option value="5" {{if ServiceClient.jquery.helper.equals(course.crspart, 5)}}selected="selected"{{/if}}>Part V</option>\
+					</select>\
+				</label><input name="submit" type="submit" value="Submit" />\
+				<input name="reset" type="reset" value="Reset" />\
+				<div class="status"></div>\
+			</fieldset>\
+		</form>\
+	</div>\
+</div>');
+
+
+/**
+ *	@template StudentAll
+ *
+**/
+IITBHUCSE.jquery.template.StudentAll = $.template('\
+	<div id="student-container">\
+		<div id="edit-panel"></div>\
+		<div id="student-all-container" class="horizontal-menu"><fieldset>\
+			<legend>All Students</legend>\
+			<ul>\
+			<li><a href="#htmlload:cntr=#edit-panel:url=ui/html/form-student-add.html" \
+			class="navigate" >Create New ...</a></li>\
+			{{each students}}\
+	<li><a class="navigate" \
+	href="#tplload:cntr=#edit-panel:tpl=tpl-std-edt:url=core/admin/student.php:arg=do~get&stuid~${$value.stuid}"\
+		>${$value.strollno}\\${$value.stname}</a></li>\
+			{{/each}}\
+			</ul>\
+		</fieldset></div>\
+	</div>');
+
+
+
+/**
+ *	@template StudentEdit
+ *
+**/
+IITBHUCSE.jquery.template.StudentEdit = $.template('\
+	<div id="admin-stu-panel">\
+		<div id="student-options-container" class="horizontal-menu"><fieldset>\
+			<legend>Student #${student.stuid} Options</legend>\
+			<ul>\
+				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/student.php:arg=do~rem&stuid~${student.stuid}" \
+				class="navigate" >Delete</a></li>\
+			</ul>\
+		</fieldset></div>\
+		<div id="student-edit-container" class="horizontal-menu form-panel">\
+		<form action="core/admin/student.php" method="post" class="navigate" \
+				id="_formsubmit:sel._admin-stu-panel">\
+			<fieldset >\
+				<legend>Edit Student #${student.stuid} Credentials</legend>\
+				<input type="hidden" name="do" value="edit"/>\
+				<input type="hidden" name="stuid" value="${student.stuid}"/>\
+				<label>Email\
+					<input type="text" name="stemail" value="${student.stemail}" disabled="disabled"/>\
+				</label>\
+				<label>Name\
+					<input type="text" name="stname" value="${student.stname}"/>\
+				</label>\
+				<label>Roll Number\
+					<input type="text" name="strollno" value="${student.strollno}"/>\
+				</label>\
+				<label>Course\
+				<select name="stcourse" >\
+						<option value="1" {{if ServiceClient.jquery.helper.equals(student.stcourse, 1)}}selected="selected"{{/if}}>B.Tech</option>\
+						<option value="2" {{if ServiceClient.jquery.helper.equals(student.stcourse, 2)}}selected="selected"{{/if}}>M.Tech</option>\
+						<option value="3" {{if ServiceClient.jquery.helper.equals(student.stcourse, 3)}}selected="selected"{{/if}}>Ph.D</option>\
+					</select>\
+				</label>\
+				<label>Year\
+					<input type="text" name="styear" class="field" value="${student.styear}"/>\
+				</label>\
+				<label>Status\
+					<select name="ststatus">\
+						<option value="1" {{if ServiceClient.jquery.helper.equals(student.ststatus, 1)}}selected="selected"{{/if}}>Enrolled</option>\
+						<option value="2" {{if ServiceClient.jquery.helper.equals(student.ststatus, 2)}}selected="selected"{{/if}}>Alumnus</option>\
+					</select>\
+				</label>\
+				<label>CGPA\
+					<input type="text" name="stcgpa" class="field" value="${student.stcgpa}"/>\
+				</label>\
+				<label>Internship\
+					<input type="text" name="stinternship" class="field" value="${student.stinternship}"/>\
+				</label>\
+				<label>Placement\
+					<input type="text" name="stplacement" class="field" value="${student.stplacement}"/>\
+				</label>\
+				<label>Interests\
+					<textarea name="stinterest" class="field">${student.stinterest}</textarea>\
+				</label>\
+				<input name="submit" type="submit" value="Submit" />\
+				<input name="reset" type="reset" value="Reset" />\
+				<div class="status"></div>\
+			</fieldset>\
+		</form>\
+	</div>\
+</div>');
 
