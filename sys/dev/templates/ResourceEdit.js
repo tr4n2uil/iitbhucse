@@ -9,7 +9,7 @@ IITBHUCSE.jquery.template.ResourceEdit = $.template('\
 			<legend class="head">Resource #${resource.rsrcid} Options</legend>\
 			<ul class="horizontal menu">\
 				<li>\
-					<a href="#tplload:cntr=#edit-panel:url=core/admin/resource.php:arg=do~rem&rsrcid~${resource.rsrcid}" \
+			<a href="#tplload:cntr=#edit-panel:url=core/admin/resource.php:arg=do~rem&rsrcid~${resource.rsrcid}:cf=true" \
 				class="navigate" >Delete</a>\
 				</li>\
 			</ul>\

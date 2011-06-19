@@ -8,7 +8,7 @@ IITBHUCSE.jquery.template.UserEdit = $.template('\
 		<fieldset>\
 			<legend class="head">User #${user.uid} Options</legend>\
 			<ul class="horizontal menu">\
-				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/user.php:arg=do~rem&uid~${user.uid}" \
+				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/user.php:arg=do~rem&uid~${user.uid}:cf=true" \
 				class="navigate" >Delete</a></li>\
 			</ul>\
 		</fieldset>\

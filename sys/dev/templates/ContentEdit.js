@@ -14,7 +14,7 @@ IITBHUCSE.jquery.template.ContentEdit = $.template('\
 				</li>\
 				{{if admin}}\
 				<li>\
-					<a href="#tplload:cntr=#edit-panel:url=core/admin/content.php:arg=do~rem&cntid~${content.cntid}" \
+					<a href="#tplload:cntr=#edit-panel:url=core/admin/content.php:arg=do~rem&cntid~${content.cntid}:cf=true" \
 					class="navigate" >Delete</a>\
 				</li>\
 				{{/if}}\

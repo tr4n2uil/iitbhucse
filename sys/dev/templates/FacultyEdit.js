@@ -9,7 +9,7 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 			<legend class="head">Faculty #${faculty.fid} Options</legend>\
 			<ul class="horizontal menu">\
 				<li>\
-					<a href="#tplload:cntr=#edit-panel:url=core/admin/faculty.php:arg=do~rem&fid~${faculty.fid}" \
+					<a href="#tplload:cntr=#edit-panel:url=core/admin/faculty.php:arg=do~rem&fid~${faculty.fid}:cf=true" \
 						class="navigate" >Delete</a>\
 				</li>\
 			</ul>\

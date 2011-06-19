@@ -8,7 +8,7 @@ IITBHUCSE.jquery.template.StudentEdit = $.template('\
 		<fieldset>\
 			<legend class="head">Student #${student.stuid} Options</legend>\
 			<ul class="horizontal menu">\
-				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/student.php:arg=do~rem&stuid~${student.stuid}" \
+				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/student.php:arg=do~rem&stuid~${student.stuid}:cf=true" \
 				class="navigate" >Delete</a></li>\
 			</ul>\
 		</fieldset>\

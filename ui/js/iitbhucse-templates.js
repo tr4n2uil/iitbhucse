@@ -39,7 +39,7 @@ IITBHUCSE.jquery.template.ContentEdit = $.template('\
 				</li>\
 				{{if admin}}\
 				<li>\
-					<a href="#tplload:cntr=#edit-panel:url=core/admin/content.php:arg=do~rem&cntid~${content.cntid}" \
+					<a href="#tplload:cntr=#edit-panel:url=core/admin/content.php:arg=do~rem&cntid~${content.cntid}:cf=true" \
 					class="navigate" >Delete</a>\
 				</li>\
 				{{/if}}\
@@ -128,7 +128,7 @@ IITBHUCSE.jquery.template.CourseEdit = $.template('\
 			<legend class="head">Course #${course.crsid} Options</legend>\
 			<ul class="horizontal menu">\
 				<li>\
-					<a href="#tplload:cntr=#edit-panel:url=core/admin/course.php:arg=do~rem&crsid~${course.crsid}" \
+					<a href="#tplload:cntr=#edit-panel:url=core/admin/course.php:arg=do~rem&crsid~${course.crsid}:cf=true" \
 						class="navigate" >Delete</a>\
 				</li>\
 			</ul>\
@@ -198,7 +198,7 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 			<legend class="head">Faculty #${faculty.fid} Options</legend>\
 			<ul class="horizontal menu">\
 				<li>\
-					<a href="#tplload:cntr=#edit-panel:url=core/admin/faculty.php:arg=do~rem&fid~${faculty.fid}" \
+					<a href="#tplload:cntr=#edit-panel:url=core/admin/faculty.php:arg=do~rem&fid~${faculty.fid}:cf=true" \
 						class="navigate" >Delete</a>\
 				</li>\
 			</ul>\
@@ -283,7 +283,7 @@ IITBHUCSE.jquery.template.ResourceEdit = $.template('\
 			<legend class="head">Resource #${resource.rsrcid} Options</legend>\
 			<ul class="horizontal menu">\
 				<li>\
-					<a href="#tplload:cntr=#edit-panel:url=core/admin/resource.php:arg=do~rem&rsrcid~${resource.rsrcid}" \
+			<a href="#tplload:cntr=#edit-panel:url=core/admin/resource.php:arg=do~rem&rsrcid~${resource.rsrcid}:cf=true" \
 				class="navigate" >Delete</a>\
 				</li>\
 			</ul>\
@@ -376,7 +376,7 @@ IITBHUCSE.jquery.template.StudentEdit = $.template('\
 		<fieldset>\
 			<legend class="head">Student #${student.stuid} Options</legend>\
 			<ul class="horizontal menu">\
-				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/student.php:arg=do~rem&stuid~${student.stuid}" \
+				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/student.php:arg=do~rem&stuid~${student.stuid}:cf=true" \
 				class="navigate" >Delete</a></li>\
 			</ul>\
 		</fieldset>\
@@ -516,7 +516,7 @@ IITBHUCSE.jquery.template.UserEdit = $.template('\
 		<fieldset>\
 			<legend class="head">User #${user.uid} Options</legend>\
 			<ul class="horizontal menu">\
-				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/user.php:arg=do~rem&uid~${user.uid}" \
+				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/user.php:arg=do~rem&uid~${user.uid}:cf=true" \
 				class="navigate" >Delete</a></li>\
 			</ul>\
 		</fieldset>\

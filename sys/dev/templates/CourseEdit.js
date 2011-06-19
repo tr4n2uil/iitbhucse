@@ -9,7 +9,7 @@ IITBHUCSE.jquery.template.CourseEdit = $.template('\
 			<legend class="head">Course #${course.crsid} Options</legend>\
 			<ul class="horizontal menu">\
 				<li>\
-					<a href="#tplload:cntr=#edit-panel:url=core/admin/course.php:arg=do~rem&crsid~${course.crsid}" \
+					<a href="#tplload:cntr=#edit-panel:url=core/admin/course.php:arg=do~rem&crsid~${course.crsid}:cf=true" \
 						class="navigate" >Delete</a>\
 				</li>\
 			</ul>\

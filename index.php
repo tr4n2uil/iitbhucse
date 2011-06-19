@@ -78,12 +78,13 @@
 			ServiceClient.Registry.save('mdl-login', ServiceClient.jquery.module.CookieLogin);
 			
 			ServiceClient.Registry.save('tpl-test', ServiceClient.jquery.template.Test);
+			ServiceClient.Registry.save('tpl-usr-all', IITBHUCSE.jquery.template.UserAll);
+			ServiceClient.Registry.save('tpl-usr-edt', IITBHUCSE.jquery.template.UserEdit);
+			
 			ServiceClient.Registry.save('tpl-rsrc-all', IITBHUCSE.jquery.template.ResourceAll);
 			ServiceClient.Registry.save('tpl-rsrc-edt', IITBHUCSE.jquery.template.ResourceEdit);
 			ServiceClient.Registry.save('tpl-cnt-all', IITBHUCSE.jquery.template.ContentAll);
 			ServiceClient.Registry.save('tpl-cnt-edt', IITBHUCSE.jquery.template.ContentEdit);
-			ServiceClient.Registry.save('tpl-usr-all', IITBHUCSE.jquery.template.UserAll);
-			ServiceClient.Registry.save('tpl-usr-edt', IITBHUCSE.jquery.template.UserEdit);
 			ServiceClient.Registry.save('tpl-fac-all', IITBHUCSE.jquery.template.FacultyAll);
 			ServiceClient.Registry.save('tpl-fac-edt', IITBHUCSE.jquery.template.FacultyEdit);
 			ServiceClient.Registry.save('tpl-crs-all', IITBHUCSE.jquery.template.CourseAll);
