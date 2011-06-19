@@ -1,12 +1,12 @@
-<div id="elib-panel" class="horizontal-menu form-panel">
+<div id="elib-panel" class="panel form-panel">
 	<form action="core/elibrary/upload.php" method="post" class="navigate" enctype="multipart/form-data" 
 		title="#upload" target="upload_target" >
 		<fieldset >
-			<legend>Upload</legend>
+			<legend class="head">Upload</legend>
 			<label>File
-				<input type="file" name="book" class="field"/>
+				<input type="file" name="book"/>
 			</label>
-			<input name="submit" type="submit" value="Submit" />
+			<input name="submit" type="submit" value="Submit"  class="margin5"/>
 			<div class="status"></div>
 			<!--<iframe id="upload_target" name="upload_target" src="#" style="width:0;height:0;border:0px solid #fff;"></iframe>-->
 		</fieldset>

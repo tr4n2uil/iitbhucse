@@ -1,9 +1,9 @@
-<div id="admin-cnt-panel" class="horizontal-menu form-panel" >
+<div id="admin-cnt-panel" class="panel form-panel" >
 		<form action="core/admin/content.php" method="post" class="navigate" 
 				id="_formsubmit:sel._admin-cnt-panel">
 			<fieldset >
 				<input type="hidden" name="do" value="add"/>
-				<legend>Add Content</legend>
+				<legend class="head">Add Content</legend>
 				<label>Name
 					<input type="text" name="cntname" />
 				</label>
@@ -35,8 +35,8 @@
 				</label>
 				<label>Data</label>
 				<textarea name="cntdata" rows="15" cols="80"></textarea>
-				<input name="submit" type="submit" value="Submit" />
-				<input name="reset" type="reset" value="Reset" />
+				<input name="submit" type="submit" value="Submit" class="margin5"/>
+				<input name="reset" type="reset" value="Reset" class="margin5" />
 				<div class="status"></div>
 			</fieldset>
 		</form>

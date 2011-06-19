@@ -1,16 +1,16 @@
-<div id="admin-crs-panel" class="horizontal-menu form-panel">
+<div id="admin-crs-panel" class="panel form-panel">
 		<form action="core/admin/course.php" method="post" class="navigate" id="_formsubmit:sel._admin-crs-panel">
 			<fieldset >
 				<input type="hidden" name="do" value="add">
-				<legend>Add Course</legend>
+				<legend class="head">Add Course</legend>
 				<label>Course ID
-					<input type="text" name="crsid" class="field"/>
+					<input type="text" name="crsid"/>
 				</label>
 				<label>Course Name
-					<input type="text" name="crsname" class="field" />
+					<input type="text" name="crsname" />
 				</label>
 				<label>Course Description
-					<textarea name="crsdescription" class="field" ></textarea>
+					<textarea name="crsdescription" rows="15"></textarea>
 				</label>
 				<label>Course Part
 					<select name="crspart">
@@ -21,8 +21,8 @@
 						<option value="5">Part V</option>
 					</select>
 				</label>
-				<input name="submit" type="submit" value="Submit" />
-				<input name="reset" type="reset" value="Reset" />
+				<input name="submit" type="submit" value="Submit"  class="margin5"/>
+				<input name="reset" type="reset" value="Reset"  class="margin5"/>
 				<div class="status"></div>
 			</fieldset>
 		</form>

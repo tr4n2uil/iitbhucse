@@ -51,14 +51,16 @@
 	
 	if($admin || $user == $model['cntowner'])
 		$editlink = <<<EDIT
-	<div id="content-options-container" class="horizontal-menu">
-	<fieldset>
-		<legend>Content Options</legend>
-		<ul>
-		<li><a href="#tplload:cntr=#main-container:tpl=tpl-cnt-edt:url=core/admin/content.php:arg=do~get&cntid~$cntid" 
-				class="navigate" >Edit</a></li>
-		</ul>
-	</fieldset>
+	<div id="content-options-container" class="panel left">
+		<fieldset>
+			<legend class="head">Content Options</legend>
+			<ul class="horizontal menu">
+				<li>
+					<a href="#tplload:cntr=#main-container:tpl=tpl-cnt-edt:url=core/admin/content.php:arg=do~get&cntid~$cntid" 
+					class="navigate" >Edit</a>
+				</li>
+			</ul>
+		</fieldset>
 	</div>
 EDIT;
 		

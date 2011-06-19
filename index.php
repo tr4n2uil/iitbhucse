@@ -4,7 +4,7 @@
 	require_once(INITROOT . 'sys/lib/Document.class.php');
 	
 	$model['title'] = "Department of Computer Engineering IT BHU";
-	$model['styles'] = array('default.css', 'jquery.css', 'iitbhucse-styles.css', 'redmond/jquery-ui-1.8.13.custom.css');
+	$model['styles'] = array('default.css', 'layout.css', 'jquery.css', 'iitbhucse-styles.css', 'redmond/jquery-ui-1.8.13.custom.css');
 	Document::header($model);
 	
 	include(INITROOT. 'ui/html/main-header.html');
