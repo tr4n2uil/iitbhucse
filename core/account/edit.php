@@ -34,10 +34,6 @@
 	if($model['valid']){
 		$result['success'] = true;
 		$result['msg'] = '<p class="success">Account Credentials edited successfully</p>';
-		
-		$op = $cl->load("log.record", ECROOT);
-		$model['message'] = "USER LOGIN with uid=".$model['uid']." and username=".$model['username'];
-		$model = $kernel->run($op, $model);
 	}
 	else {
 		$result['success'] = false;
