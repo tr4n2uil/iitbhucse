@@ -94,6 +94,9 @@
 			
 			ServiceClient.Registry.save('tpl-std-bws', IITBHUCSE.jquery.template.StudentBrowse);
 			ServiceClient.Registry.save('tpl-std-vw', IITBHUCSE.jquery.template.StudentView);
+			ServiceClient.Registry.save('tpl-fac-vw', IITBHUCSE.jquery.template.FacultyView);
+			ServiceClient.Registry.save('tpl-crs-vw', IITBHUCSE.jquery.template.CourseView);
+			ServiceClient.Registry.save('tpl-crs-bws', IITBHUCSE.jquery.template.CourseBrowse);
 			
 			ServiceClient.Kernel.run([{
 				service : ServiceClient.jquery.module.AlertStatus,
