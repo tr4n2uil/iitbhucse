@@ -118,6 +118,34 @@ IITBHUCSE.jquery.template.CourseAll = $.template('\
 </div>');
 
 /**
+ *	@template CourseBrowse
+ *
+**/
+IITBHUCSE.jquery.template.CourseBrowse = $.template('\
+<div id="course-container">\
+	<div id="grid-panel"></div>\
+	<div id="course-menu-container" class="panel left">\
+		<fieldset>\
+			<legend class="head">All Courses by Part</legend>\
+			<ul class="horizontal menu">\
+				<li>\
+					<a class="navigate" href="#tplload:cntr=#grid-panel:tpl=tpl-crs-vw:url=core/course/course-all.php:arg=allparts~true"\>\
+					All...</a>\
+				</li>\
+				{{each courses}}\
+				<li>\
+					<a class="navigate" \
+	href="#tplload:cntr=#grid-panel:tpl=tpl-crs-vw:url=core/course/course-all.php:arg=crspart~${crspart}"\
+					>${IITBHUCSE.jquery.helper.getPart(crspart)}</a>\
+				</li>\
+				{{/each}}\
+			</ul>\
+			
+		</fieldset>\
+	</div>\
+</div>');
+
+/**
  *	@template CourseEdit
  *
 **/
@@ -137,7 +165,7 @@ IITBHUCSE.jquery.template.CourseEdit = $.template('\
 	<div id="course-edit-container" class="panel form-panel">\
 		<form action="core/admin/course.php" method="post" class="navigate" id="_formsubmit:sel._admin-crs-panel">\
 			<fieldset >\
-				<legend class="head">Edit Course #${course.crsid} Credentials</legend>\
+				<legend class="head">Edit Course #${course.crsid}</legend>\
 				<input type="hidden" name="do" value="edit"/>\
 				<input type="hidden" name="crsid" value="${course.crsid}" />\
 				<label>Course Name\
@@ -162,6 +190,125 @@ IITBHUCSE.jquery.template.CourseEdit = $.template('\
 	</div>\
 </div>');
 /**
+ *	@template CourseView
+ *
+**/
+IITBHUCSE.jquery.template.CourseView = $.template('\
+<div id="courses-view-container" class="panel left"><fieldset>\
+		<legend class="head">All Courses</legend>\
+		<table class="grid">\
+			<thead>\
+				<tr>\
+					<th>Course ID</th>\
+					<th>Course Name</th>\
+					<th>Description</th>\
+					<th>Course Part</th>\
+				</tr>\
+			</thead>\
+			<tbody>\
+				{{each courses}}\
+				<tr>\
+					<td>${crsid}</td>\
+					<td>${crsname}</td>\
+					<td>${crsdescription}</td>\
+					<td>${IITBHUCSE.jquery.helper.getPart(crspart)}</td>\
+				</tr>\
+				{{/each}}\
+			</tbody>\
+		</table>\
+	</fieldset>\
+</div>');
+
+/**
+ *	@helper getCourse
+ *
+**/
+IITBHUCSE.jquery.helper.getPart = function(index){
+	switch(index){
+		case '1' :
+			return 'Part I';
+		case '2' :
+			return 'Part II';
+		case '3' :
+			return 'Part III';
+		case '4' :
+			return 'Part IV';
+		case '5' :
+			return 'Part V';
+		default :
+			return 'Unknown';
+	}
+}
+/**
+ *	@template FacultyView
+ *
+**/
+IITBHUCSE.jquery.template.FacultyView = $.template('\
+	<div id="faculty-view-container" class="panel left"><fieldset>\
+			<legend class="head">All Faculty Members</legend>\
+			<table class="grid">\
+				<thead>\
+					<tr>\
+						<th>Name</th>\
+						<th>Designation</th>\
+						<th>Interests</th>\
+						<th>Qualifications</th>\
+						<th>Email</th>\
+						<th>Phone No.</th>\
+						<th>Status</th>\
+					</tr>\
+				</thead>\
+				<tbody>\
+					{{each faculty}}\
+					<tr>\
+						<td>${fname}</td>\
+						<td>${IITBHUCSE.jquery.helper.getDesignation(fdesignation)}</td>\
+						<td>${finterest}</td>\
+						<td>${fqualification}</td>\
+						<td>${femail}</td>\
+						<td>${fphone}</td>\
+						<td>${IITBHUCSE.jquery.helper.getStatus(fstatus)}</td>\
+						</tr>\
+					{{/each}}\
+				</tbody>\
+			</table>\
+			</fieldset>\
+	</div>');
+
+/**
+ *	@helper getDesignation
+ *
+**/
+IITBHUCSE.jquery.helper.getDesignation = function(index){
+	switch(index){
+		case '1' :
+			return 'Professor';
+		case '2' :
+			return 'Assist. Professor';
+		case '3' :
+			return 'Reader';
+		case '4' :
+			return 'Lecturer';
+		default :
+			return 'Unknown';
+	}
+}
+
+
+/**
+ *	@helper getStatus
+ *
+**/
+IITBHUCSE.jquery.helper.getStatus = function(index){
+	switch(index){
+		case '1' :
+			return 'Teaching';
+		case '2' :
+			return 'Retired';
+		default :
+			return 'Unknown';
+	}
+}/**
  *	@template FacultyAll
  *
 **/
@@ -207,7 +354,7 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 	<div id="faculty-edit-container" class="panel form-panel">\
 		<form action="core/admin/faculty.php" method="post" class="navigate" id="_formsubmit:sel._admin-fac-panel">\
 			<fieldset >\
-				<legend class="head">Edit Faculty #${faculty.fid} Credentials</legend>\
+				<legend class="head">Edit Faculty #${faculty.fid}</legend>\
 				<input type="hidden" name="do" value="edit"/>\
 				<input type="hidden" name="fid" value="${faculty.fid}"/>\
 				<label>Email\
@@ -384,7 +531,7 @@ IITBHUCSE.jquery.template.StudentEdit = $.template('\
 	<div id="student-edit-container" class="panel form-panel">\
 		<form action="core/admin/student.php" method="post" class="navigate" id="_formsubmit:sel._admin-stu-panel">\
 			<fieldset >\
-				<legend class="head">Edit Student #${student.stuid} Credentials</legend>\
+				<legend class="head">Edit Student #${student.stuid}</legend>\
 				<input type="hidden" name="do" value="edit"/>\
 				<input type="hidden" name="stuid" value="${student.stuid}"/>\
 				<label>Email\
@@ -544,158 +691,3 @@ IITBHUCSE.jquery.template.UserEdit = $.template('\
 		</form>\
 	</div>\
 </div>');
-
-
-
-/**
- *	@template FacultyView
- *
-**/
-IITBHUCSE.jquery.template.FacultyView = $.template('\
-	<div id="faculty-view-container" class="panel left"><fieldset>\
-			<legend class="head">All Faculty Members</legend>\
-			<table class="grid">\
-				<thead>\
-					<tr>\
-						<th>Name</th>\
-						<th>Designation</th>\
-						<th>Interests</th>\
-						<th>Qualifications</th>\
-						<th>Email</th>\
-						<th>Phone No.</th>\
-						<th>Status</th>\
-					</tr>\
-				</thead>\
-				<tbody>\
-					{{each faculty}}\
-					<tr>\
-						<td>${fname}</td>\
-						<td>${IITBHUCSE.jquery.helper.getDesignation(fdesignation)}</td>\
-						<td>${finterest}</td>\
-						<td>${fqualification}</td>\
-						<td>${femail}</td>\
-						<td>${fphone}</td>\
-						<td>${IITBHUCSE.jquery.helper.getStatus(fstatus)}</td>\
-						</tr>\
-					{{/each}}\
-				</tbody>\
-			</table>\
-			</fieldset>\
-	</div>');
-
-/**
- *	@helper getDesignation
- *
-**/
-IITBHUCSE.jquery.helper.getDesignation = function(index){
-	switch(index){
-		case '1' :
-			return 'Professor';
-		case '2' :
-			return 'Assist. Professor';
-		case '3' :
-			return 'Reader';
-		case '4' :
-			return 'Lecturer';
-		default :
-			return 'Unknown';
-	}
-}
-
-
-/**
- *	@helper getStatus
- *
-**/
-IITBHUCSE.jquery.helper.getStatus = function(index){
-	switch(index){
-		case '1' :
-			return 'Teaching';
-		case '2' :
-			return 'Retired';
-		default :
-			return 'Unknown';
-	}
-}
-
-
-/**
- *	@template CourseView
- *
-**/
-IITBHUCSE.jquery.template.CourseView = $.template('\
-<div id="courses-view-container" class="panel left"><fieldset>\
-		<legend class="head">All Courses</legend>\
-		<table class="grid">\
-			<thead>\
-				<tr>\
-					<th>Course ID</th>\
-					<th>Course Name</th>\
-					<th>Description</th>\
-					<th>Course Part</th>\
-				</tr>\
-			</thead>\
-			<tbody>\
-				{{each courses}}\
-				<tr>\
-					<td>${crsid}</td>\
-					<td>${crsname}</td>\
-					<td>${crsdescription}</td>\
-					<td>${IITBHUCSE.jquery.helper.getPart(crspart)}</td>\
-				</tr>\
-				{{/each}}\
-			</tbody>\
-		</table>\
-	</fieldset>\
-</div>');
-
-/**
- *	@helper getCourse
- *
-**/
-IITBHUCSE.jquery.helper.getPart = function(index){
-	switch(index){
-		case '1' :
-			return 'Part I';
-		case '2' :
-			return 'Part II';
-		case '3' :
-			return 'Part III';
-		case '4' :
-			return 'Part IV';
-		case '5' :
-			return 'Part V';
-		default :
-			return 'Unknown';
-	}
-}
-
-
-/**
- *	@template CourseBrowse
- *
-**/
-IITBHUCSE.jquery.template.CourseBrowse = $.template('\
-<div id="course-container">\
-	<div id="grid-panel"></div>\
-	<div id="course-menu-container" class="panel left">\
-		<fieldset>\
-			<legend class="head">All Courses by Part</legend>\
-			<ul class="horizontal menu">\
-				<li>\
-					<a class="navigate" \
-	href="#tplload:cntr=#grid-panel:tpl=tpl-crs-vw:url=core/course/course-all.php:arg=allparts~true"\
-					>All...</a>\
-				</li>\
-				{{each courses}}\
-				<li>\
-					<a class="navigate" \
-	href="#tplload:cntr=#grid-panel:tpl=tpl-crs-vw:url=core/course/course-all.php:arg=crspart~${crspart}"\
-					>${IITBHUCSE.jquery.helper.getPart(crspart)}</a>\
-				</li>\
-				{{/each}}\
-				</ul>\
-		</fieldset>\
-	</div>\
-</div>');
-

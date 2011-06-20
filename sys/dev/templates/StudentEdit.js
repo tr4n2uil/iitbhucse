@@ -16,7 +16,7 @@ IITBHUCSE.jquery.template.StudentEdit = $.template('\
 	<div id="student-edit-container" class="panel form-panel">\
 		<form action="core/admin/student.php" method="post" class="navigate" id="_formsubmit:sel._admin-stu-panel">\
 			<fieldset >\
-				<legend class="head">Edit Student #${student.stuid} Credentials</legend>\
+				<legend class="head">Edit Student #${student.stuid}</legend>\
 				<input type="hidden" name="do" value="edit"/>\
 				<input type="hidden" name="stuid" value="${student.stuid}"/>\
 				<label>Email\

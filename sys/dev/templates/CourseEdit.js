@@ -18,7 +18,7 @@ IITBHUCSE.jquery.template.CourseEdit = $.template('\
 	<div id="course-edit-container" class="panel form-panel">\
 		<form action="core/admin/course.php" method="post" class="navigate" id="_formsubmit:sel._admin-crs-panel">\
 			<fieldset >\
-				<legend class="head">Edit Course #${course.crsid} Credentials</legend>\
+				<legend class="head">Edit Course #${course.crsid}</legend>\
 				<input type="hidden" name="do" value="edit"/>\
 				<input type="hidden" name="crsid" value="${course.crsid}" />\
 				<label>Course Name\

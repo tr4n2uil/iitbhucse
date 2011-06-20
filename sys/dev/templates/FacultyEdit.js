@@ -18,7 +18,7 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 	<div id="faculty-edit-container" class="panel form-panel">\
 		<form action="core/admin/faculty.php" method="post" class="navigate" id="_formsubmit:sel._admin-fac-panel">\
 			<fieldset >\
-				<legend class="head">Edit Faculty #${faculty.fid} Credentials</legend>\
+				<legend class="head">Edit Faculty #${faculty.fid}</legend>\
 				<input type="hidden" name="do" value="edit"/>\
 				<input type="hidden" name="fid" value="${faculty.fid}"/>\
 				<label>Email\

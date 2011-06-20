@@ -6,7 +6,7 @@
 		echo <<< SCRIPT
 		<script type="text/javascript">
 			window.top.window.ServiceClient.Kernel.run([{
-				service : window.top.window.ServiceClient.jquery.module.Status,
+				service : window.top.window.ServiceClient.jquery.module.ElementStatus,
 				selector : '#load-status',
 				value : 'Invalid Request',
 				hide : 1000,
@@ -34,7 +34,7 @@ SCRIPT;
 	echo <<< SCRIPT
 		<script type="text/javascript">
 			window.top.window.ServiceClient.Kernel.run([{
-				service : window.top.window.ServiceClient.jquery.module.Status,
+				service : window.top.window.ServiceClient.jquery.module.ElementStatus,
 				selector : '#load-status',
 				value : '$msg',
 				hide : 1000,
