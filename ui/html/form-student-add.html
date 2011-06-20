@@ -4,17 +4,22 @@
 				<input type="hidden" name="do" value="add">
 				<legend class="head">Add Student</legend>
 				<label>Username
-					<input type="text" name="username" />
+					<input type="text" name="username" class="required" />
 				</label>
+					<p class="error hidden margin5">Invalid username</p>
+				
 				<label>Name
-					<input type="text" name="stname" />
+					<input type="text" name="stname"  class="required" />
 				</label>
+					<p class="error hidden margin5">Invalid Name</p>
+				
 				<label>Roll No
 					<input type="text" name="strollno"/>
 				</label>
 				<label>Email
-				<input type="text" name="stemail" />
+					<input type="text" name="stemail" class="required email" />
 				</label>
+					<p class="error hidden margin5">Invalid email</p>
 				<label>Course
 					<select name="stcourse">
 						<option value="1">B.Tech</option>

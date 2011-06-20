@@ -2,6 +2,16 @@
 
 	$result = array();
 
+	/**
+	 * Check for valid request 
+	**/
+	if(!isset($_POST['all'])){
+		$result['success'] = false;
+		$result['msg'] = "Invalid Request";
+		echo json_encode($result);
+		exit;
+	}
+	
 	
 	/**
 	 * Check for valid user and set flag
@@ -21,34 +31,23 @@
 		}
 	}
 	
+	
 		/**
 		 * Get faculty for the status
 		**/
 		$op = $cl->load("faculty.all", ICROOT);
-		$model['fstatus'] = 1;
+		$model['fstatus'] = "1 or 2";
 		$model = $kernel->run($op, $model);
 		
 		if($model['valid']){
 			$result['success'] = true;
-			$result['present'] = $model['status'];
+			$result['faculty'] = $model['status'];
 		}
 		else {
 			$result['success'] = false;
 			$result['msg'] = '<p class="error">'.$model['msg'].'</p>';
 		}
-	}
-		$model['fstatus'] = 2;
-		$model = $kernel->run($op, $model);
-		
-		if($model['valid']){
-			$result['success'] = true;
-			$result['old'] = $model['status'];
-		}
-		else {
-			$result['success'] = false;
-			$result['msg'] = '<p class="error">'.$model['msg'].'</p>';
-		}
-	}
+	
 
 	echo json_encode($result);
 
