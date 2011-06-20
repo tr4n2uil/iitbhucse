@@ -5,8 +5,9 @@
 				<input type="hidden" name="do" value="add"/>
 				<legend class="head">Add Resource</legend>
 				<label>Name
-					<input type="text" name="rsrcname" />
+					<input type="text" name="rsrcname" class="required" />
 				</label>
+					<p class="error hidden margin5">Invalid Name</p>
 				<label>Content</label>
 				<textarea name="resource" rows="15" cols="80"></textarea>
 				<input name="submit" type="submit" value="Submit"  class="margin5"/>

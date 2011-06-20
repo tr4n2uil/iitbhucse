@@ -4,11 +4,13 @@
 				<input type="hidden" name="do" value="add">
 				<legend class="head">Add Course</legend>
 				<label>Course ID
-					<input type="text" name="crsid"/>
+					<input type="text" name="crsid" class="required" />
 				</label>
+					<p class="error hidden margin5">Invalid Course ID</p>
 				<label>Course Name
-					<input type="text" name="crsname" />
+					<input type="text" name="crsname" class="required" />
 				</label>
+					<p class="error hidden margin5">Invalid Name</p>
 				<label>Course Description
 					<textarea name="crsdescription" rows="15"></textarea>
 				</label>
