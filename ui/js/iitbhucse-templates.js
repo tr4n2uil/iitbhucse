@@ -140,7 +140,6 @@ IITBHUCSE.jquery.template.CourseBrowse = $.template('\
 				</li>\
 				{{/each}}\
 			</ul>\
-			
 		</fieldset>\
 	</div>\
 </div>');
