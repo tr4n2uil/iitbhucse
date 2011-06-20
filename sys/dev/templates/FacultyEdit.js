@@ -22,21 +22,30 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 					<input type="text" name="femail" value="${faculty.femail}" disabled="disabled"/>\
 				</label>\
 				<label>Name\
-					<input type="text" name="newfname" value="${faculty.fname}"/>\
+					<input type="text" name="fname" value="${faculty.fname}"/>\
 				</label>\
-				Designation\
-				<label>	<input type="radio" name="newfdesignation" class="field" value="1">Professor</label>\
-				<label>	<input type="radio" name="newfdesignation" class="field" value="2">Assist. Professor</label>\
-				<label>	<input type="radio" name="newfdesignation" class="field" value="3">Reader</label>\
-				<label>	<input type="radio" name="newfdesignation" class="field" value="4">Lecturer</label>\
+				<label>Designation\
+				<select name="fdesignation" >\
+						<option value="1" {{if ServiceClient.jquery.helper.equals(faculty.fdesignation, 1)}}selected="selected"{{/if}}>Professor</option>\
+						<option value="2" {{if ServiceClient.jquery.helper.equals(faculty.fdesignation, 2)}}selected="selected"{{/if}}>Assist. Professor</option>\
+						<option value="3" {{if ServiceClient.jquery.helper.equals(faculty.fdesignation, 3)}}selected="selected"{{/if}}>Reader</option>\
+						<option value="4" {{if ServiceClient.jquery.helper.equals(faculty.fdesignation, 4)}}selected="selected"{{/if}}>Lecturer</option>\
+					</select>\
+				</label>\
 				<label>Qualification\
-					<input type="text" name="newfqualification" class="field" value="${faculty.fqualification}"/>\
+					<input type="text" name="fqualification" class="field" value="${faculty.fqualification}"/>\
 				</label>\
 				<label>Phone No\
-					<input type="text" name="newfphone" class="field" value="${faculty.fphone}" />\
+					<input type="text" name="fphone" class="field" value="${faculty.fphone}" />\
+				</label>\
+				<label>Status\
+				<select name="fstatus">\
+				<option value="1" {{if ServiceClient.jquery.helper.equals(faculty.fstatus, 1)}}selected="selected"{{/if}}>Teaching</option>\
+				<option value="2" {{if ServiceClient.jquery.helper.equals(faculty.fstatus, 2)}}selected="selected"{{/if}}>Retired</option>\
+				</select>\
 				</label>\
 				<label>Interests\
-					<textarea name="newfinterest" class="field" value="${faculty.finterests}" ></textarea>\
+					<textarea name="finterest" rows="3" class="field">${faculty.finterest}</textarea>\
 				</label>\
 				<input name="submit" type="submit" value="Submit" />\
 				<input name="reset" type="reset" value="Reset" />\
