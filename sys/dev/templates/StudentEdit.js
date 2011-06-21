@@ -14,7 +14,7 @@ IITBHUCSE.jquery.template.StudentEdit = $.template('\
 		</fieldset>\
 	</div>\
 	<div id="student-edit-container" class="panel form-panel">\
-		<form action="core/admin/student.php" method="post" class="navigate" id="_formsubmit:sel._admin-stu-panel">\
+		<form action="core/admin/student.php" method="post" class="navigate" id="_formsubmit:sel._admin-std-panel">\
 			<fieldset >\
 				<legend class="head">Edit Student #${student.stuid}</legend>\
 				<input type="hidden" name="do" value="edit"/>\
@@ -23,11 +23,13 @@ IITBHUCSE.jquery.template.StudentEdit = $.template('\
 					<input type="text" name="stemail" value="${student.stemail}" disabled="disabled"/>\
 				</label>\
 				<label>Name\
-					<input type="text" name="stname" value="${student.stname}"/>\
+					<input type="text" name="stname" value="${student.stname}" class="required"/>\
 				</label>\
+					<p class="error hidden margin5">Invalid Name</p>\
 				<label>Roll Number\
-					<input type="text" name="strollno" value="${student.strollno}"/>\
+					<input type="text" name="strollno" value="${student.strollno}" class="required"/>\
 				</label>\
+					<p class="error hidden margin5">Invalid username</p>\
 				<label>Course\
 					<select name="stcourse" >\
 						<option value="1" {{if ServiceClient.jquery.helper.equals(student.stcourse, 1)}}selected="selected"{{/if}}>B.Tech</option>\

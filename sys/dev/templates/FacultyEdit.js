@@ -25,8 +25,9 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 					<input type="text" name="femail" value="${faculty.femail}" disabled="disabled"/>\
 				</label>\
 				<label>Name\
-					<input type="text" name="fname" value="${faculty.fname}"/>\
+					<input type="text" name="fname" value="${faculty.fname}" class="required"/>\
 				</label>\
+					<p class="error hidden margin5">Invalid Name</p>\
 				<label>Designation\
 				<select name="fdesignation" >\
 						<option value="1" {{if ServiceClient.jquery.helper.equals(faculty.fdesignation, 1)}}selected="selected"{{/if}}>Professor</option>\
@@ -36,8 +37,9 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 					</select>\
 				</label>\
 				<label>Qualification\
-					<input type="text" name="fqualification" value="${faculty.fqualification}"/>\
+					<input type="text" name="fqualification" value="${faculty.fqualification}" class="required"/>\
 				</label>\
+					<p class="error hidden margin5">Invalid Qualification</p>\
 				<label>Phone No\
 					<input type="text" name="fphone" value="${faculty.fphone}" />\
 				</label>\

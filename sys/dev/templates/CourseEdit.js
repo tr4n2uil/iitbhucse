@@ -22,8 +22,9 @@ IITBHUCSE.jquery.template.CourseEdit = $.template('\
 				<input type="hidden" name="do" value="edit"/>\
 				<input type="hidden" name="crsid" value="${course.crsid}" />\
 				<label>Course Name\
-					<input type="text" name="crsname" value="${course.crsname}" />\
+					<input type="text" name="crsname" value="${course.crsname}" class="required"/>\
 				</label>\
+					<p class="error hidden margin5">Invalid Course name</p>\
 				<label>Course Description\
 					<textarea name="crsdescription" rows="5" >${course.crsdescription}</textarea>\
 				</label>\
