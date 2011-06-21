@@ -3,27 +3,31 @@
  *
 **/
 IITBHUCSE.jquery.template.FacultyEdit = $.template('\
-	<div id="admin-fac-panel">\
-		<div id="faculty-options-container" class="horizontal-menu"><fieldset>\
-			<legend>Faculty #${faculty.fid} Options</legend>\
-			<ul>\
-				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/faculty.php:arg=do~rem&fid~${faculty.fid}" \
-				class="navigate" >Delete</a></li>\
+<div id="admin-fac-panel">\
+	<div id="faculty-options-container" class="panel left">\
+		<fieldset>\
+			<legend class="head">Faculty #${faculty.fid} Options</legend>\
+			<ul class="horizontal menu">\
+				<li>\
+					<a href="#tplload:cntr=#edit-panel:url=core/admin/faculty.php:arg=do~rem&fid~${faculty.fid}:cf=true" \
+						class="navigate" >Delete</a>\
+				</li>\
 			</ul>\
-		</fieldset></div>\
-		<div id="faculty-edit-container" class="horizontal-menu form-panel">\
-		<form action="core/admin/faculty.php" method="post" class="navigate" \
-				id="_formsubmit:sel._admin-fac-panel">\
+		</fieldset>\
+	</div>\
+	<div id="faculty-edit-container" class="panel form-panel">\
+		<form action="core/admin/faculty.php" method="post" class="navigate" id="_formsubmit:sel._admin-fac-panel">\
 			<fieldset >\
-				<legend>Edit Faculty #${faculty.fid} Credentials</legend>\
+				<legend class="head">Edit Faculty #${faculty.fid}</legend>\
 				<input type="hidden" name="do" value="edit"/>\
 				<input type="hidden" name="fid" value="${faculty.fid}"/>\
 				<label>Email\
 					<input type="text" name="femail" value="${faculty.femail}" disabled="disabled"/>\
 				</label>\
 				<label>Name\
-					<input type="text" name="fname" value="${faculty.fname}"/>\
+					<input type="text" name="fname" value="${faculty.fname}" class="required"/>\
 				</label>\
+					<p class="error hidden margin5">Invalid Name</p>\
 				<label>Designation\
 				<select name="fdesignation" >\
 						<option value="1" {{if ServiceClient.jquery.helper.equals(faculty.fdesignation, 1)}}selected="selected"{{/if}}>Professor</option>\
@@ -33,10 +37,11 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 					</select>\
 				</label>\
 				<label>Qualification\
-					<input type="text" name="fqualification" class="field" value="${faculty.fqualification}"/>\
+					<input type="text" name="fqualification" value="${faculty.fqualification}" class="required"/>\
 				</label>\
+					<p class="error hidden margin5">Invalid Qualification</p>\
 				<label>Phone No\
-					<input type="text" name="fphone" class="field" value="${faculty.fphone}" />\
+					<input type="text" name="fphone" value="${faculty.fphone}" />\
 				</label>\
 				<label>Status\
 				<select name="fstatus">\
@@ -45,13 +50,12 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 				</select>\
 				</label>\
 				<label>Interests\
-					<textarea name="finterest" rows="3" class="field">${faculty.finterest}</textarea>\
+					<textarea name="finterest" rows="5" >${faculty.finterest}</textarea>\
 				</label>\
-				<input name="submit" type="submit" value="Submit" />\
-				<input name="reset" type="reset" value="Reset" />\
+				<input name="submit" type="submit" value="Submit" class="margin5"/>\
+				<input name="reset" type="reset" value="Reset" class="margin5"/>\
 				<div class="status"></div>\
 			</fieldset>\
 		</form>\
 	</div>\
 </div>');
-

@@ -1,10 +1,14 @@
-<div id="menu-container" class="horizontal-menu">
-	<ul>
+<div id="menu-container" >
+	<ul class="horizontal menu">
 		<li><a href="#htmlload:cntr=#main-container:url=ui/html/main-home.html" class="navigate">Home</a></li>
-		<li><a href="#">Faculty</a></li>
-		<li><a href="#">Courses</a></li>
 		<li>
-	<a href="#tplload:cntr=#main-container:tpl=tpl-std-bws:url=core/student/student-all.php:arg=allyear~true" 
+		<a href="#tplload:cntr=#main-container:tpl=tpl-fac-vw:url=core/faculty/faculty-all.php:arg=all~true" 
+			class="navigate" >Faculty</a></li>
+		<li>
+		<a href="#tplload:cntr=#main-container:tpl=tpl-crs-bws:url=core/course/course-all.php:arg=getparts~true" 
+			class="navigate" >Courses</a></li>
+		<li>
+		<a href="#tplload:cntr=#main-container:tpl=tpl-std-bws:url=core/student/student-all.php:arg=allyear~true" 
 			class="navigate" >Students</a></li>
 		<li><a href="#">Activities</a></li>
 		<li><a href="#">Placements</a></li>

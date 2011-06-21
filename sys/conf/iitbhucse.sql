@@ -3,7 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
+<<<<<<< HEAD
 -- Generation Time: Jun 19, 2011 at 10:46 AM
+=======
+-- Generation Time: Jun 20, 2011 at 04:37 PM
+>>>>>>> master
 -- Server version: 5.1.41
 -- PHP Version: 5.3.1
 
@@ -64,6 +68,12 @@ CREATE TABLE IF NOT EXISTS `courses` (
 -- Dumping data for table `courses`
 --
 
+<<<<<<< HEAD
+=======
+INSERT INTO `courses` (`crsid`, `crsname`, `crsdescription`, `crspart`) VALUES
+('CS 13', 'Data Structures', 'Various Data Structures...', 2),
+('CS 34', 'Networking', 'Networking Tools', 3);
+>>>>>>> master
 
 -- --------------------------------------------------------
 
@@ -108,6 +118,12 @@ CREATE TABLE IF NOT EXISTS `faculty` (
 -- Dumping data for table `faculty`
 --
 
+<<<<<<< HEAD
+=======
+INSERT INTO `faculty` (`fid`, `fname`, `fdesignation`, `fqualification`, `femail`, `fphone`, `finterest`, `fstatus`) VALUES
+(23, 'Dr.K.K.Shukla', 1, 'Msc', 'kks@itbhu.ac.in', '8798546214', 'web development', 1),
+(25, 'Dr.Arun Agarwal', 1, 'Msc Phd', 'arun@itbhu.ac.in', '9874651145', 'networking', 2);
+>>>>>>> master
 
 -- --------------------------------------------------------
 
@@ -139,7 +155,11 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `address` varchar(255) DEFAULT NULL,
   `time` bigint(20) NOT NULL,
   PRIMARY KEY (`lid`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=98 ;
+=======
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=101 ;
+>>>>>>> master
 
 --
 -- Dumping data for table `logs`
@@ -168,7 +188,14 @@ INSERT INTO `logs` (`lid`, `message`, `address`, `time`) VALUES
 (94, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308374848),
 (95, 'USER LOGIN with uid=22 and username=shivang', '::1', 1308394363),
 (96, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308394392),
+<<<<<<< HEAD
 (97, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308460392);
+=======
+(97, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308460392),
+(98, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308549596),
+(99, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308549768),
+(100, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308557823);
+>>>>>>> master
 
 -- --------------------------------------------------------
 
@@ -287,8 +314,12 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`sessionid`, `uid`, `time`, `expiry`) VALUES
+<<<<<<< HEAD
 ('gl3fhvmhljqkpeh6scfg5n0g6e60nujs', 1, 1308394392, 1308480792),
 ('w9xnytf300hnusb8cdv2lyyid3paitej', 1, 1308460391, 1308546791);
+=======
+('xpm14izxwems0b5rghlyro4zt79ylew6', 1, 1308557823, 1308644223);
+>>>>>>> master
 
 -- --------------------------------------------------------
 
@@ -318,6 +349,10 @@ CREATE TABLE IF NOT EXISTS `storages` (
 INSERT INTO `storages` (`stgid`, `stgname`, `filename`, `mime`, `owner`, `access`, `groupid`, `ctime`, `atime`, `mtime`, `dirid`) VALUES
 ('c5v9bw1khuxtlwpqgn96wbqdfsv08sml', 'Vibhaj Rajan', '', 'application/pdf', 14, 4, 0, 1307787896, 1307787896, 1307787896, ''),
 ('dyz8b3yizlo6vuhp6suxjuz751pumtdt', 'Shivang Mittal', '', 'application/pdf', 15, 4, 0, 1307820268, 1307820268, 1307820268, ''),
+<<<<<<< HEAD
+=======
+('hlreu1r8eq86s8181u0ehwr7gepadvl3', 'Syed Wali Hamza', '', 'application/pdf', 24, 4, 0, 1308556004, 1308556004, 1308556004, ''),
+>>>>>>> master
 ('xfxkz5qpko4oi8dynp43hwla535h5usk', 'Shivang Mittal', '', 'application/pdf', 22, 4, 0, 1308394156, 1308394156, 1308394156, '');
 
 -- --------------------------------------------------------
@@ -362,7 +397,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   PRIMARY KEY (`uid`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+=======
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
+>>>>>>> master
 
 --
 -- Dumping data for table `users`
@@ -371,7 +410,13 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`uid`, `username`, `password`, `email`) VALUES
 (1, 'enhancse', 'fc7c70a196d8c1bf619bef2aed0bf9e2', 'vibhaj.itbhu@gmail.com'),
 (14, 'vibhaj', '69ceec29f74496b2bfb88b2533a0642b', 'vibhaj.rajan.cse08@itbhu.ac.in'),
+<<<<<<< HEAD
 (22, 'shivang', 'e9e0442482a4da40f9b4ce32dd979d6c', 'shivang.mittal.cse10@itbhu.ac.in');
+=======
+(22, 'shivang', 'e9e0442482a4da40f9b4ce32dd979d6c', 'shivang.mittal.cse10@itbhu.ac.in'),
+(23, 'kks', 'f63a72dab96e54d5c54c9c3f2ac25315', 'kks@itbhu.ac.in'),
+(25, 'arun', '8f46f680105f57822b75e658732831a1', 'arun@itbhu.ac.in');
+>>>>>>> master
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

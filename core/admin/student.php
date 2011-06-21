@@ -77,7 +77,7 @@
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['msg'] = '<p class="success">Student account created succesfully.</p>';
+				$result['msg'] = '<p class="success">Student account created succesfully.<br />Password : '.$model['password'].'</p>';
 			}
 			else {
 				$result['success'] = false;

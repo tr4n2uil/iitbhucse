@@ -3,22 +3,28 @@
  *
 **/
 IITBHUCSE.jquery.template.ContentEdit = $.template('\
-	<div id="admin-cnt-panel" >\
-		<div id="content-options-container" class="horizontal-menu"><fieldset>\
-			<legend>Content #${content.cntid} Options</legend>\
-			<ul>\
-				<li><a href="#tplload:cntr=#main-container:url=core/content/view.php:arg=cntid~${content.cntid}" \
-				class="navigate" >View</a></li>\
-				{{if admin}}<li>\
-				<a href="#tplload:cntr=#edit-panel:url=core/admin/content.php:arg=do~rem&cntid~${content.cntid}" \
-				class="navigate" >Delete</a></li>{{/if}}\
+<div id="admin-cnt-panel" >\
+	<div id="content-options-container" class="panel left">\
+		<fieldset>\
+			<legend class="head">Content #${content.cntid} Options</legend>\
+			<ul class="horizontal menu">\
+				<li>\
+					<a href="#tplload:cntr=#main-container:url=core/content/view.php:arg=cntid~${content.cntid}" \
+						class="navigate" >View</a>\
+				</li>\
+				{{if admin}}\
+				<li>\
+					<a href="#tplload:cntr=#edit-panel:url=core/admin/content.php:arg=do~rem&cntid~${content.cntid}:cf=true" \
+					class="navigate" >Delete</a>\
+				</li>\
+				{{/if}}\
 			</ul>\
-		</fieldset></div>\
-		<div id="content-edit-container" class="horizontal-menu form-panel">\
-		<form action="core/admin/content.php" method="post" class="navigate" \
-				id="_formsubmit:sel._admin-cnt-panel">\
+		</fieldset>\
+	</div>\
+	<div id="content-edit-container" class="panel form-panel">\
+		<form action="core/admin/content.php" method="post" class="navigate" id="_formsubmit:sel._admin-cnt-panel">\
 			<fieldset >\
-				<legend>Edit Content #${content.cntid}</legend>\
+				<legend class="head">Edit Content #${content.cntid}</legend>\
 				<input type="hidden" name="do" value="edit"/>\
 				<input type="hidden" name="cntid" value="${content.cntid}"/>\
 				<label>Name\
@@ -52,8 +58,8 @@ IITBHUCSE.jquery.template.ContentEdit = $.template('\
 				</label>\
 				<label>Data</label>\
 				<textarea name="cntdata" rows="15">${content.cntdata}</textarea>\
-				<input name="submit" type="submit" value="Submit" />\
-				<input name="reset" type="reset" value="Reset" />\
+				<input name="submit" type="submit" value="Submit" class="margin5"/>\
+				<input name="reset" type="reset" value="Reset" class="margin5"/>\
 				<div class="status"></div>\
 			</fieldset>\
 		</form>\

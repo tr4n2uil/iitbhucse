@@ -132,6 +132,7 @@
 			
 		case 'all' :
 			$op = $cl->load("Course.all", ICROOT);
+			$model['allparts'] = true;
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
