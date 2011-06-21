@@ -8,7 +8,7 @@
 	$request = false;
 	if(isset($_POST['do'])){
 		switch($_POST['do']){
-			case 'add' :
+			/*case 'add' :
 				if(isset($_POST['username']) && isset($_POST['stemail']) && isset($_POST['stname']) && isset($_POST['stcourse']) && isset($_POST['styear']) && isset($_POST['strollno']) && isset($_POST['ststatus']))
 					$request = true;
 				break;
@@ -17,10 +17,13 @@
 					$request = true;
 				break;
 			case 'rem' :
-				if(isset($_POST['stuid']))
+				if(isset($_POST['spid']))
+					$request = true;
+				break;*/
+			case 'get' :
+				if(isset($_POST['spid']))
 					$request = true;
 				break;
-			case 'get' :
 			case 'all' :
 				$request = true;
 				break;
@@ -61,7 +64,7 @@
 	}
 	
 	switch($_POST['do']){
-		case 'add' :
+		/*case 'add' :
 			if(!$admin){
 				$result['success'] = false;
 				$result['msg'] = '<p class="error">Not Authorized</p>';
@@ -91,61 +94,27 @@
 				$result['msg'] = '<p class="error">'.$model['msg'].'</p>';
 			}
 			break;
-			
-		case 'edit' :
-			if($admin){
-				if(!isset($_POST['stname']) || !isset($_POST['stcourse']) || !isset($_POST['styear']) || !isset($_POST['strollno']) || !isset($_POST['ststatus'])){
-					$result['success'] = false;
-					$result['msg'] = '<p class="error">Invalid Request</p>';
-					echo json_encode($result);
-					exit;
-				}
-			}
-			
-			$op = $cl->load("student.edit", ICROOT);
-			$model['stuid'] = $_POST['stuid'];
-			$model['stcgpa'] = $_POST['stcgpa'];
-			$model['stinterest'] = $_POST['stinterest'];
-			$model['admin'] = $admin;
-			
-			if($admin){
-				$model['stname'] = $_POST['stname'];
-				$model['strollno'] = $_POST['strollno'];
-				$model['stcourse'] = $_POST['stcourse'];
-				$model['styear'] = $_POST['styear'];
-				$model['ststatus'] = $_POST['ststatus'];
-				$model['stinternship'] = $_POST['stinternship'];
-				$model['stplacement'] = $_POST['stplacement'];
-			}
-			
-			$model = $kernel->run($op, $model);
-			
-			if($model['valid']){
-				$result['success'] = true;
-				$result['msg'] = '<p class="success">Student profile edited successfully</p>';
-			}
-			else {
-				$result['success'] = false;
-				$result['msg'] = '<p class="error">'.$model['msg'].'</p>';
-			}
-			break;
+		*/
 		
 		case 'get' :
-			$op = $cl->load("student.info", ICROOT);
-			$model['stuid'] = isset($_POST['stuid']) ? $_POST['stuid'] : $user;
+			$op = $cl->load("space.select", ECROOT);
+			$model['spid'] = $_POST['spid'];
+			$model['admin'] = $admin;
+			$model['owner'] = $user;
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['student'] = $model['student'];
+				$result['space'] = $model['space'];
 				$result['admin'] = $admin;
+				$result['typename'] = isset($_POST['type']) ? $_POST['type'] : false;
 			}
 			else {
 				$result['success'] = false;
 				$result['template'] = '<p class="error">'.$model['msg'].'</p>';
 			}
 			break;
-			
+		/*	
 		case 'rem' :
 			if(!$admin){
 				$result['success'] = false;
@@ -167,7 +136,7 @@
 				$result['template'] = '<p class="error">'.$model['msg'].'</p>';
 			}
 			break;
-			
+		*/	
 		case 'all' :
 			if(!$admin){
 				$result['success'] = false;

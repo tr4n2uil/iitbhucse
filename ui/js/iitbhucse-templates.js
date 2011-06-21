@@ -393,6 +393,32 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 	</div>\
 </div>');
 /**
+ *	@template FileEdit
+ *
+**/
+IITBHUCSE.jquery.template.FileEdit = $.template('\
+<div id="file-edit-panel" class="panel form-panel">\
+	<form action="core/space/write.php" method="post" class="navigate" enctype="multipart/form-data" \
+		id="_upload:sel._file-edit-panel" target="upload_target" >\
+		<fieldset >\
+			<legend class="head">Change ${typename}</legend>\
+			<input type="hidden" name="spid" value="${space.spid}" />\
+			<label>File type\
+				<select name="stgmime">\
+					<option value="application/pdf">Adobe PDF</option>\
+					<option value="image/png">PNG Image</option>\
+					<option value="image/gif">GIF Image</option>\
+				</select>\
+			</label>\
+			<label>${typename}\
+				<input type="file" name="stgfile"/>\
+			</label>\
+			<input name="submit" type="submit" value="Submit"  class="margin5"/>\
+			<div class="status"></div>\
+		</fieldset>\
+	</form>\
+</div>');
+/**
  *	@template ResourceAll
  *
 **/
@@ -518,29 +544,37 @@ IITBHUCSE.jquery.template.StudentBrowse = $.template('\
 **/
 IITBHUCSE.jquery.template.StudentEdit = $.template('\
 <div id="admin-std-panel">\
+	<div id="file-panel"></div>\
 	<div id="student-options-container" class="panel left">\
 		<fieldset>\
-			<legend class="head">Student #${student.stuid} Options</legend>\
+			<legend class="head">{{if admin}}Student #${student.stuid}{{else}}Profile{{/if}} Options</legend>\
 			<ul class="horizontal menu">\
+				{{if admin}}\
 				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/student.php:arg=do~rem&stuid~${student.stuid}:cf=true" \
 				class="navigate" >Delete</a></li>\
+				{{/if}}\
+				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-fl-edt:url=core/admin/space.php:arg=do~get&spid~${student.stresume}&type~Resume" class="navigate" >Resume</a>\
+				</li>\
+				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-fl-edt:url=core/admin/space.php:arg=do~get&spid~${student.stphoto}&type~Photo" class="navigate" >Photo</a>\
+				</li>\
 			</ul>\
 		</fieldset>\
 	</div>\
 	<div id="student-edit-container" class="panel form-panel">\
-		<form action="core/admin/student.php" method="post" class="navigate" id="_formsubmit:sel._admin-stu-panel">\
+		<form action="core/admin/student.php" method="post" class="navigate" id="_formsubmit:sel._admin-std-panel">\
 			<fieldset >\
-				<legend class="head">Edit Student #${student.stuid}</legend>\
+				<legend class="head">{{if admin}}Edit Student #${student.stuid}{{else}}Edit Profile{{/if}}</legend>\
 				<input type="hidden" name="do" value="edit"/>\
 				<input type="hidden" name="stuid" value="${student.stuid}"/>\
 				<label>Email\
-					<input type="text" name="stemail" value="${student.stemail}" disabled="disabled"/>\
+					<input type="text" name="stemail" value="${student.stemail}" disabled="disabled" size="50"/>\
 				</label>\
+				{{if admin}}\
 				<label>Name\
-					<input type="text" name="stname" value="${student.stname}"/>\
+					<input type="text" name="stname" value="${student.stname}" />\
 				</label>\
 				<label>Roll Number\
-					<input type="text" name="strollno" value="${student.strollno}"/>\
+					<input type="text" name="strollno" value="${student.strollno}" />\
 				</label>\
 				<label>Course\
 					<select name="stcourse" >\
@@ -550,22 +584,23 @@ IITBHUCSE.jquery.template.StudentEdit = $.template('\
 					</select>\
 				</label>\
 				<label>Year\
-					<input type="text" name="styear" value="${student.styear}"/>\
+					<input type="text" name="styear" value="${student.styear}" />\
 				</label>\
 				<label>Status\
-					<select name="ststatus">\
+					<select name="ststatus" >\
 						<option value="1" {{if ServiceClient.jquery.helper.equals(student.ststatus, 1)}}selected="selected"{{/if}}>Enrolled</option>\
 						<option value="2" {{if ServiceClient.jquery.helper.equals(student.ststatus, 2)}}selected="selected"{{/if}}>Alumnus</option>\
 					</select>\
 				</label>\
-				<label>CGPA\
-					<input type="text" name="stcgpa" value="${student.stcgpa}"/>\
-				</label>\
 				<label>Internship\
-					<input type="text" name="stinternship" value="${student.stinternship}"/>\
+					<input type="text" name="stinternship" value="${student.stinternship}" />\
 				</label>\
 				<label>Placement\
-					<input type="text" name="stplacement" value="${student.stplacement}"/>\
+					<input type="text" name="stplacement" value="${student.stplacement}" />\
+				</label>\
+				{{/if}}\
+				<label>CGPA\
+					<input type="text" name="stcgpa" value="${student.stcgpa}"/>\
 				</label>\
 				<label>Interests\
 					<textarea name="stinterest" rows="5">${student.stinterest}</textarea>\
@@ -584,28 +619,25 @@ IITBHUCSE.jquery.template.StudentEdit = $.template('\
 IITBHUCSE.jquery.template.StudentView = $.template('\
 <div id="students-view-container" class="panel left"><fieldset>\
 		<legend class="head">All ${IITBHUCSE.jquery.helper.getCourse(stcourse)} Students Enrolled in ${styear}</legend>\
-		<table class="grid">\
-			<thead>\
-				<tr>\
-					<th>Roll No</th>\
-					<th>Name</th>\
-					<th>Email</th>\
-					<th>Interests</th>\
-					<th>Resume</th>\
-				</tr>\
-			</thead>\
+		{{each students}}\
+		<table class="margin5">\
 			<tbody>\
-				{{each students}}\
-				<tr>\
-					<td>${strollno}</td>\
-					<td>${stname}</td>\
-					<td>${stemail}</td>\
-					<td>${stinterest}</td>\
-					<td><a href="#${stresume}">Download</a></td>\
+				<tr><td rowspan="5" valign="top"><img src="core/space/read.php?spid=${stphoto}" alt="" height="100" ></td>\
+					<td class="bold">${stname}</td>\
 				</tr>\
-				{{/each}}\
-			</tbody>\
+				<tr><td>${stemail}</td></tr>\
+				<tr><td>${strollno}</td></tr>\
+				<tr><td class="italic"><span class="underline">Interests :</span> ${stinterest}</td></tr>\
+				<tr><td>\
+					{{if strssize}}\
+						<a href="core/space/read.php?spid=${stresume}" target="_blank">\
+							Resume [${ServiceClient.jquery.helper.readFileSize(strssize)}]\
+						</a>\
+					{{/if}}\
+				</td></tr>\
+				</tbody>\
 		</table>\
+		{{/each}}\
 	</fieldset>\
 </div>');
 
