@@ -168,8 +168,9 @@ IITBHUCSE.jquery.template.CourseEdit = $.template('\
 				<input type="hidden" name="do" value="edit"/>\
 				<input type="hidden" name="crsid" value="${course.crsid}" />\
 				<label>Course Name\
-					<input type="text" name="crsname" value="${course.crsname}" />\
+					<input type="text" name="crsname" value="${course.crsname}" class="required"/>\
 				</label>\
+					<p class="error hidden margin5">Invalid Course name</p>\
 				<label>Course Description\
 					<textarea name="crsdescription" rows="5" >${course.crsdescription}</textarea>\
 				</label>\
@@ -360,8 +361,9 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 					<input type="text" name="femail" value="${faculty.femail}" disabled="disabled"/>\
 				</label>\
 				<label>Name\
-					<input type="text" name="fname" value="${faculty.fname}"/>\
+					<input type="text" name="fname" value="${faculty.fname}" class="required"/>\
 				</label>\
+					<p class="error hidden margin5">Invalid Name</p>\
 				<label>Designation\
 				<select name="fdesignation" >\
 						<option value="1" {{if ServiceClient.jquery.helper.equals(faculty.fdesignation, 1)}}selected="selected"{{/if}}>Professor</option>\
@@ -371,8 +373,9 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 					</select>\
 				</label>\
 				<label>Qualification\
-					<input type="text" name="fqualification" value="${faculty.fqualification}"/>\
+					<input type="text" name="fqualification" value="${faculty.fqualification}" class="required"/>\
 				</label>\
+					<p class="error hidden margin5">Invalid Qualification</p>\
 				<label>Phone No\
 					<input type="text" name="fphone" value="${faculty.fphone}" />\
 				</label>\
@@ -571,11 +574,13 @@ IITBHUCSE.jquery.template.StudentEdit = $.template('\
 				</label>\
 				{{if admin}}\
 				<label>Name\
-					<input type="text" name="stname" value="${student.stname}" />\
+					<input type="text" name="stname" value="${student.stname}" class="required"/>\
 				</label>\
+					<p class="error hidden margin5">Invalid Name</p>\
 				<label>Roll Number\
-					<input type="text" name="strollno" value="${student.strollno}" />\
+					<input type="text" name="strollno" value="${student.strollno}" class="required"/>\
 				</label>\
+					<p class="error hidden margin5">Invalid username</p>\
 				<label>Course\
 					<select name="stcourse" >\
 						<option value="1" {{if ServiceClient.jquery.helper.equals(student.stcourse, 1)}}selected="selected"{{/if}}>B.Tech</option>\
@@ -710,11 +715,13 @@ IITBHUCSE.jquery.template.UserEdit = $.template('\
 					<input type="text" name="email" value="${user.email}" disabled="disabled"/>\
 				</label>\
 				<label>Username\
-					<input type="text" name="newusername" value="${user.username}"/>\
+					<input type="text" name="newusername" value="${user.username}" class="required" />\
 				</label>\
+				<p class="error hidden margin5">Invalid username</p>\
 				<label>Password\
-					<input type="password" name="newpassword" value=""/>\
+					<input type="password" name="newpassword" value="" class="required"/>\
 				</label>\
+					<p class="error hidden margin5">Invalid Password</p>\
 				<input name="submit" type="submit" value="Submit" class="margin5"/>\
 				<input name="reset" type="reset" value="Reset" class="margin5" />\
 				<div class="status"></div>\

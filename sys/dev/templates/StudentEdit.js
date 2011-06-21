@@ -31,11 +31,13 @@ IITBHUCSE.jquery.template.StudentEdit = $.template('\
 				</label>\
 				{{if admin}}\
 				<label>Name\
-					<input type="text" name="stname" value="${student.stname}" />\
+					<input type="text" name="stname" value="${student.stname}" class="required"/>\
 				</label>\
+					<p class="error hidden margin5">Invalid Name</p>\
 				<label>Roll Number\
-					<input type="text" name="strollno" value="${student.strollno}" />\
+					<input type="text" name="strollno" value="${student.strollno}" class="required"/>\
 				</label>\
+					<p class="error hidden margin5">Invalid username</p>\
 				<label>Course\
 					<select name="stcourse" >\
 						<option value="1" {{if ServiceClient.jquery.helper.equals(student.stcourse, 1)}}selected="selected"{{/if}}>B.Tech</option>\

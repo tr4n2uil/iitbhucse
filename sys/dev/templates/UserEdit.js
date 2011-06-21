@@ -24,11 +24,13 @@ IITBHUCSE.jquery.template.UserEdit = $.template('\
 					<input type="text" name="email" value="${user.email}" disabled="disabled"/>\
 				</label>\
 				<label>Username\
-					<input type="text" name="newusername" value="${user.username}"/>\
+					<input type="text" name="newusername" value="${user.username}" class="required" />\
 				</label>\
+				<p class="error hidden margin5">Invalid username</p>\
 				<label>Password\
-					<input type="password" name="newpassword" value=""/>\
+					<input type="password" name="newpassword" value="" class="required"/>\
 				</label>\
+					<p class="error hidden margin5">Invalid Password</p>\
 				<input name="submit" type="submit" value="Submit" class="margin5"/>\
 				<input name="reset" type="reset" value="Reset" class="margin5" />\
 				<div class="status"></div>\

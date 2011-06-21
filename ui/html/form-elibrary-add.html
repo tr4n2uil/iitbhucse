@@ -1,14 +1,28 @@
-<div id="elib-panel" class="panel form-panel">
-	<form action="core/elibrary/upload.php" method="post" class="navigate" enctype="multipart/form-data" 
-		title="#upload" target="upload_target" >
+<div id="admin-elib-panel" class="panel form-panel">
+	<form action="core/admin/elibrary.php" method="post" class="navigate" id="_formsubmit:sel._admin-elib-panel">
 		<fieldset >
-			<legend class="head">Upload</legend>
-			<label>File
-				<input type="file" name="book"/>
+			<input type="hidden" name="do" value="add">
+			<legend class="head">Add E-Book</legend>
+			<label>Name
+				<input type="text" name="bookname" class="required" />
+			</label>
+				<p class="error hidden margin5">Invalid E-Book name</p>
+			<label>Author
+				<input type="text" name="bookauthor" class="required" />
+			</label>
+				<p class="error hidden margin5">Invalid Author name</p>
+			<label>Book Description
+				<textarea name="bookdescription" rows="5"></textarea>
+			</label>
+			<label>Pages
+				<input type="text" name="bookpages" />
+			</label>
+			<label>Storage ID
+				<input type="text" name="bookpages" />
 			</label>
 			<input name="submit" type="submit" value="Submit"  class="margin5"/>
+			<input name="reset" type="reset" value="Reset"  class="margin5"/>
 			<div class="status"></div>
-			<!--<iframe id="upload_target" name="upload_target" src="#" style="width:0;height:0;border:0px solid #fff;"></iframe>-->
 		</fieldset>
 	</form>
 </div>
