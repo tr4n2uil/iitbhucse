@@ -5,28 +5,25 @@
 IITBHUCSE.jquery.template.StudentView = $.template('\
 <div id="students-view-container" class="panel left"><fieldset>\
 		<legend class="head">All ${IITBHUCSE.jquery.helper.getCourse(stcourse)} Students Enrolled in ${styear}</legend>\
-		<table class="grid">\
-			<thead>\
-				<tr>\
-					<th>Roll No</th>\
-					<th>Name</th>\
-					<th>Email</th>\
-					<th>Interests</th>\
-					<th>Resume</th>\
-				</tr>\
-			</thead>\
+		{{each students}}\
+		<table class="margin5">\
 			<tbody>\
-				{{each students}}\
-				<tr>\
-					<td>${strollno}</td>\
-					<td>${stname}</td>\
-					<td>${stemail}</td>\
-					<td>${stinterest}</td>\
-					<td><a href="#${stresume}">Download</a></td>\
+				<tr><td rowspan="5" valign="top"><img src="core/space/read.php?spid=${stphoto}" alt="" height="100" ></td>\
+					<td class="bold">${stname}</td>\
 				</tr>\
-				{{/each}}\
-			</tbody>\
+				<tr><td>${stemail}</td></tr>\
+				<tr><td>${strollno}</td></tr>\
+				<tr><td class="italic"><span class="underline">Interests :</span> ${stinterest}</td></tr>\
+				<tr><td>\
+					{{if strssize}}\
+						<a href="core/space/read.php?spid=${stresume}" target="_blank">\
+							Resume [${ServiceClient.jquery.helper.readFileSize(strssize)}]\
+						</a>\
+					{{/if}}\
+				</td></tr>\
+				</tbody>\
 		</table>\
+		{{/each}}\
 	</fieldset>\
 </div>');
 

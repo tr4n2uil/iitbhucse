@@ -15,6 +15,13 @@
 				if($model['valid'] && isset($model['uid'])){
 					include(INITROOT. 'ui/html/quick-account.html');
 					
+					$op = $cl->load("student.info", ICROOT);
+					$model['stuid'] = $model['uid'];
+					$model = $kernel->run($op, $model);
+					if($model['valid']){
+						include(INITROOT. 'ui/html/quick-student.html');
+					}
+					
 					$op = $cl->load("privilege.check", ECROOT);
 					$model['privtype'] = 'ENHANCSE_ADMIN';
 					$model = $kernel->run($op, $model);
@@ -80,6 +87,7 @@
 			ServiceClient.Registry.save('tpl-test', ServiceClient.jquery.template.Test);
 			ServiceClient.Registry.save('tpl-usr-all', IITBHUCSE.jquery.template.UserAll);
 			ServiceClient.Registry.save('tpl-usr-edt', IITBHUCSE.jquery.template.UserEdit);
+			ServiceClient.Registry.save('tpl-fl-edt', IITBHUCSE.jquery.template.FileEdit);
 			
 			ServiceClient.Registry.save('tpl-rsrc-all', IITBHUCSE.jquery.template.ResourceAll);
 			ServiceClient.Registry.save('tpl-rsrc-edt', IITBHUCSE.jquery.template.ResourceEdit);
