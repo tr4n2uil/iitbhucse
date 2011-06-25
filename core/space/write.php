@@ -79,6 +79,14 @@ SCRIPT;
 	$model['mime'] = $_POST['stgmime'];
 	$model = $kernel->run($op, $model);
 	
+	if(!$model['valid']){
+		respond('<p class="error">'.$model['msg'].'</p>');
+	}
+	
+	$op = $cl->load("space.edit", ECROOT);
+	$model['spvfname'] = $model['filename'];
+	$model = $kernel->run($op, $model);
+	
 	if($model['valid']){
 		respond('<p class="success">File successfully uploaded</p>');
 	}

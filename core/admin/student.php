@@ -31,11 +31,10 @@
 	
 	if(!$request){
 		$result['success'] = false;
-		$result['msg'] = '<p class="error">Invalid Request</p>';
+		$result['template'] = '<p class="error">Invalid Request</p>';
 		echo json_encode($result);
 		exit;
 	}
-	
 	
 	/**
 	 * Check for valid user 
@@ -43,7 +42,7 @@
 	require_once('../../init.php');	
 	if(!$model['valid'] || !isset($model['uid'])){
 		$result['success'] = false;
-		$result['msg'] = '<p class="error">Session Expired. Please Login</p>';
+		$result['template'] = '<p class="error">Session Expired. Please Login</p>';
 		echo json_encode($result);
 		exit;
 	}

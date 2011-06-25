@@ -408,9 +408,11 @@ IITBHUCSE.jquery.template.FileEdit = $.template('\
 			<input type="hidden" name="spid" value="${space.spid}" />\
 			<label>File type\
 				<select name="stgmime">\
-					<option value="application/pdf">Adobe PDF</option>\
-					<option value="image/png">PNG Image</option>\
-					<option value="image/gif">GIF Image</option>\
+					<option value="application/pdf">Adobe PDF (.pdf)</option>\
+					<option value="application/vnd.openxmlformats-officedocument.wordprocessingml.document">Microsoft Word Document (.docx)</option>\
+					<option value="application/msword">Microsoft Word Document (.doc)</option>\
+					<option value="image/png">PNG Image (.png)</option>\
+					<option value="image/gif">GIF Image (.gif)</option>\
 				</select>\
 			</label>\
 			<label>${typename}\
@@ -627,7 +629,7 @@ IITBHUCSE.jquery.template.StudentView = $.template('\
 		{{each students}}\
 		<table class="margin5">\
 			<tbody>\
-				<tr><td rowspan="5" valign="top"><img src="core/space/read.php?spid=${stphoto}" alt="" height="100" ></td>\
+				<tr><td rowspan="6" valign="top"><img src="core/space/read.php?spid=${stphoto}" alt="" height="100" ></td>\
 					<td class="bold">${stname}</td>\
 				</tr>\
 				<tr><td>${stemail}</td></tr>\
@@ -638,6 +640,12 @@ IITBHUCSE.jquery.template.StudentView = $.template('\
 						<a href="core/space/read.php?spid=${stresume}" target="_blank">\
 							Resume [${ServiceClient.jquery.helper.readFileSize(strssize)}]\
 						</a>\
+					{{/if}}\
+				</td></tr>\
+				<tr><td>\
+					{{if sthome}}\
+						<a href="#tplload:cntr=#main-container:url=core/content/view.php:arg=cntid~${sthome}" \
+						class="navigate" >Home Page</a>\
 					{{/if}}\
 				</td></tr>\
 				</tbody>\

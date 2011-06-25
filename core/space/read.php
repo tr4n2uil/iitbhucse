@@ -16,7 +16,7 @@ HTML;
 	**/
 	require_once('../../init.php');	
 	if(!$model['valid'] || !isset($model['uid'])){
-		respond('Session Expired. Please Login');
+		$model['uid'] = 0;
 	}
 	$user = $model['uid'];
 	
@@ -60,7 +60,7 @@ HTML;
 	$storage = $model['storage'];
 	$op = $cl->load("storage.download", ECROOT);
 	$model['file'] = $storage['filepath'].$storage['filename'];
-	$model['asname'] = $storage['filename'];
+	$model['asname'] = $space['spvfname'];
 	$model['mime'] = $storage['mime'];
 	$model['size'] = $storage['size'];
 	$model = $kernel->start($op, $model);

@@ -49,7 +49,7 @@
 	$result['success'] = true;
 	$cntid = $model['cntid'];
 	
-	if($admin || $user == $model['cntowner'])
+	if($admin || $user == $model['cntowner']){
 		$editlink = <<<EDIT
 	<div id="content-options-container" class="panel left">
 		<fieldset>
@@ -63,8 +63,10 @@
 		</fieldset>
 	</div>
 EDIT;
+		$model['template'] .= $editlink;
+	}
 		
-	$result['template'] = $model['template'].$editlink;
+	$result['template'] = $model['template'];
 	$result['content'] = $model['data'];
 	echo json_encode($result);
 

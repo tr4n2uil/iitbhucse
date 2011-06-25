@@ -13,7 +13,7 @@
 					$request = true;
 				break;
 			case 'edit' :
-				if(isset($_POST['cntid']) && isset($_POST['cntstype']) && isset($_POST['cntstyle']) && isset($_POST['cntttype']) && isset($_POST['cnttpl']) && isset($_POST['cntdtype']) && isset($_POST['cntdata']))
+				if(isset($_POST['cntid']) && isset($_POST['cntstyle']) && isset($_POST['cnttpl']) && isset($_POST['cntdata']))
 					$request = true;
 				break;
 			case 'get' :
@@ -31,7 +31,7 @@
 	
 	if(!$request){
 		$result['success'] = false;
-		$result['msg'] = "Invalid Request";
+		$result['msg'] = '<p class="error">Invalid Request</p>';
 		echo json_encode($result);
 		exit;
 	}
@@ -43,7 +43,7 @@
 	require_once('../../init.php');	
 	if(!$model['valid'] || !isset($model['uid'])){
 		$result['success'] = false;
-		$result['msg'] = "Session Expired. Please Login";
+		$result['msg'] = '<p class="error">Session Expired. Please Login</p>';
 		echo json_encode($result);
 		exit;
 	}
@@ -63,7 +63,7 @@
 		case 'add' :
 			if(!$admin){
 				$result['success'] = false;
-				$result['msg'] = "Not Authorized";
+				$result['msg'] = '<p class="error">Not Authorized</p>';
 				echo json_encode($result);
 				exit;
 			}
@@ -94,11 +94,17 @@
 			$model['admin'] = $admin;
 			$model['cntowner'] = $model['uid'];
 			$model['cntid'] = $_POST['cntid'];
-			$model['cntstype'] = $_POST['cntstype'];
+			if(isset($_POST['cntstype'])){
+				$model['cntstype'] = $_POST['cntstype'];
+			}
 			$model['cntstyle'] = $_POST['cntstyle'];
-			$model['cntttype'] = $_POST['cntttype'];
+			if(isset($_POST['cntttype'])){
+				$model['cntttype'] = $_POST['cntttype'];
+			}
 			$model['cnttpl'] = $_POST['cnttpl'];
-			$model['cntdtype'] = $_POST['cntdtype'];
+			if(isset($_POST['cntdtype'])){
+				$model['cntdtype'] = $_POST['cntdtype'];
+			}
 			$model['cntdata'] = $_POST['cntdata'];
 			$model = $kernel->run($op, $model);
 			
