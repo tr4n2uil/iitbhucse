@@ -73,8 +73,9 @@
 			$model['fphone'] = $_POST['fphone'];
 			$model['fstatus'] = $_POST['fstatus'];
 			$model['finterest'] = $_POST['finterest'];
-			
 			$model['mail'] = false;
+			$model['frspath'] = INITROOT.'storage/resume/';
+			$model['fphpath'] = INITROOT.'storage/photo/';
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
@@ -101,7 +102,7 @@
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['msg'] = '<p class="success">Faculty credentials edited successfully</p>';
+				$result['msg'] = '<p class="success">Faculty details edited successfully</p>';
 			}
 			else {
 				$result['success'] = false;
