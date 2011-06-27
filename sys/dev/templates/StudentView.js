@@ -11,7 +11,7 @@ IITBHUCSE.jquery.template.StudentView = $.template('\
 				<tr><td rowspan="6" valign="top"><img src="core/space/read.php?spid=${stphoto}" alt="" height="100" ></td>\
 					<td class="bold">${stname}</td>\
 				</tr>\
-				<tr><td>${stemail}</td></tr>\
+				<tr><td>${stemail} ${stphone}</td></tr>\
 				<tr><td>${strollno}</td></tr>\
 				<tr><td class="italic"><span class="underline">Interests :</span> ${stinterest}</td></tr>\
 				<tr><td>\

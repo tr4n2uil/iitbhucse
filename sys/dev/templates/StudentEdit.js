@@ -61,6 +61,9 @@ IITBHUCSE.jquery.template.StudentEdit = $.template('\
 					<input type="text" name="stplacement" value="${student.stplacement}" />\
 				</label>\
 				{{/if}}\
+				<label>Phone\
+					<input type="text" name="stphone" value="${student.stphone}"/>\
+				</label>\
 				<label>CGPA\
 					<input type="text" name="stcgpa" value="${student.stcgpa}"/>\
 				</label>\

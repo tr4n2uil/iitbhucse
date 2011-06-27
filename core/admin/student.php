@@ -13,7 +13,7 @@
 					$request = true;
 				break;
 			case 'edit' :
-				if(isset($_POST['stuid']) && isset($_POST['stcgpa']) && isset($_POST['stinterest']))
+				if(isset($_POST['stuid']) && isset($_POST['stphone']) && isset($_POST['stcgpa']) && isset($_POST['stinterest']))
 					$request = true;
 				break;
 			case 'rem' :
@@ -103,6 +103,7 @@
 			
 			$op = $cl->load("student.edit", ICROOT);
 			$model['stuid'] = $_POST['stuid'];
+			$model['stphone'] = $_POST['stphone'];
 			$model['stcgpa'] = $_POST['stcgpa'];
 			$model['stinterest'] = $_POST['stinterest'];
 			$model['admin'] = $admin;

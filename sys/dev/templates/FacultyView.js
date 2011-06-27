@@ -48,7 +48,6 @@ IITBHUCSE.jquery.helper.getDesignation = function(index){
 			return 'Reader';
 		case '4' :
 			return 'Lecturer';
->>>>>>> master
 		default :
 			return 'Unknown';
 	}
