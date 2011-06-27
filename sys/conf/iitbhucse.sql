@@ -1,3 +1,16 @@
+<<<<<<< .merge_file_a06964
+-- phpMyAdmin SQL Dump
+-- version 3.2.4
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Jun 20, 2011 at 04:37 PM
+-- Server version: 5.1.41
+-- PHP Version: 5.3.1
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+=======
 # --------------------------------------------------------
 # Host:                         localhost
 # Server version:               5.5.8
@@ -5,6 +18,7 @@
 # HeidiSQL version:             6.0.0.3603
 # Date/time:                    2011-06-21 21:07:46
 # --------------------------------------------------------
+>>>>>>> .merge_file_a07720
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
@@ -42,12 +56,25 @@ CREATE TABLE IF NOT EXISTS `courses` (
   PRIMARY KEY (`crsid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+<<<<<<< .merge_file_a06964
+--
+-- Dumping data for table `courses`
+--
+
+<<<<<<< HEAD
+=======
+INSERT INTO `courses` (`crsid`, `crsname`, `crsdescription`, `crspart`) VALUES
+('CS 13', 'Data Structures', 'Various Data Structures...', 2),
+('CS 34', 'Networking', 'Networking Tools', 3);
+>>>>>>> master
+=======
 # Dumping data for table iitbhucse.courses: ~2 rows (approximately)
 /*!40000 ALTER TABLE `courses` DISABLE KEYS */;
 INSERT INTO `courses` (`crsid`, `crsname`, `crsdescription`, `crspart`) VALUES
 	('CS 13', 'Data Structures', 'Various Data Structures...', 2),
 	('CS 34', 'Networking', 'Networking Tools', 3);
 /*!40000 ALTER TABLE `courses` ENABLE KEYS */;
+>>>>>>> .merge_file_a07720
 
 
 # Dumping structure for table iitbhucse.elibrary
@@ -79,12 +106,27 @@ CREATE TABLE IF NOT EXISTS `faculty` (
   PRIMARY KEY (`fid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+<<<<<<< .merge_file_a06964
+--
+-- Dumping data for table `faculty`
+--
+
+<<<<<<< HEAD
+=======
+INSERT INTO `faculty` (`fid`, `fname`, `fdesignation`, `fqualification`, `femail`, `fphone`, `finterest`, `fstatus`) VALUES
+(23, 'Dr.K.K.Shukla', 1, 'Msc', 'kks@itbhu.ac.in', '8798546214', 'web development', 1),
+(25, 'Dr.Arun Agarwal', 1, 'Msc Phd', 'arun@itbhu.ac.in', '9874651145', 'networking', 2);
+>>>>>>> master
+
+-- --------------------------------------------------------
+=======
 # Dumping data for table iitbhucse.faculty: 2 rows
 /*!40000 ALTER TABLE `faculty` DISABLE KEYS */;
 INSERT INTO `faculty` (`fid`, `fname`, `fdesignation`, `fqualification`, `femail`, `fphone`, `finterest`, `fstatus`) VALUES
 	(23, 'Dr.K.K.Shukla', 1, 'Msc CS', 'kks@itbhu.ac.in', '8798546214', 'web development', 1),
 	(25, 'Dr.Arun Agarwal', 1, 'Msc Phd', 'arun@itbhu.ac.in', '9874651145', 'networking', 2);
 /*!40000 ALTER TABLE `faculty` ENABLE KEYS */;
+>>>>>>> .merge_file_a07720
 
 
 # Dumping structure for table iitbhucse.groups
@@ -107,11 +149,62 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `address` varchar(255) DEFAULT NULL,
   `time` bigint(20) NOT NULL,
   PRIMARY KEY (`lid`)
+<<<<<<< .merge_file_a06964
+<<<<<<< HEAD
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=98 ;
+=======
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=101 ;
+>>>>>>> master
+
+--
+-- Dumping data for table `logs`
+--
+=======
 ) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=latin1;
+>>>>>>> .merge_file_a07720
 
 # Dumping data for table iitbhucse.logs: ~95 rows (approximately)
 /*!40000 ALTER TABLE `logs` DISABLE KEYS */;
 INSERT INTO `logs` (`lid`, `message`, `address`, `time`) VALUES
+<<<<<<< .merge_file_a06964
+(1, 'USER LOGIN with uid=1 and username=enhancse', '127.0.0.1', 1307536404),
+(76, 'USER LOGIN with uid=1 and username=enhancse', '127.0.0.1', 1308202393),
+(77, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308208919),
+(78, 'USER LOGIN with uid=15 and username=shivang', '::1', 1308211322),
+(79, 'USER LOGIN with uid=15 and username=', '::1', 1308211378),
+(80, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308211469),
+(81, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308211577),
+(82, 'USER LOGIN with uid=15 and username=shivang', '::1', 1308211599),
+(83, 'USER LOGIN with uid=15 and username=shivang', '::1', 1308211620),
+(84, 'USER LOGIN with uid=15 and username=shivang', '::1', 1308211630),
+(85, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308211723),
+(86, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308216732),
+(87, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308223855),
+(88, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308226652),
+(89, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308230007),
+(90, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308230361),
+(91, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308287178),
+(92, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308313278),
+(93, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308318135),
+(94, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308374848),
+(95, 'USER LOGIN with uid=22 and username=shivang', '::1', 1308394363),
+(96, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308394392),
+<<<<<<< HEAD
+(97, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308460392);
+=======
+(97, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308460392),
+(98, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308549596),
+(99, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308549768),
+(100, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1308557823);
+>>>>>>> master
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `members`
+--
+
+=======
 	(1, 'USER LOGIN with uid=1 and username=enhancse', '127.0.0.1', 1307536404),
 	(2, 'USER LOGIN with uid=1 and username=enhancse', '127.0.0.1', 1307628897),
 	(3, 'USER LOGIN with uid=1 and username=enhancse', '127.0.0.1', 1307629209),
@@ -217,6 +310,7 @@ INSERT INTO `logs` (`lid`, `message`, `address`, `time`) VALUES
 
 
 # Dumping structure for table iitbhucse.members
+>>>>>>> .merge_file_a07720
 CREATE TABLE IF NOT EXISTS `members` (
   `gid` bigint(20) NOT NULL,
   `member` bigint(20) NOT NULL,
@@ -300,9 +394,20 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 # Dumping data for table iitbhucse.sessions: ~2 rows (approximately)
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
 INSERT INTO `sessions` (`sessionid`, `uid`, `time`, `expiry`) VALUES
+<<<<<<< .merge_file_a06964
+<<<<<<< HEAD
+('gl3fhvmhljqkpeh6scfg5n0g6e60nujs', 1, 1308394392, 1308480792),
+('w9xnytf300hnusb8cdv2lyyid3paitej', 1, 1308460391, 1308546791);
+=======
+('xpm14izxwems0b5rghlyro4zt79ylew6', 1, 1308557823, 1308644223);
+>>>>>>> master
+
+-- --------------------------------------------------------
+=======
 	('ehj23jzcg0u99h9pcfwg6zhkhtcqtvjj', 29, 1308653783, 1308740183),
 	('khpbphzn8hirnx7ah0si71i7ni624d1j', 1, 1308665538, 1308751938);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
+>>>>>>> .merge_file_a07720
 
 
 # Dumping structure for table iitbhucse.spaces
@@ -343,12 +448,29 @@ CREATE TABLE IF NOT EXISTS `storages` (
   UNIQUE KEY `filepath_filename` (`filepath`,`filename`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+<<<<<<< .merge_file_a06964
+--
+-- Dumping data for table `storages`
+--
+
+INSERT INTO `storages` (`stgid`, `stgname`, `filename`, `mime`, `owner`, `access`, `groupid`, `ctime`, `atime`, `mtime`, `dirid`) VALUES
+('c5v9bw1khuxtlwpqgn96wbqdfsv08sml', 'Vibhaj Rajan', '', 'application/pdf', 14, 4, 0, 1307787896, 1307787896, 1307787896, ''),
+('dyz8b3yizlo6vuhp6suxjuz751pumtdt', 'Shivang Mittal', '', 'application/pdf', 15, 4, 0, 1307820268, 1307820268, 1307820268, ''),
+<<<<<<< HEAD
+=======
+('hlreu1r8eq86s8181u0ehwr7gepadvl3', 'Syed Wali Hamza', '', 'application/pdf', 24, 4, 0, 1308556004, 1308556004, 1308556004, ''),
+>>>>>>> master
+('xfxkz5qpko4oi8dynp43hwla535h5usk', 'Shivang Mittal', '', 'application/pdf', 22, 4, 0, 1308394156, 1308394156, 1308394156, '');
+
+-- --------------------------------------------------------
+=======
 # Dumping data for table iitbhucse.storages: ~0 rows (approximately)
 /*!40000 ALTER TABLE `storages` DISABLE KEYS */;
 INSERT INTO `storages` (`stgid`, `stgname`, `filepath`, `filename`, `mime`, `size`, `owner`, `access`, `protection`, `ctime`, `atime`, `mtime`, `links`) VALUES
 	(3, 'Resume-Vibhaj Rajan', 'D:\\Program Files\\Apache Software Foundation\\Apache2.2\\htdocs\\public\\iitbhucse/storage/resume/', 'Vibhaj Rajan.pdf', 'application/pdf', 154532, 29, 2, 'd41d8cd98f00b204e9800998ecf8427e', 1308641630, 1308669106, 1308669106, 1),
 	(4, 'Photo-Vibhaj Rajan', 'D:\\Program Files\\Apache Software Foundation\\Apache2.2\\htdocs\\public\\iitbhucse/storage/photo/', 'Vibhaj Rajan.png', 'image/png', 121022, 29, 2, 'd41d8cd98f00b204e9800998ecf8427e', 1308641630, 1308669350, 1308669350, 1);
 /*!40000 ALTER TABLE `storages` ENABLE KEYS */;
+>>>>>>> .merge_file_a07720
 
 
 # Dumping structure for table iitbhucse.students
@@ -384,11 +506,35 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   PRIMARY KEY (`uid`)
+<<<<<<< .merge_file_a06964
+<<<<<<< HEAD
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+=======
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
+>>>>>>> master
+
+--
+-- Dumping data for table `users`
+--
+=======
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+>>>>>>> .merge_file_a07720
 
 # Dumping data for table iitbhucse.users: ~5 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`uid`, `username`, `password`, `email`) VALUES
+<<<<<<< .merge_file_a06964
+(1, 'enhancse', 'fc7c70a196d8c1bf619bef2aed0bf9e2', 'vibhaj.itbhu@gmail.com'),
+(14, 'vibhaj', '69ceec29f74496b2bfb88b2533a0642b', 'vibhaj.rajan.cse08@itbhu.ac.in'),
+<<<<<<< HEAD
+(22, 'shivang', 'e9e0442482a4da40f9b4ce32dd979d6c', 'shivang.mittal.cse10@itbhu.ac.in');
+=======
+(22, 'shivang', 'e9e0442482a4da40f9b4ce32dd979d6c', 'shivang.mittal.cse10@itbhu.ac.in'),
+(23, 'kks', 'f63a72dab96e54d5c54c9c3f2ac25315', 'kks@itbhu.ac.in'),
+(25, 'arun', '8f46f680105f57822b75e658732831a1', 'arun@itbhu.ac.in');
+>>>>>>> master
+
+=======
 	(1, 'enhancse', 'fc7c70a196d8c1bf619bef2aed0bf9e2', 'vibhaj.itbhu@gmail.com'),
 	(15, 'shivang', 'f745a8f4ca0c5e3d0502e588ed6bb0d2', 'shivang.mittal.cse10@itbhu.ac.in'),
 	(23, 'kks', 'f63a72dab96e54d5c54c9c3f2ac25315', 'kks@itbhu.ac.in'),
@@ -397,4 +543,5 @@ INSERT INTO `users` (`uid`, `username`, `password`, `email`) VALUES
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+>>>>>>> .merge_file_a07720
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
