@@ -13,9 +13,9 @@ IITBHUCSE.jquery.template.StudentEdit = $.template('\
 				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/student.php:arg=do~rem&stuid~${student.stuid}:cf=true" \
 				class="navigate" >Delete</a></li>\
 				{{/if}}\
-				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-fl-edt:url=core/admin/space.php:arg=do~get&spid~${student.stresume}&type~Resume" class="navigate" >Resume</a>\
+				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-spc-edt:url=core/admin/space.php:arg=do~get&spid~${student.stresume}" class="navigate" >Resume</a>\
 				</li>\
-				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-fl-edt:url=core/admin/space.php:arg=do~get&spid~${student.stphoto}&type~Photo" class="navigate" >Photo</a>\
+				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-spc-edt:url=core/admin/space.php:arg=do~get&spid~${student.stphoto}" class="navigate" >Photo</a>\
 				</li>\
 			</ul>\
 		</fieldset>\

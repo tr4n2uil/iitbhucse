@@ -8,19 +8,16 @@
 	$request = false;
 	if(isset($_POST['do'])){
 		switch($_POST['do']){
-			/*case 'edit' :
-				if(isset($_POST['stuid']) && isset($_POST['stcgpa']) && isset($_POST['stinterest']))
-					$request = true;
-				break;*/
-			case 'rem' :
-				if(isset($_POST['spid']))
-					$request = true;
-				break;
-			case 'get' :
-				if(isset($_POST['spid']))
-					$request = true;
-				break;
 			case 'add' :
+			case 'rvk' :
+				if(isset($_POST['uid']) && isset($_POST['type']))
+					$request = true;
+				break;
+			/*case 'rem' :*/
+			case 'get' :
+				if(isset($_POST['type']))
+					$request = true;
+				break;
 			case 'all' :
 				$request = true;
 				break;
@@ -52,48 +49,43 @@
 	/**
 	 * Check for valid privilege 
 	**/
-	$admin = false;
 	$op = $cl->load("privilege.check", ECROOT);
 	$model['privtype'] = 'ENHANCSE_ADMIN';
 	$model = $kernel->run($op, $model);
-	if($model['valid']){
-		$admin = true;
+	if(!$model['valid']){
+		$result['success'] = false;
+		$result['msg'] = '<p class="error">Not Authorized</p>';
+		echo json_encode($result);
+		exit;
 	}
+	unset($model['privtype']);
 	
 	switch($_POST['do']){
 		case 'add' :
-			if(!$admin){
-				$result['success'] = false;
-				$result['msg'] = '<p class="error">Not Authorized</p>';
-				echo json_encode($result);
-				exit;
-			}
-			
-			$op = $cl->load("storage.create", ECROOT);
-			$model['stgname'] = 'File.file';
-			$model['filepath'] = INITROOT. '/storage/file/';
-			$model['filename'] = $model['stgname'];
-			$model['mime'] = 'text/plain';
-			$model['size'] = 0;
-			$model['owner'] = $model['uid'];
-			$model['access'] = 2;
-			$model['protection'] = '';
-			$model = $kernel->run($op, $model);
-			
-			if(!$model['valid']){
-				$result['success'] = false;
-				$result['template'] = '<p class="error">'.$model['msg'].'</p>';
-				break;
-			}
-			
-			$op = $cl->load("space.add", ECROOT);
-			$model['spvfpath'] = '/file/';
-			$model['spvfname'] = $model['stgname'];
+			$op = $cl->load("privilege.grant", ECROOT);
+			$model['guid'] = $_POST['uid'];
+			$model['privtype'] = $_POST['type'];
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['template'] = '<p class="success">Space entry added succesfully</p>';
+				$result['msg'] = '<p class="success">The privilege has been granted succesfully</p>';
+			}
+			else {
+				$result['success'] = false;
+				$result['msg'] = '<p class="error">'.$model['msg'].'</p>';
+			}
+			break;
+		
+		case 'rvk' :
+			$op = $cl->load("privilege.revoke", ECROOT);
+			$model['ruid'] = $_POST['uid'];
+			$model['privtype'] = $_POST['type'];
+			$model = $kernel->run($op, $model);
+			
+			if($model['valid']){
+				$result['success'] = true;
+				$result['template'] = '<p class="success">The privilege has been revoked succesfully</p>';
 			}
 			else {
 				$result['success'] = false;
@@ -102,63 +94,43 @@
 			break;
 		
 		case 'get' :
-			$op = $cl->load("space.select", ECROOT);
-			$model['spid'] = $_POST['spid'];
-			$model['admin'] = $admin;
-			$model['owner'] = $user;
+			$op = $cl->load("privilege.all", ECROOT);
+			$model['privtype'] = $_POST['type'];
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['space'] = $model['space'];
-				$result['admin'] = $admin;
+				$result['privileges'] = $model['privileges'];
+				$result['type'] = $model['privtype'];
 			}
 			else {
 				$result['success'] = false;
 				$result['template'] = '<p class="error">'.$model['msg'].'</p>';
 			}
 			break;
-		
+		/*	
 		case 'rem' :
-			if(!$admin){
-				$result['success'] = false;
-				$result['msg'] = '<p class="error">Not Authorized</p>';
-				echo json_encode($result);
-				exit;
-			}
-			
-			$op = $cl->load("space.remove", ECROOT);
-			$model['spid'] = $_POST['spid'];
-			$model['admin'] = $admin;
+			$op = $cl->load("user.delete", ECROOT);
+			$model['uid'] = $_POST['uid'];
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['template'] = '<p class="success">Space Entry deleted successfully. ID='.$model['spid'].'</p>';
+				$result['template'] = '<p class="success">User deleted successfully. ID='.$model['uid'].'</p>';
 			}
 			else {
 				$result['success'] = false;
 				$result['template'] = '<p class="error">'.$model['msg'].'</p>';
 			}
 			break;
-			
+		*/	
 		case 'all' :
-			if(!$admin){
-				$result['success'] = false;
-				$result['msg'] = '<p class="error">Not Authorized</p>';
-				echo json_encode($result);
-				exit;
-			}
-			
-			$op = $cl->load("space.list", ECROOT);
-			if(isset($_POST['spname'])){
-				$result['spname'] = $model['spname'] = $_POST['spname'];
-			}
+			$op = $cl->load("privilege.all", ECROOT);
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['spaces'] = $model['spaces'];
+				$result['privileges'] = $model['privileges'];
 			}
 			else {
 				$result['success'] = false;

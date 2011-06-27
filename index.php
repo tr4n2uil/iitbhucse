@@ -87,12 +87,16 @@
 			ServiceClient.Registry.save('tpl-test', ServiceClient.jquery.template.Test);
 			ServiceClient.Registry.save('tpl-usr-all', IITBHUCSE.jquery.template.UserAll);
 			ServiceClient.Registry.save('tpl-usr-edt', IITBHUCSE.jquery.template.UserEdit);
-			ServiceClient.Registry.save('tpl-fl-edt', IITBHUCSE.jquery.template.FileEdit);
-			
+			ServiceClient.Registry.save('tpl-prv-all', IITBHUCSE.jquery.template.PrivilegeAll);
+			ServiceClient.Registry.save('tpl-prv-edt', IITBHUCSE.jquery.template.PrivilegeEdit);
+			ServiceClient.Registry.save('tpl-spc-all', IITBHUCSE.jquery.template.SpaceAll);
+			ServiceClient.Registry.save('tpl-spe-all', IITBHUCSE.jquery.template.SpaceEntryAll);
+			ServiceClient.Registry.save('tpl-spc-edt', IITBHUCSE.jquery.template.SpaceEdit);
 			ServiceClient.Registry.save('tpl-rsrc-all', IITBHUCSE.jquery.template.ResourceAll);
 			ServiceClient.Registry.save('tpl-rsrc-edt', IITBHUCSE.jquery.template.ResourceEdit);
 			ServiceClient.Registry.save('tpl-cnt-all', IITBHUCSE.jquery.template.ContentAll);
 			ServiceClient.Registry.save('tpl-cnt-edt', IITBHUCSE.jquery.template.ContentEdit);
+			
 			ServiceClient.Registry.save('tpl-fac-all', IITBHUCSE.jquery.template.FacultyAll);
 			ServiceClient.Registry.save('tpl-fac-edt', IITBHUCSE.jquery.template.FacultyEdit);
 			ServiceClient.Registry.save('tpl-crs-all', IITBHUCSE.jquery.template.CourseAll);
@@ -103,8 +107,8 @@
 			ServiceClient.Registry.save('tpl-std-bws', IITBHUCSE.jquery.template.StudentBrowse);
 			ServiceClient.Registry.save('tpl-std-vw', IITBHUCSE.jquery.template.StudentView);
 			ServiceClient.Registry.save('tpl-fac-vw', IITBHUCSE.jquery.template.FacultyView);
-			ServiceClient.Registry.save('tpl-crs-vw', IITBHUCSE.jquery.template.CourseView);
 			ServiceClient.Registry.save('tpl-crs-bws', IITBHUCSE.jquery.template.CourseBrowse);
+			ServiceClient.Registry.save('tpl-crs-vw', IITBHUCSE.jquery.template.CourseView);
 			
 			ServiceClient.Kernel.run([{
 				service : ServiceClient.jquery.module.AlertStatus,

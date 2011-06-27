@@ -21,7 +21,7 @@ IITBHUCSE.jquery.template.UserEdit = $.template('\
 				<input type="hidden" name="do" value="edit"/>\
 				<input type="hidden" name="uid" value="${user.uid}"/>\
 				<label>Email\
-					<input type="text" name="email" value="${user.email}" disabled="disabled"/>\
+					<input type="text" name="email" value="${user.email}" disabled="disabled" size="50"/>\
 				</label>\
 				<label>Username\
 					<input type="text" name="newusername" value="${user.username}" class="required" />\

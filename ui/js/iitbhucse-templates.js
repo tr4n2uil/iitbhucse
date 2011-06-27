@@ -396,32 +396,56 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 	</div>\
 </div>');
 /**
- *	@template FileEdit
+ *	@template PrivilegeAll
  *
 **/
-IITBHUCSE.jquery.template.FileEdit = $.template('\
-<div id="file-edit-panel" class="panel form-panel">\
-	<form action="core/space/write.php" method="post" class="navigate" enctype="multipart/form-data" \
-		id="_upload:sel._file-edit-panel" target="upload_target" >\
-		<fieldset >\
-			<legend class="head">Change ${typename}</legend>\
-			<input type="hidden" name="spid" value="${space.spid}" />\
-			<label>File type\
-				<select name="stgmime">\
-					<option value="application/pdf">Adobe PDF (.pdf)</option>\
-					<option value="application/vnd.openxmlformats-officedocument.wordprocessingml.document">Microsoft Word Document (.docx)</option>\
-					<option value="application/msword">Microsoft Word Document (.doc)</option>\
-					<option value="image/png">PNG Image (.png)</option>\
-					<option value="image/gif">GIF Image (.gif)</option>\
-				</select>\
-			</label>\
-			<label>${typename}\
-				<input type="file" name="stgfile"/>\
-			</label>\
-			<input name="submit" type="submit" value="Submit"  class="margin5"/>\
-			<div class="status"></div>\
+IITBHUCSE.jquery.template.PrivilegeAll = $.template('\
+<div id="privilege-container">\
+	<div id="edit-panel"></div>\
+	<div id="privilege-all-container" class="panel left">\
+		<fieldset>\
+			<legend class="head">All Privileges</legend>\
+			<ul class="vertical menu">\
+				<li><a href="#htmlload:cntr=#edit-panel:url=ui/html/form-privilege-grant.html" \
+						class="navigate" >Grant ...</a></li>\
+				{{each privileges}}\
+				<li>\
+					<a class="navigate" href="#tplload:cntr=#edit-panel:tpl=tpl-prv-edt:url=core/admin/privilege.php:arg=do~get&type~${$value.type}">${$value.type}</a>\
+				</li>\
+				{{/each}}\
+			</ul>\
 		</fieldset>\
-	</form>\
+	</div>\
+</div>');
+/**
+ *	@template PrivilegeEdit
+ *
+**/
+IITBHUCSE.jquery.template.PrivilegeEdit = $.template('\
+<div id="admin-prv-panel">\
+	<!--<div id="privilege-options-container" class="panel left">\
+		<fieldset>\
+			<legend class="head">Privilege ${type} Options</legend>\
+			<ul class="horizontal menu">\
+				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/privilege.php:arg=do~remove&type~${type}:cf=true" \
+				class="navigate" >Remove</a></li>\
+			</ul>\
+		</fieldset>\
+	</div>-->\
+	<div id="privilege-edit-container" class="panel left">\
+			<fieldset >\
+				<legend class="head">Users with ${type} privilege</legend>\
+				<ul class="vertical menu">\
+					<p class="desc">Click on user to revoke privilege</p>\
+					{{each privileges}}\
+					<li>\
+						<a href="#tplload:cntr=#edit-panel:url=core/admin/privilege.php:arg=do~rvk&type~${$value.type}&uid~${$value.uid}:cf=true" class="navigate" >${$value.username}</a>\
+					</li>\
+					{{/each}}\
+			</ul>\
+			</fieldset>\
+		</form>\
+	</div>\
 </div>');
 /**
  *	@template ResourceAll
@@ -482,6 +506,92 @@ IITBHUCSE.jquery.template.ResourceEdit = $.template('\
 				<div class="status"></div>\
 			</fieldset>\
 		</form>\
+	</div>\
+</div>');
+/**
+ *	@template SpaceAll
+ *
+**/
+IITBHUCSE.jquery.template.SpaceAll = $.template('\
+<div id="space-container">\
+	<div id="edit-panel"></div>\
+	<div id="space-all-container" class="panel left">\
+		<fieldset>\
+			<legend class="head">All Spaces</legend>\
+			<ul class="vertical menu">\
+				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/space.php:arg=do~add" \
+						class="navigate" >Create New Entry ...</a>(for admin purposes only)</li>\
+			</ul>\
+			<ul class="horizontal menu">\
+				{{each spaces}}\
+				<li>\
+					<a class="navigate" href="#tplload:cntr=#edit-panel:tpl=tpl-spe-all:url=core/admin/space.php:arg=do~all&spname~${$value.username}">/${$value.username}</a>\
+				</li>\
+				{{/each}}\
+			</ul>\
+		</fieldset>\
+	</div>\
+</div>');
+/**
+ *	@template SpaceEdit
+ *
+**/
+IITBHUCSE.jquery.template.SpaceEdit = $.template('\
+<div id="space-entry-container">\
+	<div id="space-entry-options-container" class="panel left">\
+		<fieldset>\
+			<legend class="head">Space Entry &lt; /${space.spname}${space.spvfpath}${space.spvfname} &gt; Options</legend>\
+			<ul class="horizontal menu">\
+				<li><a href="core/space/read.php?vfile=${space.spname}${space.spvfpath}${space.spvfname}" target="_blank">Download</a></li>\
+				{{if admin}}\
+				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/space.php:arg=do~rem&spid~${space.spid}:cf=true" \
+				class="navigate" >Remove</a></li>\
+				<!--<li><a href="#tplload:cntr=#edit-panel:url=core/admin/space.php:arg=do~del&spid~${space.spid}:cf=true" \
+				class="navigate" >Delete</a></li>-->\
+				{{/if}}\
+			</ul>\
+		</fieldset>\
+	</div>\
+	<div id="file-edit-panel" class="panel form-panel">\
+		<form action="core/space/write.php" method="post" class="navigate" enctype="multipart/form-data" id="_upload:sel._file-edit-panel" target="upload_target" >\
+			<fieldset >\
+				<legend class="head">Change File at &lt; /${space.spname}${space.spvfpath}${space.spvfname} &gt;</legend>\
+				<input type="hidden" name="spid" value="${space.spid}" />\
+				<label>File type\
+					<select name="stgmime">\
+						<option value="application/pdf">Adobe PDF (.pdf)</option>\
+						<option value="application/vnd.openxmlformats-officedocument.wordprocessingml.document">Microsoft Word Document (.docx)</option>\
+						<option value="application/msword">Microsoft Word Document (.doc)</option>\
+						<option value="image/png">PNG Image (.png)</option>\
+						<option value="image/gif">GIF Image (.gif)</option>\
+					</select>\
+				</label>\
+				<label>File\
+					<input type="file" name="stgfile"/>\
+				</label>\
+				<input name="submit" type="submit" value="Submit"  class="margin5"/>\
+				<div class="status"></div>\
+			</fieldset>\
+		</form>\
+	</div>\
+</div>');
+/**
+ *	@template SpaceEntryAll
+ *
+**/
+IITBHUCSE.jquery.template.SpaceEntryAll = $.template('\
+<div id="space-entry-container">\
+	<div id="space-entry-all-container" class="panel left">\
+		<fieldset>\
+			<legend class="head">All Entries for Space /${spname}</legend>\
+			<ul class="vertical menu">\
+				{{each spaces}}\
+				<li>\
+					<a class="navigate" href="#tplload:cntr=#edit-panel:tpl=tpl-spc-edt:url=core/admin/space.php:arg=do~get&spid~${$value.spid}">/${spname}${$value.spvfpath}${$value.spvfname}</a>\
+				</li>\
+				{{/each}}\
+			</ul>\
+		</fieldset>\
 	</div>\
 </div>');
 /**
@@ -558,9 +668,9 @@ IITBHUCSE.jquery.template.StudentEdit = $.template('\
 				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/student.php:arg=do~rem&stuid~${student.stuid}:cf=true" \
 				class="navigate" >Delete</a></li>\
 				{{/if}}\
-				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-fl-edt:url=core/admin/space.php:arg=do~get&spid~${student.stresume}&type~Resume" class="navigate" >Resume</a>\
+				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-spc-edt:url=core/admin/space.php:arg=do~get&spid~${student.stresume}" class="navigate" >Resume</a>\
 				</li>\
-				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-fl-edt:url=core/admin/space.php:arg=do~get&spid~${student.stphoto}&type~Photo" class="navigate" >Photo</a>\
+				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-spc-edt:url=core/admin/space.php:arg=do~get&spid~${student.stphoto}" class="navigate" >Photo</a>\
 				</li>\
 			</ul>\
 		</fieldset>\
@@ -720,7 +830,7 @@ IITBHUCSE.jquery.template.UserEdit = $.template('\
 				<input type="hidden" name="do" value="edit"/>\
 				<input type="hidden" name="uid" value="${user.uid}"/>\
 				<label>Email\
-					<input type="text" name="email" value="${user.email}" disabled="disabled"/>\
+					<input type="text" name="email" value="${user.email}" disabled="disabled" size="50"/>\
 				</label>\
 				<label>Username\
 					<input type="text" name="newusername" value="${user.username}" class="required" />\
