@@ -99,6 +99,10 @@
 			ServiceClient.Registry.save('tpl-crs-edt', IITBHUCSE.jquery.template.CourseEdit);
 			ServiceClient.Registry.save('tpl-std-all', IITBHUCSE.jquery.template.StudentAll);
 			ServiceClient.Registry.save('tpl-std-edt', IITBHUCSE.jquery.template.StudentEdit);
+			ServiceClient.Registry.save('tpl-lib-all', IITBHUCSE.jquery.template.LibraryAll);
+			ServiceClient.Registry.save('tpl-lib-edt', IITBHUCSE.jquery.template.LibraryEdit);
+			ServiceClient.Registry.save('tpl-lib-trs', IITBHUCSE.jquery.template.LibraryTransaction);
+			ServiceClient.Registry.save('tpl-lib-cpy', IITBHUCSE.jquery.template.LibraryCopy);
 			
 			ServiceClient.Registry.save('tpl-std-bws', IITBHUCSE.jquery.template.StudentBrowse);
 			ServiceClient.Registry.save('tpl-std-vw', IITBHUCSE.jquery.template.StudentView);

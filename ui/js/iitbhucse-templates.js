@@ -729,3 +729,173 @@ IITBHUCSE.jquery.template.UserEdit = $.template('\
 		</form>\
 	</div>\
 </div>');
+
+
+/**
+ *	@template LibraryAll
+ *
+**/
+IITBHUCSE.jquery.template.LibraryAll = $.template('\
+<div id="library-container">\
+	<div id="edit-panel"></div>\
+	<div id="library-all-container" class="panel left">\
+		<fieldset>\
+			<legend class="head">All Books</legend>\
+			<ul class="horizontal menu">\
+				<li>\
+					<a href="#htmlload:cntr=#edit-panel:url=ui/html/form-library-add.html" \
+						class="navigate" >Create New ...</a>\
+				</li>\
+				{{each books}}\
+				<li>\
+					<a class="navigate" \
+			href="#tplload:cntr=#edit-panel:tpl=tpl-lib-edt:url=core/admin/library.php:arg=do~get&bookname~${$value.bookname}"\
+				>${$value.bookname}</a>\
+				</li>\
+				{{/each}}\
+			</ul>\
+		</fieldset>\
+	</div>\
+</div>');
+
+
+/**
+ *	@template LibraryEdit
+ *
+**/
+IITBHUCSE.jquery.template.LibraryEdit = $.template('\
+<div id="admin-lib-panel">\
+	<div id="library-options-container" class="panel left">\
+		<fieldset>\
+			<legend class="head">Edit ${book.bookname}</legend>\
+			<ul class="horizontal menu">\
+				{{if admin}}\
+				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/library.php:arg=do~rem&bookid~${book.bookid}:cf=true" \
+				class="navigate" >Remove</a></li>\
+				<li><a href="#tplload:tpl=tpl-lib-trs:cntr=#edit-panel:url=core/admin/library.php:arg=do~get&bookname~${book.bookname}" \
+				class="navigate" >Issue/Return</a></li>\
+				{{/if}}\
+				<li><a href="#tplload:tpl=tpl-lib-cpy:cntr=#edit-panel:url=core/admin/library.php:arg=do~get&bookname~${book.bookname}" \
+				class="navigate" >Add Copy(ies)</a></li>\
+			</ul>\
+		</fieldset>\
+	</div>\
+	<div id="library-edit-container" class="panel form-panel">\
+		<form action="core/admin/library.php" method="post" class="navigate" id="_formsubmit:sel._admin-lib-panel">\
+			<fieldset >\
+				<legend class="head">Edit ${book.bookname}</legend>\
+				<input type="hidden" name="do" value="edit"/>\
+				<input type="hidden" name="bookid" value="${book.bookid}"/>\
+				<input type="hidden" name="bookname" value="${book.bookname}"/>\
+				<label>Total Copies\
+					<input type="text" name="total" value="${total}" disabled="disabled" size="3"/>\
+				</label>\
+				<label>Available copies\
+					<input type="text" name="avail" value="${avail}" disabled="disabled" size="3"/>\
+				</label>\
+				<label>Author Name\
+					<input type="text" name="bookauthor" value="${book.bookauthor}" class="required"/>\
+				</label>\
+					<p class="error hidden margin5">Invalid Author Name</p>\
+				<label>Book Description\
+					<textarea name="bookdescription">${book.bookdescription}</textarea>\
+				</label>\
+				<label>Pages\
+					<input type="text" name="bookpages" value="${book.bookpages}" />\
+				</label>\
+				<label>Book Collection\
+					<input type="text" name="bookcollection" value="${book.bookcollection}" />\
+				</label>\
+				<input name="submit" type="submit" value="Submit" class="margin5"/>\
+				<input name="reset" type="reset" value="Reset" class="margin5"/>\
+				<div class="status"></div>\
+			</fieldset>\
+		</form>\
+	</div>\
+</div>');
+
+/**
+ *	@template LibraryIssue
+ *
+**/
+IITBHUCSE.jquery.template.LibraryTransaction = $.template('\
+<div id="admin-lib-panel">\
+	<div id="library-options-container" class="panel left">\
+		<fieldset>\
+			<legend class="head">Edit ${book.bookname}</legend>\
+			<ul class="horizontal menu">\
+				{{if admin}}\
+				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/library.php:arg=do~rem&bookid~${book.bookid}:cf=true" \
+				class="navigate" >Remove</a></li>\
+				<li><a href="#tplload:tpl=tpl-lib-trs:cntr=#edit-panel:url=core/admin/library.php:arg=do~get&bookname~${book.bookname}" \
+				class="navigate" >Issue/Return</a></li>\
+				<li><a href="#tplload:tpl=tpl-lib-cpy:cntr=#edit-panel:url=core/admin/library.php:arg=do~get&bookname~${book.bookname}" \
+				class="navigate" >Add Copy(ies)</a></li>\
+				{{/if}}\
+			</ul>\
+		</fieldset>\
+	</div>\
+	<div id="library-edit-container" class="panel form-panel">\
+		<form action="core/admin/library.php" method="post" class="navigate" id="_formsubmit:sel._admin-lib-panel">\
+			<fieldset >\
+				<legend class="head">${book.bookname}</legend>\
+				<input type="hidden" name="bookname" value="${book.bookname}"/>\
+				<label>\
+					<select name="do">\
+						<option value="issue" {{if ServiceClient.jquery.helper.equals(avail, 0)}} disabled="disabled"{{/if}}>Issue</option>\
+						<option value="return" {{if ServiceClient.jquery.helper.equals(avail, total)}} disabled="disabled"{{/if}}>Return</option>\
+					</select>\
+				</label>\
+				<label>User ID\
+					<input type="text" name="issuedto" class="required"/>\
+				</label>\
+					<p class="error hidden margin5">Invalid User ID</p>\
+				<input name="submit" type="submit" value="Proceed" class="margin5"/>\
+				<input name="reset" type="reset" value="Reset" class="margin5"/>\
+				<div class="status"></div>\
+			</fieldset>\
+		</form>\
+	</div>\
+</div>');
+
+/**
+ *	@template LibraryCopy
+ *
+**/
+IITBHUCSE.jquery.template.LibraryCopy = $.template('\
+<div id="admin-lib-panel">\
+	<div id="library-options-container" class="panel left">\
+		<fieldset>\
+			<legend class="head">Edit Book</legend>\
+			<ul class="horizontal menu">\
+				{{if admin}}\
+				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/library.php:arg=do~rem&bookid~${book.bookid}:cf=true" \
+				class="navigate" >Remove</a></li>\
+				<li><a href="#tplload:tpl=tpl-lib-isu:cntr=#edit-panel:url=core/admin/library.php:arg=do~get&bookname~${book.bookname}" \
+				class="navigate" >Issue/Return</a></li>\
+				<li><a href="#tplload:tpl=tpl-lib-cpy:cntr=#edit-panel:url=core/admin/library.php:arg=do~get&bookname~${book.bookname}" \
+				class="navigate" >Add Copy(ies)</a></li>\
+				{{/if}}\
+			</ul>\
+		</fieldset>\
+	</div>\
+	<div id="library-edit-container" class="panel form-panel">\
+		<form action="core/admin/library.php" method="post" class="navigate" id="_formsubmit:sel._admin-lib-panel">\
+			<fieldset >\
+				<legend class="head">Add ${book.bookname}</legend>\
+				<input type="hidden" name="bookid" value="${book.bookid}"/>\
+				<input type="hidden" name="bookname" value="${book.bookname}"/>\
+				<input type="hidden" name="do" value="copy"/>\
+				<label>No of Copies\
+					<input type="text" name="copies" class="required"/>\
+				</label>\
+					<p class="error hidden margin5">Invalid Number</p>\
+				<input name="submit" type="submit" value="Create" class="margin5"/>\
+				<input name="reset" type="reset" value="Reset" class="margin5"/>\
+				<div class="status"></div>\
+			</fieldset>\
+		</form>\
+	</div>\
+</div>');
+
+
