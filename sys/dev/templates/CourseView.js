@@ -13,6 +13,12 @@ IITBHUCSE.jquery.template.CourseView = $.template('\
 				<tr><td>${crsdescription}</td></tr>\
 				<tr><td>${IITBHUCSE.jquery.helper.getPart(crspart)}</td></tr>\
 				</tr>\
+				<tr><td>\
+					{{if crshome}}\
+						<a href="#tplload:cntr=#main-container:url=core/content/view.php:arg=cntid~${crshome}" \
+						class="navigate" >Home Page</a>\
+					{{/if}}\
+				</td></tr>\
 			</tbody>\
 		</table>\
 		{{/each}}\

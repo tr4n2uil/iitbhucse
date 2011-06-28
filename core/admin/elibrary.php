@@ -133,6 +133,7 @@
 			
 			$op = $cl->load("elibrary.remove", ICROOT);
 			$model['bookid'] = $_POST['bookid'];
+			$model['admin'] = $admin;
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
