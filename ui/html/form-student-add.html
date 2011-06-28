@@ -1,0 +1,47 @@
+<div id="admin-std-panel" class="panel form-panel">
+		<form action="core/admin/student.php" method="post" class="navigate" id="_formsubmit:sel._admin-std-panel">
+			<fieldset >
+				<input type="hidden" name="do" value="add">
+				<legend class="head">Add Student</legend>
+				<label>Username
+					<input type="text" name="username" class="required" />
+				</label>
+					<p class="error hidden margin5">Invalid username</p>
+				
+				<label>Name
+					<input type="text" name="stname"  class="required" />
+				</label>
+					<p class="error hidden margin5">Invalid Name</p>
+				
+				<label>Roll No
+					<input type="text" name="strollno"/>
+				</label>
+				<label>Email
+					<input type="text" name="stemail" class="required email" />
+				</label>
+					<p class="error hidden margin5">Invalid email</p>
+				<label>Phone no
+					<input type="text" name="stphone" />
+				</label>
+				<label>Course
+					<select name="stcourse">
+						<option value="1">B.Tech</option>
+						<option value="2">M.Tech</option>
+						<option value="3">Ph.D</option>
+					</select>
+				</label>
+				<label>Year
+					<input type="text" name="styear" />
+				</label>
+				<label>Status
+					<select name="ststatus">
+						<option value="1">Enrolled</option>
+						<option value="2">Alumnus</option>
+					</select>
+				</label>
+				<input name="submit" type="submit" value="Submit"  class="margin5"/>
+				<input name="reset" type="reset" value="Reset"  class="margin5"/>
+				<div class="status"></div>
+			</fieldset>
+		</form>
+	</div>

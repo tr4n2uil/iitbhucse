@@ -1,0 +1,25 @@
+<div id="account-edit-panel" class="panel form-panel">
+	<form action="core/account/edit.php" method="post" class="navigate" id="_formsubmit:sel._account-edit-panel">
+		<fieldset >
+			<legend class="head">Edit Account</legend>
+			<label>Old Username
+				<input type="text" name="username"/>
+			</label>
+			<label>Old Password
+				<input type="password" name="password" />
+			</label>
+			<label>New Username
+				<input type="text" name="newusername" class="required"/>
+			</label>
+			<p class="error hidden margin5">Invalid username</p>
+			<p class="desc"> (Please write the old username in case you do not want to change your username)</p>
+			<label>New Password
+				<input type="password" name="newpassword" class="required"/>
+			</label>
+			<p class="error hidden margin5">Invalid password</p>
+			<input name="submit" type="submit" value="Submit" class="margin5" />
+			<input name="reset" type="reset" value="Reset" class="margin5"/>
+			<div class="status"></div>
+		</fieldset>
+	</form>
+</div>

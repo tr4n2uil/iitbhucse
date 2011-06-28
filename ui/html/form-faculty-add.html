@@ -1,0 +1,47 @@
+<div id="admin-fac-panel" class="panel form-panel">
+	<form action="core/admin/faculty.php" method="post" class="navigate" id="_formsubmit:sel._admin-fac-panel">
+		<fieldset >
+			<input type="hidden" name="do" value="add">
+			<legend class="head">Add Faculty</legend>
+			<label>Username
+				<input type="text" name="username" class="required" />
+			</label>
+				<p class="error hidden margin5">Invalid username</p>
+			<label>Name
+				<input type="text" name="fname" class="required" />
+			</label>
+				<p class="error hidden margin5">Invalid Name</p>
+			<label>Designation
+				<select name="fdesignation">
+				<option value="1" >Professor</option>
+				<option value="2" >Assist. Professor</option>
+				<option value="3" >Reader</option>
+				<option value="4" >Lecturer</option>
+			</select>
+			</label>
+			<label>Qualification
+				<input type="text" name="fqualification" />
+			</label>
+			<label>Email
+			<input type="text" name="femail" class="required email" />
+			</label>
+				<p class="error hidden margin5">Invalid email</p>
+			<label>Phone No
+				<input type="text" name="fphone"/>
+			</label>
+			<label>Status
+				<select name="fstatus">
+				<option value="1">Teaching</option>
+				<option value="2">Retired</option>
+				</select>
+			</label>
+			<label>Interests
+				<textarea name="finterest" rows="5"></textarea>
+			</label>
+			<input name="submit" type="submit" value="Submit"  class="margin5"/>
+			<input name="reset" type="reset" value="Reset"  class="margin5"/>
+			<div class="status"></div>
+		</fieldset>
+	</form>
+</div>
+	

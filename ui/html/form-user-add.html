@@ -1,0 +1,19 @@
+<div id="admin-usr-panel" class="panel form-panel" >
+		<form action="core/admin/user.php" method="post" class="navigate" id="_formsubmit:sel._admin-usr-panel">
+			<fieldset >
+				<input type="hidden" name="do" value="add"/>
+				<legend class="head">Add User</legend>
+				<label>Email
+					<input type="text" name="email" class="required email"/>
+				</label>
+				<p class="error hidden margin5">Invalid email address</p>
+				<label>Username
+					<input type="text" name="username" class="required" />
+				</label>
+				<p class="error hidden margin5">Invalid username</p>
+				<input name="submit" type="submit" value="Submit"  class="margin5"/>
+				<input name="reset" type="reset" value="Reset"  class="margin5"/>
+				<div class="status"></div>
+			</fieldset>
+		</form>
+</div>

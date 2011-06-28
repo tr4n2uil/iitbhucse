@@ -1,0 +1,19 @@
+<div id="login-panel" class="panel form-panel">
+	<form action="core/account/login.php" method="post" class="navigate" id="_formsubmit:sel._login-panel">
+		<fieldset>
+			<legend class="headdark">Login</legend>
+			<label>Username
+				<input type="text" name="username" class="full required"/>
+			</label>
+			<p class="error hidden margin5">Invalid username</p>
+			<label>Password
+			<input type="password" name="password" class="full required" />
+			</label>
+			<p class="error hidden margin5">Invalid password</p>
+			<input name="submit" type="submit" value="Login" class="margin5"/>
+			<input name="reset" type="reset" value="Reset" class="margin5"/>
+			<div class="status"></div>
+			<a href="#htmlload:cntr=#main-container:url=ui/html/main-reset.html" class="navigate">Forgot Password</a>
+		</fieldset>
+	</form>
+</div>
