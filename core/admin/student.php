@@ -13,6 +13,7 @@
 					$request = true;
 				break;
 			case 'edit' :
+<<<<<<< HEAD
 				if(isset($_POST['stuid']) && isset($_POST['stphone']) && isset($_POST['stcgpa']) && isset($_POST['stinterest']))
 					$request = true;
 				break;
@@ -21,6 +22,16 @@
 					$request = true;
 				break;
 			case 'get' :
+=======
+				if(isset($_POST['stuid']) && isset($_POST['stname']) && isset($_POST['stcourse']) && isset($_POST['styear']) && isset($_POST['strollno']) && isset($_POST['ststatus']))
+					$request = true;
+				break;
+			case 'rem' :
+			case 'get' :
+				if(isset($_POST['stuid']))
+					$request = true;
+				break;
+>>>>>>> 8eb99ea2918041bd30d1a1fc6c21b64e0648a44e
 			case 'all' :
 				$request = true;
 				break;
@@ -31,10 +42,12 @@
 	
 	if(!$request){
 		$result['success'] = false;
-		$result['template'] = '<p class="error">Invalid Request</p>';
+		$result['msg'] = "Invalid Request";
 		echo json_encode($result);
 		exit;
 	}
+	
+
 	
 	/**
 	 * Check for valid user 
@@ -42,7 +55,7 @@
 	require_once('../../init.php');	
 	if(!$model['valid'] || !isset($model['uid'])){
 		$result['success'] = false;
-		$result['template'] = '<p class="error">Session Expired. Please Login</p>';
+		$result['msg'] = "Session Expired. Please Login";
 		echo json_encode($result);
 		exit;
 	}
@@ -51,23 +64,18 @@
 	/**
 	 * Check for valid privilege 
 	**/
-	$admin = false;
 	$op = $cl->load("privilege.check", ECROOT);
 	$model['privtype'] = 'ENHANCSE_ADMIN';
 	$model = $kernel->run($op, $model);
-	if($model['valid']){
-		$admin = true;
+	if(!$model['valid']){
+		$result['success'] = false;
+		$result['msg'] = "Not Authorized";
+		echo json_encode($result);
+		exit;
 	}
 	
 	switch($_POST['do']){
 		case 'add' :
-			if(!$admin){
-				$result['success'] = false;
-				$result['msg'] = '<p class="error">Not Authorized</p>';
-				echo json_encode($result);
-				exit;
-			}
-			
 			$op = $cl->load("student.create", ICROOT);
 			$model['username'] = $_POST['username'];
 			$model['stname'] = $_POST['stname'];
@@ -80,6 +88,7 @@
 			$model['mail'] = false;
 			$model['strspath'] = INITROOT.'storage/resume/';
 			$model['stphpath'] = INITROOT.'storage/photo/';
+
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
@@ -118,7 +127,6 @@
 				$model['stinternship'] = $_POST['stinternship'];
 				$model['stplacement'] = $_POST['stplacement'];
 			}
-			
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
@@ -154,7 +162,7 @@
 				echo json_encode($result);
 				exit;
 			}
-			
+
 			$op = $cl->load("student.delete", ICROOT);
 			$model['stuid'] = $_POST['stuid'];
 			$model = $kernel->run($op, $model);

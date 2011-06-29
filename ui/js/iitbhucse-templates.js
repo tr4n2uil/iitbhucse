@@ -237,6 +237,7 @@ IITBHUCSE.jquery.helper.getPart = function(index){
 	}
 }
 
+
 /**
  *	@template FacultyView
  *
@@ -407,6 +408,7 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 	</div>\
 </div>');
 
+
 /**
  *	@template FileEdit
  *
@@ -435,6 +437,7 @@ IITBHUCSE.jquery.template.FileEdit = $.template('\
 		</fieldset>\
 	</form>\
 </div>');
+
 /**
  *	@template ResourceAll
  *
@@ -594,7 +597,7 @@ IITBHUCSE.jquery.template.StudentEdit = $.template('\
 				<label>Roll Number\
 					<input type="text" name="strollno" value="${student.strollno}" class="required"/>\
 				</label>\
-					<p class="error hidden margin5">Invalid username</p>\
+					<p class="error hidden margin5">Invalid Roll number</p>\
 				<label>Course\
 					<select name="stcourse" >\
 						<option value="1" {{if ServiceClient.jquery.helper.equals(student.stcourse, 1)}}selected="selected"{{/if}}>B.Tech</option>\
