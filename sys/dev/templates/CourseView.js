@@ -5,26 +5,23 @@
 IITBHUCSE.jquery.template.CourseView = $.template('\
 <div id="courses-view-container" class="panel left"><fieldset>\
 		<legend class="head">All Courses</legend>\
-		<table class="grid">\
-			<thead>\
-				<tr>\
-					<th>Course ID</th>\
-					<th>Course Name</th>\
-					<th>Description</th>\
-					<th>Course Part</th>\
-				</tr>\
-			</thead>\
+		{{each courses}}\
+		<table class="margin5">\
 			<tbody>\
-				{{each courses}}\
-				<tr>\
-					<td>${crsid}</td>\
-					<td>${crsname}</td>\
-					<td>${crsdescription}</td>\
-					<td>${IITBHUCSE.jquery.helper.getPart(crspart)}</td>\
+				<tr>\<td class="bold">${crsid}</td></tr>\
+				<tr><td class="bold">${crsname}</td></tr>\
+				<tr><td>${crsdescription}</td></tr>\
+				<tr><td>${IITBHUCSE.jquery.helper.getPart(crspart)}</td></tr>\
 				</tr>\
-				{{/each}}\
+				<tr><td>\
+					{{if crshome}}\
+						<a href="#tplload:cntr=#main-container:url=core/content/view.php:arg=cntid~${crshome}" \
+						class="navigate" >Home Page</a>\
+					{{/if}}\
+				</td></tr>\
 			</tbody>\
 		</table>\
+		{{/each}}\
 	</fieldset>\
 </div>');
 

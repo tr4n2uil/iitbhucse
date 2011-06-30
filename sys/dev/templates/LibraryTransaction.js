@@ -9,12 +9,12 @@ IITBHUCSE.jquery.template.LibraryTransaction = $.template('\
 			<legend class="head">Edit Book</legend>\
 			<ul class="horizontal menu">\
 				{{if admin}}\
-				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/library.php:arg=do~rem&bookid~${book.bookid}:cf=true" \
+				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/library.php:arg=do~rem&isbn~${book.isbn}:cf=true" \
 				class="navigate" >Remove</a></li>\
-				<li><a href="#tplload:tpl=tpl-lib-isu:cntr=#edit-panel:url=core/admin/library.php:arg=do~get&bookid~${book.bookid}" \
-				class="navigate" >Issue/Return</a></li>\
-				<li><a href="#tplload:tpl=tpl-lib-cpy:cntr=#edit-panel:url=core/admin/library.php:arg=do~get&bookid~${book.bookid}" \
-				class="navigate" >Add Copy(ies)</a></li>\
+				<li>{{if ServiceClient.jquery.helper.equals(book.status, 1)}}<a href="#tplload:tpl=tpl-lib-trs:cntr=#edit-panel:url=core/admin/library.php:arg=do~get&isbn~${book.isbn}" \
+				class="navigate" >Issue</a>{{/if}}</li>\
+				<li>{{if ServiceClient.jquery.helper.equals(book.status, 2)}}<a href="#tplload:tpl=tpl-lib-trs:cntr=#edit-panel:url=core/admin/library.php:arg=do~return&isbn~${book.isbn}" \
+				class="navigate" >Return</a>{{/if}}</li>\
 				{{/if}}\
 			</ul>\
 		</fieldset>\
@@ -22,14 +22,10 @@ IITBHUCSE.jquery.template.LibraryTransaction = $.template('\
 	<div id="library-edit-container" class="panel form-panel">\
 		<form action="core/admin/library.php" method="post" class="navigate" id="_formsubmit:sel._admin-lib-panel">\
 			<fieldset >\
-				<legend class="head">${book.bookname}</legend>\
-				<input type="hidden" name="bookname" value="${book.bookname}"/>\
-				<label>\
-					<select name="do">\
-						<option value="issue">Issue</option>\
-						<option value="return">Return</option>\
-					</select>\
-				</label>\
+				<legend class="head">Issue ${book.isbn}</legend>\
+				<input type="hidden" name="do" value="$issue"/>\
+				<input type="hidden" name="isbn" value="${book.isbn}"/>\
+				<input type="text" name="bookname" value="${book.bookname}" disabled="disabled"/>\
 				<label>User ID\
 					<input type="text" name="issuedto" class="required"/>\
 				</label>\

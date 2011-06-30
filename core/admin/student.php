@@ -36,6 +36,7 @@
 		exit;
 	}
 	
+
 	/**
 	 * Check for valid user 
 	**/
@@ -76,6 +77,7 @@
 			$model['stcourse'] = $_POST['stcourse'];
 			$model['styear'] = $_POST['styear'];
 			$model['ststatus'] = $_POST['ststatus'];
+			$model['stphone'] = $_POST['stphone'];
 			$model['mail'] = false;
 			$model['strspath'] = INITROOT.'storage/resume/';
 			$model['stphpath'] = INITROOT.'storage/photo/';
@@ -117,7 +119,6 @@
 				$model['stinternship'] = $_POST['stinternship'];
 				$model['stplacement'] = $_POST['stplacement'];
 			}
-			
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
@@ -153,7 +154,7 @@
 				echo json_encode($result);
 				exit;
 			}
-			
+
 			$op = $cl->load("student.delete", ICROOT);
 			$model['stuid'] = $_POST['stuid'];
 			$model = $kernel->run($op, $model);

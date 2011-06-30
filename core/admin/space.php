@@ -112,13 +112,14 @@
 				$result['success'] = true;
 				$result['space'] = $model['space'];
 				$result['admin'] = $admin;
+
 			}
 			else {
 				$result['success'] = false;
 				$result['template'] = '<p class="error">'.$model['msg'].'</p>';
 			}
 			break;
-		
+
 		case 'rem' :
 			if(!$admin){
 				$result['success'] = false;
@@ -141,7 +142,7 @@
 				$result['template'] = '<p class="error">'.$model['msg'].'</p>';
 			}
 			break;
-			
+
 		case 'all' :
 			if(!$admin){
 				$result['success'] = false;

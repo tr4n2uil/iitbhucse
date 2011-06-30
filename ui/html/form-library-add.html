@@ -3,6 +3,13 @@
 		<fieldset >
 			<input type="hidden" name="do" value="add">
 			<legend class="head">Add Book</legend>
+			<label>ISBN
+				<input type="text" name="isbn" class="required" />
+			</label>
+				<p class="error hidden margin5">Invalid ISBN</p>
+			<label>Book ID
+				<input type="text" name="bookid" class="required" />
+			</label>
 			<label>Name
 				<input type="text" name="bookname" class="required" />
 			</label>

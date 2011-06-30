@@ -5,32 +5,35 @@
 IITBHUCSE.jquery.template.FacultyView = $.template('\
 	<div id="faculty-view-container" class="panel left"><fieldset>\
 			<legend class="head">All Faculty Members</legend>\
-			<table class="grid">\
-				<thead>\
-					<tr>\
-						<th>Name</th>\
-						<th>Designation</th>\
-						<th>Interests</th>\
-						<th>Qualifications</th>\
-						<th>Email</th>\
-						<th>Phone No.</th>\
-						<th>Status</th>\
-					</tr>\
-				</thead>\
+			{{each faculty}}\
+			<table class="margin5">\
 				<tbody>\
-					{{each faculty}}\
-					<tr>\
-						<td>${fname}</td>\
-						<td>${IITBHUCSE.jquery.helper.getDesignation(fdesignation)}</td>\
-						<td>${finterest}</td>\
-						<td>${fqualification}</td>\
-						<td>${femail}</td>\
-						<td>${fphone}</td>\
-						<td>${IITBHUCSE.jquery.helper.getStatus(fstatus)}</td>\
-						</tr>\
-					{{/each}}\
+					<tr><td rowspan="6" valign="top"><img src="core/space/read.php?spid=${fphoto}" alt="" height="100" ></td>\
+					<td class="bold">${fname}</td>\
+					</tr>\
+					<tr><td>${IITBHUCSE.jquery.helper.getDesignation(fdesignation)}</td></tr>\
+					<tr><td>${fqualification}</td></tr>\
+					<tr><td class="italic"><span class="underline">Interests :</span> ${finterest}</td></tr>\
+					<tr><td>\
+					<tr><td>${femail}</td></tr>\
+					<tr><td>${fphone}</td></tr>\
+					<tr><td>${IITBHUCSE.jquery.helper.getStatus(fstatus)}</td></tr>\
+					<tr><td>\
+						{{if frssize}}\
+							<a href="core/space/read.php?spid=${fresume}" target="_blank">\
+							Resume [${ServiceClient.jquery.helper.readFileSize(strssize)}]\
+							</a>\
+						{{/if}}\
+					</td></tr>\
+					<tr><td>\
+						{{if sthome}}\
+							<a href="#tplload:cntr=#main-container:url=core/content/view.php:arg=cntid~${fhome}" \
+							class="navigate" >Home Page</a>\
+						{{/if}}\
+					</td></tr>\
 				</tbody>\
 			</table>\
+			{{/each}}\
 			</fieldset>\
 	</div>');
 
@@ -67,3 +70,7 @@ IITBHUCSE.jquery.helper.getStatus = function(index){
 			return 'Unknown';
 	}
 }
+<<<<<<< HEAD:sys/dev/templates/FacultyView.js
+=======
+
+>>>>>>> shivang/nimitz:sys/dev/templates/FacultView.js

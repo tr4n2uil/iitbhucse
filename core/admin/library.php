@@ -9,15 +9,15 @@
 	if(isset($_POST['do'])){
 		switch($_POST['do']){
 			case 'add' :
-				if(isset($_POST['bookname']) && isset($_POST['bookauthor']) && isset($_POST['bookdescription']))
+				if(isset($_POST['isbn']) && isset($_POST['bookid']) && isset($_POST['bookname']) && isset($_POST['bookauthor']) && isset($_POST['bookdescription']))
 					$request = true;
 				break;
 			case 'edit' :
-				if(isset($_POST['bookid']) && isset($_POST['bookname']) && isset($_POST['bookauthor']) && isset($_POST['bookdescription']))
+				if(isset($_POST['isbn']) && isset($_POST['bookid']) && isset($_POST['bookname']) && isset($_POST['bookauthor']) && isset($_POST['bookdescription']))
 					$request = true;
 				break;
 			case 'rem' :
-				if(isset($_POST['bookid']))
+				if(isset($_POST['isbn']))
 					$request = true;
 				break;
 			case 'get' :
@@ -25,15 +25,11 @@
 				$request = true;
 				break;
 			case 'issue' :
-				if(isset($_POST['issuedto']) && isset($_POST['bookname']))
+				if(isset($_POST['issuedto']) && isset($_POST['isbn']))
 					$request = true;
 				break;
 			case 'return' :
-				if(isset($_POST['issuedto']) && isset($_POST['bookname']))
-					$request = true;
-				break;
-			case 'copy' :
-				if(isset($_POST['copies']) && isset($_POST['bookid']))
+				if(isset($_POST['isbn']))
 					$request = true;
 				break;
 			default :
@@ -82,6 +78,8 @@
 			}
 			
 			$op = $cl->load("library.add", ICROOT);
+			$model['isbn'] = $_POST['isbn'];
+			$model['bookid'] = $_POST['bookid'];
 			$model['bookname'] = $_POST['bookname'];
 			$model['bookauthor'] = $_POST['bookauthor'];
 			$model['bookdescription'] = $_POST['bookdescription'];
@@ -91,53 +89,19 @@
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['msg'] = '<p class="success">Book Added Successfully.<br />Book ID : '.$model['bookid'].'</p>';
+				$result['msg'] = '<p class="success">Book Added Successfully.</p>';
 			}
 			else {
 				$result['success'] = false;
 				$result['msg'] = '<p class="error">'.$model['msg'].'</p>';
 			}
-			break;
 			
-		case 'copy' :
-			if(!$admin){
-				$result['success'] = false;
-				$result['msg'] = '<p class="error">Not Authorized</p>';
-				echo json_encode($result);
-				exit;
-			}
-			
-			$op = $cl->load("library.get", ICROOT);
-			$model['bookname'] = $_POST['bookname'];
-			$model['copies'] = $_POST['copies'];
-			$model = $kernel->run($op, $model);
-			
-			
-			$model['bookname'] = $model['book']['bookname'];
-			$model['bookauthor'] = $model['book']['bookauthor'];
-			$model['bookdescription'] = $model['book']['bookdescription'];
-			$model['bookcollection'] = $model['book']['bookcollection'];
-			$model['bookpages'] = $model['book']['bookpages'];
-			unset($model['bookid']);
-			
-			for($i=0; $i < $model['copies']; $i++){
-				$op = $cl->load("library.add", ICROOT);
-				$model= $kernel->run($op, $model);
-			}
-			
-			if($model['valid']){
-				$result['success'] = true;
-				$result['msg'] = '<p class="success">Book Copies Added Successfully.</p>';
-			}
-			else {
-				$result['success'] = false;
-				$result['msg'] = '<p class="error">'.$model['msg'].'</p>';
-			}
-			break;
-			
+			break;			
+
 		case 'edit' :
 			
 			$op = $cl->load("library.edit", ICROOT);
+			$model['isbn'] = $_POST['isbn'];
 			$model['bookid'] = $_POST['bookid'];
 			$model['bookname'] = $_POST['bookname'];
 			$model['bookauthor'] = $_POST['bookauthor'];
@@ -158,14 +122,12 @@
 		
 		case 'get' :
 			$op = $cl->load("library.get", ICROOT);
-			$model['bookname'] = $_POST['bookname'];
+			$model['isbn'] = $_POST['isbn'];
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
 				$result['book'] = $model['book'];
-				$result['total'] = $model['total'];
-				$result['avail'] = $model['avail'];
 				$result['admin'] = $admin;
 			}
 			else {
@@ -183,12 +145,12 @@
 			}
 			
 			$op = $cl->load("library.remove", ICROOT);
-			$model['bookid'] = $_POST['bookid'];
+			$model['isbn'] = $_POST['isbn'];
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['msg'] = '<p class="success">Book removed successfully. ID='.$model['bookid'].'</p>';
+				$result['msg'] = '<p class="success">Book removed successfully.</p>';
 			}
 			else {
 				$result['success'] = false;
@@ -206,7 +168,6 @@
 			
 			$op = $cl->load("library.all", ICROOT);
 			$model['admin'] = $admin;
-			$bookcollection = isset($_POST['bookcollection']);
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
@@ -229,12 +190,12 @@
 			
 			$op = $cl->load("library.issue", ICROOT);
 			$model['issuedto'] = $_POST['issuedto'];
-			$model['bookname'] = $_POST['bookname'];
+			$model['isbn'] = $_POST['isbn'];
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['msg'] = '<p class="success">Book issued successfully. ID='.$model['bookid'].'</p>';
+				$result['msg'] = '<p class="success">Book issued successfully.</p>';
 			}
 			else {
 				$result['success'] = false;
@@ -251,13 +212,12 @@
 			}
 			
 			$op = $cl->load("library.return", ICROOT);
-			$model['bookname'] = $_POST['bookname'];
-			$model['issuedto'] = $_POST['issuedto'];
+			$model['isbn'] = $_POST['isbn'];
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['msg'] = '<p class="success">Book returned successfully. ID='.$model['bookid'].'</p>';
+				$result['template'] = '<p class="success">Book returned successfully.</p>';
 			}
 			else {
 				$result['success'] = false;

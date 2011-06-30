@@ -4,13 +4,20 @@
 **/
 IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 <div id="admin-fac-panel">\
+	<div id="file-panel"></div>\
 	<div id="faculty-options-container" class="panel left">\
 		<fieldset>\
 			<legend class="head">Faculty #${faculty.fid} Options</legend>\
 			<ul class="horizontal menu">\
+				{{if admin}}\
 				<li>\
 					<a href="#tplload:cntr=#edit-panel:url=core/admin/faculty.php:arg=do~rem&fid~${faculty.fid}:cf=true" \
 						class="navigate" >Delete</a>\
+				</li>\
+				{{/if}}\
+				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-fl-edt:url=core/admin/space.php:arg=do~get&spid~${faculty.fresume}&type~Resume" class="navigate" >Resume</a>\
+				</li>\
+				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-fl-edt:url=core/admin/space.php:arg=do~get&spid~${faculty.fphoto}&type~Photo" class="navigate" >Photo</a>\
 				</li>\
 			</ul>\
 		</fieldset>\

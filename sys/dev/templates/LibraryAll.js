@@ -16,7 +16,7 @@ IITBHUCSE.jquery.template.LibraryAll = $.template('\
 				{{each books}}\
 				<li>\
 					<a class="navigate" \
-			href="#tplload:cntr=#edit-panel:tpl=tpl-lib-edt:url=core/admin/library.php:arg=do~get&bookname~${$value.bookname}"\
+			href="#tplload:cntr=#edit-panel:tpl=tpl-lib-edt:url=core/admin/library.php:arg=do~get&isbn~${$value.isbn}"\
 				>${$value.bookname}</a>\
 				</li>\
 				{{/each}}\

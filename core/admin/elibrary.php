@@ -9,16 +9,16 @@
 	if(isset($_POST['do'])){
 		switch($_POST['do']){
 			case 'add' :
-				if(isset($_POST['rsrcname']) && isset($_POST['resource']))
+				if(isset($_POST['bookname']) && isset($_POST['bookauthor']) && isset($_POST['bookdescription']) && isset($_POST['bookcollection']))
 					$request = true;
 				break;
 			case 'edit' :
-				if(isset($_POST['rsrcid']) && isset($_POST['resource']))
+				if(isset($_POST['bookid']) && isset($_POST['bookname']) && isset($_POST['bookauthor']) && isset($_POST['bookdescription']) && isset($_POST['bookcollection']))
 					$request = true;
 				break;
 			case 'get' :
 			case 'rem' :
-				if(isset($_POST['rsrcid']))
+				if(isset($_POST['bookid']))
 					$request = true;
 				break;
 			case 'all' :
@@ -51,26 +51,35 @@
 	/**
 	 * Check for valid privilege 
 	**/
+	$admin = false;
 	$op = $cl->load("privilege.check", ECROOT);
 	$model['privtype'] = 'ENHANCSE_ADMIN';
 	$model = $kernel->run($op, $model);
-	if(!$model['valid']){
-		$result['success'] = false;
-		$result['msg'] = "Not Authorized";
-		echo json_encode($result);
-		exit;
+	if($model['valid']){
+		$admin = true;
 	}
 	
 	switch($_POST['do']){
 		case 'add' :
-			$op = $cl->load("resource.create", ECROOT);
-			$model['rsrcname'] = $_POST['rsrcname'];
-			$model['resource'] = $_POST['resource'];
+			if(!$admin){
+				$result['success'] = false;
+				$result['msg'] = '<p class="error">Not Authorized</p>';
+				echo json_encode($result);
+				exit;
+			}
+			
+			$op = $cl->load("elibrary.add", ICROOT);
+			$model['bookname'] = $_POST['bookname'];
+			$model['bookauthor'] = $_POST['bookauthor'];
+			$model['bookdescription'] = $_POST['bookdescription'];
+			$model['bookcollection'] = $_POST['bookcollection'];
+			$model['bookpages'] = isset($_POST['bookpages']) ? $_POST['bookpages'] : null;
+			$model['bookpath'] = INITROOT.'storage/elibrary/';
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['msg'] = '<p class="success">Resource created successfully. ID='.$model['rsrcid'].'</p>';
+				$result['msg'] = '<p class="success">Book Added Successfully.</p>';
 			}
 			else {
 				$result['success'] = false;
@@ -79,14 +88,18 @@
 			break;
 			
 		case 'edit' :
-			$op = $cl->load("resource.edit", ECROOT);
-			$model['rsrcid'] = $_POST['rsrcid'];
-			$model['resource'] = $_POST['resource'];
+			$op = $cl->load("elibrary.edit", ICROOT);
+			$model['bookid'] = $_POST['bookid'];
+			$model['bookname'] = $_POST['bookname'];
+			$model['bookauthor'] = $_POST['bookauthor'];
+			$model['bookdescription'] = $_POST['bookdescription'];
+			$model['bookcollection'] = $_POST['bookcollection'];
+			$model['bookpages'] = isset($_POST['bookpages']) ? $_POST['bookpages'] : null;			
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['msg'] = '<p class="success">Resource edited successfully</p>';
+				$result['msg'] = '<p class="success">Book edited successfully</p>';
 			}
 			else {
 				$result['success'] = false;
@@ -95,13 +108,14 @@
 			break;
 			
 		case 'get' :
-			$op = $cl->load("resource.get", ECROOT);
-			$model['rsrcid'] = $_POST['rsrcid'];
+			$op = $cl->load("elibrary.get", ICROOT);
+			$model['bookid'] = $_POST['bookid'];
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['resource'] = $model['resource'];
+				$result['ebook'] = $model['ebook'];
+				$result['admin'] = $admin;
 			}
 			else {
 				$result['success'] = false;
@@ -110,13 +124,21 @@
 			break;
 		
 		case 'rem' :
-			$op = $cl->load("resource.delete", ECROOT);
-			$model['rsrcid'] = $_POST['rsrcid'];
+			if(!$admin){
+				$result['success'] = false;
+				$result['msg'] = '<p class="error">Not Authorized</p>';
+				echo json_encode($result);
+				exit;
+			}
+			
+			$op = $cl->load("elibrary.remove", ICROOT);
+			$model['bookid'] = $_POST['bookid'];
+			$model['admin'] = $admin;
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['template'] = '<p class="success">Resource deleted successfully. ID='.$model['rsrcid'].'</p>';
+				$result['msg'] = '<p class="success">Book removed successfully.</p>';
 			}
 			else {
 				$result['success'] = false;
@@ -125,12 +147,20 @@
 			break;
 			
 		case 'all' :
-			$op = $cl->load("resource.all", ECROOT);
+			if(!$admin){
+				$result['success'] = false;
+				$result['msg'] = '<p class="error">Not Authorized</p>';
+				echo json_encode($result);
+				exit;
+			}
+			
+			$op = $cl->load("elibrary.all", ICROOT);
+			$model['admin'] = $admin;
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['resources'] = $model['resources'];
+				$result['ebooks'] = $model['ebooks'];
 			}
 			else {
 				$result['success'] = false;

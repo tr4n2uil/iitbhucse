@@ -1,13 +1,13 @@
-
 /**
- *	@template LibraryEdit
+ *	@template ElibraryEdit
  *
 **/
-IITBHUCSE.jquery.template.LibraryEdit = $.template('\
+IITBHUCSE.jquery.template.ElibraryEdit = $.template('\
 <div id="admin-elib-panel">\
+	<div id="file-panel"></div>\
 	<div id="library-options-container" class="panel left">\
 		<fieldset>\
-			<legend class="head">Edit Book #${book.isbn}</legend>\
+			<legend class="head">Edit Book #${ebook.bookid}</legend>\
 			<ul class="horizontal menu">\
 				{{if admin}}\
 				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/elibrary.php:arg=do~rem&bookid~${ebook.bookid}:cf=true" \

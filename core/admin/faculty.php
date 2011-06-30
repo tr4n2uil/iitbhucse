@@ -52,14 +52,12 @@
 	/**
 	 * Check for valid privilege 
 	**/
+	$admin = false;
 	$op = $cl->load("privilege.check", ECROOT);
 	$model['privtype'] = 'ENHANCSE_ADMIN';
 	$model = $kernel->run($op, $model);
-	if(!$model['valid']){
-		$result['success'] = false;
-		$result['msg'] = "Not Authorized";
-		echo json_encode($result);
-		exit;
+	if($model['valid']){
+		$admin = true;
 	}
 	
 	switch($_POST['do']){
@@ -118,6 +116,7 @@
 			if($model['valid']){
 				$result['success'] = true;
 				$result['faculty'] = $model['faculty'];
+				$result['admin'] = $admin;
 			}
 			else {
 				$result['success'] = false;

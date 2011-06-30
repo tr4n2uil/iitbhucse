@@ -196,26 +196,23 @@ IITBHUCSE.jquery.template.CourseEdit = $.template('\
 IITBHUCSE.jquery.template.CourseView = $.template('\
 <div id="courses-view-container" class="panel left"><fieldset>\
 		<legend class="head">All Courses</legend>\
-		<table class="grid">\
-			<thead>\
-				<tr>\
-					<th>Course ID</th>\
-					<th>Course Name</th>\
-					<th>Description</th>\
-					<th>Course Part</th>\
-				</tr>\
-			</thead>\
+		{{each courses}}\
+		<table class="margin5">\
 			<tbody>\
-				{{each courses}}\
-				<tr>\
-					<td>${crsid}</td>\
-					<td>${crsname}</td>\
-					<td>${crsdescription}</td>\
-					<td>${IITBHUCSE.jquery.helper.getPart(crspart)}</td>\
+				<tr>\<td class="bold">${crsid}</td></tr>\
+				<tr><td class="bold">${crsname}</td></tr>\
+				<tr><td>${crsdescription}</td></tr>\
+				<tr><td>${IITBHUCSE.jquery.helper.getPart(crspart)}</td></tr>\
 				</tr>\
-				{{/each}}\
+				<tr><td>\
+					{{if crshome}}\
+						<a href="#tplload:cntr=#main-container:url=core/content/view.php:arg=cntid~${crshome}" \
+						class="navigate" >Home Page</a>\
+					{{/if}}\
+				</td></tr>\
 			</tbody>\
 		</table>\
+		{{/each}}\
 	</fieldset>\
 </div>');
 
@@ -239,6 +236,8 @@ IITBHUCSE.jquery.helper.getPart = function(index){
 			return 'Unknown';
 	}
 }
+
+
 /**
  *	@template FacultyAll
  *
@@ -333,32 +332,35 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 IITBHUCSE.jquery.template.FacultyView = $.template('\
 	<div id="faculty-view-container" class="panel left"><fieldset>\
 			<legend class="head">All Faculty Members</legend>\
-			<table class="grid">\
-				<thead>\
-					<tr>\
-						<th>Name</th>\
-						<th>Designation</th>\
-						<th>Interests</th>\
-						<th>Qualifications</th>\
-						<th>Email</th>\
-						<th>Phone No.</th>\
-						<th>Status</th>\
-					</tr>\
-				</thead>\
+			{{each faculty}}\
+			<table class="margin5">\
 				<tbody>\
-					{{each faculty}}\
-					<tr>\
-						<td>${fname}</td>\
-						<td>${IITBHUCSE.jquery.helper.getDesignation(fdesignation)}</td>\
-						<td>${finterest}</td>\
-						<td>${fqualification}</td>\
-						<td>${femail}</td>\
-						<td>${fphone}</td>\
-						<td>${IITBHUCSE.jquery.helper.getStatus(fstatus)}</td>\
-						</tr>\
-					{{/each}}\
+					<tr><td rowspan="6" valign="top"><img src="core/space/read.php?spid=${fphoto}" alt="" height="100" ></td>\
+					<td class="bold">${fname}</td>\
+					</tr>\
+					<tr><td>${IITBHUCSE.jquery.helper.getDesignation(fdesignation)}</td></tr>\
+					<tr><td>${fqualification}</td></tr>\
+					<tr><td class="italic"><span class="underline">Interests :</span> ${finterest}</td></tr>\
+					<tr><td>\
+					<tr><td>${femail}</td></tr>\
+					<tr><td>${fphone}</td></tr>\
+					<tr><td>${IITBHUCSE.jquery.helper.getStatus(fstatus)}</td></tr>\
+					<tr><td>\
+						{{if frssize}}\
+							<a href="core/space/read.php?spid=${fresume}" target="_blank">\
+							Resume [${ServiceClient.jquery.helper.readFileSize(strssize)}]\
+							</a>\
+						{{/if}}\
+					</td></tr>\
+					<tr><td>\
+						{{if fhome}}\
+							<a href="#tplload:cntr=#main-container:url=core/content/view.php:arg=cntid~${fhome}" \
+							class="navigate" >Home Page</a>\
+						{{/if}}\
+					</td></tr>\
 				</tbody>\
 			</table>\
+			{{/each}}\
 			</fieldset>\
 	</div>');
 
@@ -395,8 +397,16 @@ IITBHUCSE.jquery.helper.getStatus = function(index){
 			return 'Unknown';
 	}
 }
+<<<<<<< HEAD
 /**
  *	@template LibraryAll
+=======
+
+
+
+/**
+ *	@template FacultyAll
+>>>>>>> shivang/nimitz
  *
 **/
 IITBHUCSE.jquery.template.LibraryAll = $.template('\
@@ -425,13 +435,21 @@ IITBHUCSE.jquery.template.LibraryAll = $.template('\
  *	@template LibraryCopy
  *
 **/
+<<<<<<< HEAD
 IITBHUCSE.jquery.template.LibraryCopy = $.template('\
 <div id="admin-lib-panel">\
 	<div id="library-options-container" class="panel left">\
+=======
+IITBHUCSE.jquery.template.FacultyEdit = $.template('\
+<div id="admin-fac-panel">\
+	<div id="file-panel"></div>\
+	<div id="faculty-options-container" class="panel left">\
+>>>>>>> shivang/nimitz
 		<fieldset>\
 			<legend class="head">Edit Book</legend>\
 			<ul class="horizontal menu">\
 				{{if admin}}\
+<<<<<<< HEAD
 				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/library.php:arg=do~rem&bookid~${book.bookid}:cf=true" \
 				class="navigate" >Remove</a></li>\
 				<li><a href="#tplload:tpl=tpl-lib-isu:cntr=#edit-panel:url=core/admin/library.php:arg=do~get&bookid~${book.bookid}" \
@@ -439,6 +457,17 @@ IITBHUCSE.jquery.template.LibraryCopy = $.template('\
 				<li><a href="#tplload:tpl=tpl-lib-cpy:cntr=#edit-panel:url=core/admin/library.php:arg=do~get&bookid~${book.bookid}" \
 				class="navigate" >Add Copy(ies)</a></li>\
 				{{/if}}\
+=======
+				<li>\
+					<a href="#tplload:cntr=#edit-panel:url=core/admin/faculty.php:arg=do~rem&fid~${faculty.fid}:cf=true" \
+						class="navigate" >Delete</a>\
+				</li>\
+				{{/if}}\
+				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-fl-edt:url=core/admin/space.php:arg=do~get&spid~${faculty.fresume}&type~Resume" class="navigate" >Resume</a>\
+				</li>\
+				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-fl-edt:url=core/admin/space.php:arg=do~get&spid~${faculty.fphoto}&type~Photo" class="navigate" >Photo</a>\
+				</li>\
+>>>>>>> shivang/nimitz
 			</ul>\
 		</fieldset>\
 	</div>\
@@ -515,6 +544,37 @@ IITBHUCSE.jquery.template.LibraryEdit = $.template('\
 		</form>\
 	</div>\
 </div>');
+
+
+/**
+ *	@template FileEdit
+ *
+**/
+IITBHUCSE.jquery.template.FileEdit = $.template('\
+<div id="file-edit-panel" class="panel form-panel">\
+	<form action="core/space/write.php" method="post" class="navigate" enctype="multipart/form-data" \
+		id="_upload:sel._file-edit-panel" target="upload_target" >\
+		<fieldset >\
+			<legend class="head">Change ${typename}</legend>\
+			<input type="hidden" name="spid" value="${space.spid}" />\
+			<label>File type\
+				<select name="stgmime">\
+					<option value="application/pdf">Adobe PDF (.pdf)</option>\
+					<option value="application/vnd.openxmlformats-officedocument.wordprocessingml.document">Microsoft Word Document (.docx)</option>\
+					<option value="application/msword">Microsoft Word Document (.doc)</option>\
+					<option value="image/png">PNG Image (.png)</option>\
+					<option value="image/gif">GIF Image (.gif)</option>\
+				</select>\
+			</label>\
+			<label>${typename}\
+				<input type="file" name="stgfile"/>\
+			</label>\
+			<input name="submit" type="submit" value="Submit"  class="margin5"/>\
+			<div class="status"></div>\
+		</fieldset>\
+	</form>\
+</div>');
+
 /**
  *	@template LibraryTransaction
  *
@@ -832,9 +892,15 @@ IITBHUCSE.jquery.template.StudentEdit = $.template('\
 				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/student.php:arg=do~rem&stuid~${student.stuid}:cf=true" \
 				class="navigate" >Delete</a></li>\
 				{{/if}}\
+<<<<<<< HEAD
 				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-spc-edt:url=core/admin/space.php:arg=do~get&spid~${student.stresume}" class="navigate" >Resume</a>\
 				</li>\
 				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-spc-edt:url=core/admin/space.php:arg=do~get&spid~${student.stphoto}" class="navigate" >Photo</a>\
+=======
+				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-fl-edt:url=core/admin/space.php:arg=do~get&spid~${student.stresume}&type~Resume" class="navigate" >Resume</a>\
+				</li>\
+				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-fl-edt:url=core/admin/space.php:arg=do~get&spid~${student.stphoto}&type~Photo" class="navigate" >Photo</a>\
+>>>>>>> shivang/nimitz
 				</li>\
 			</ul>\
 		</fieldset>\
@@ -880,11 +946,19 @@ IITBHUCSE.jquery.template.StudentEdit = $.template('\
 					<input type="text" name="stplacement" value="${student.stplacement}" />\
 				</label>\
 				{{/if}}\
+<<<<<<< HEAD
 				<label>Phone\
 					<input type="text" name="stphone" value="${student.stphone}"/>\
 				</label>\
 				<label>CGPA\
 					<input type="text" name="stcgpa" value="${student.stcgpa}"/>\
+=======
+				<label>CGPA\
+					<input type="text" name="stcgpa" value="${student.stcgpa}"/>\
+				</label>\
+				<label>Phone no\
+					<input type="text" name="stphone" value="${student.stphone}"/>\
+>>>>>>> shivang/nimitz
 				</label>\
 				<label>Interests\
 					<textarea name="stinterest" rows="5">${student.stinterest}</textarea>\
@@ -909,7 +983,11 @@ IITBHUCSE.jquery.template.StudentView = $.template('\
 				<tr><td rowspan="6" valign="top"><img src="core/space/read.php?spid=${stphoto}" alt="" height="100" ></td>\
 					<td class="bold">${stname}</td>\
 				</tr>\
+<<<<<<< HEAD
 				<tr><td>${stemail} ${stphone}</td></tr>\
+=======
+				<tr><td>${stemail}  ${stphone}</td></tr>\
+>>>>>>> shivang/nimitz
 				<tr><td>${strollno}</td></tr>\
 				<tr><td class="italic"><span class="underline">Interests :</span> ${stinterest}</td></tr>\
 				<tr><td>\
@@ -1014,3 +1092,333 @@ IITBHUCSE.jquery.template.UserEdit = $.template('\
 		</form>\
 	</div>\
 </div>');
+
+
+/**
+ *	@template LibraryAll
+ *
+**/
+IITBHUCSE.jquery.template.LibraryAll = $.template('\
+<div id="library-container">\
+	<div id="edit-panel"></div>\
+	<div id="library-all-container" class="panel left">\
+		<fieldset>\
+			<legend class="head">All Books</legend>\
+			<ul class="horizontal menu">\
+				<li>\
+					<a href="#htmlload:cntr=#edit-panel:url=ui/html/form-library-add.html" \
+						class="navigate" >Create New ...</a>\
+				</li>\
+				{{each books}}\
+				<li>\
+					<a class="navigate" \
+			href="#tplload:cntr=#edit-panel:tpl=tpl-lib-edt:url=core/admin/library.php:arg=do~get&isbn~${$value.isbn}"\
+				>${$value.bookname}</a>\
+				</li>\
+				{{/each}}\
+			</ul>\
+		</fieldset>\
+	</div>\
+</div>');
+
+
+
+/**
+ *	@template LibraryEdit
+ *
+**/
+IITBHUCSE.jquery.template.LibraryEdit = $.template('\
+<div id="admin-lib-panel">\
+	<div id="library-options-container" class="panel left">\
+		<fieldset>\
+			<legend class="head">Edit Book #${book.isbn}</legend>\
+			<ul class="horizontal menu">\
+				{{if admin}}\
+				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/library.php:arg=do~rem&isbn~${book.isbn}:cf=true" \
+				class="navigate" >Remove</a></li>\
+				<li>{{if ServiceClient.jquery.helper.equals(book.status, 1)}}<a href="#tplload:tpl=tpl-lib-trs:cntr=#edit-panel:url=core/admin/library.php:arg=do~get&isbn~${book.isbn}" \
+				class="navigate" >Issue</a></li>\
+				{{/if}}\
+				<li>{{if ServiceClient.jquery.helper.equals(book.status, 2)}}<a href="#tplload:tpl=tpl-lib-trs:cntr=#edit-panel:url=core/admin/library.php:arg=do~return&isbn~${book.isbn}" \
+				class="navigate" >Return</a></li>\
+				{{/if}}\
+				{{/if}}\
+			</ul>\
+		</fieldset>\
+	</div>\
+	<div id="library-edit-container" class="panel form-panel">\
+		<form action="core/admin/library.php" method="post" class="navigate" id="_formsubmit:sel._admin-lib-panel">\
+			<fieldset >\
+				<legend class="head">Edit Book #${book.isbn}</legend>\
+				<input type="hidden" name="do" value="edit"/>\
+				<input type="hidden" name="isbn" value="${book.isbn}"/>\
+				<label>Book ID\
+					<input type="text" name="bookid" value="${book.bookid}"/>\
+				</label>\
+				<label>Book Name\
+					<input type="text" name="bookname" value="${book.bookname}" class="required"/>\
+				</label>\
+					<p class="error hidden margin5">Invalid Book Name</p>\
+				<label>Author Name\
+					<input type="text" name="bookauthor" value="${book.bookauthor}" class="required"/>\
+				</label>\
+					<p class="error hidden margin5">Invalid Author Name</p>\
+				<label>Book Description\
+					<textarea name="bookdescription">${book.bookdescription}</textarea>\
+				</label>\
+				<label>Pages\
+					<input type="text" name="bookpages" value="${book.bookpages}" />\
+				</label>\
+				<label>Book Collection\
+					<input type="text" name="bookcollection" value="${book.bookcollection}" />\
+				</label>\
+				<input name="submit" type="submit" value="Submit" class="margin5"/>\
+				<input name="reset" type="reset" value="Reset" class="margin5"/>\
+				<div class="status"></div>\
+			</fieldset>\
+		</form>\
+	</div>\
+</div>');
+
+/**
+ *	@template LibraryTransaction
+ *
+**/
+IITBHUCSE.jquery.template.LibraryTransaction = $.template('\
+<div id="admin-lib-panel">\
+	<div id="library-options-container" class="panel left">\
+		<fieldset>\
+			<legend class="head">Edit Book</legend>\
+			<ul class="horizontal menu">\
+				{{if admin}}\
+				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/library.php:arg=do~rem&isbn~${book.isbn}:cf=true" \
+				class="navigate" >Remove</a></li>\
+				<li>{{if ServiceClient.jquery.helper.equals(book.status, 1)}}<a href="#tplload:tpl=tpl-lib-trs:cntr=#edit-panel:url=core/admin/library.php:arg=do~get&isbn~${book.isbn}" \
+				class="navigate" >Issue</a></li>\
+				{{/if}}\
+				<li>{{if ServiceClient.jquery.helper.equals(book.status, 2)}}<a href="#tplload:tpl=tpl-lib-trs:cntr=#edit-panel:url=core/admin/library.php:arg=do~return&isbn~${book.isbn}" \
+				class="navigate" >Return</a></li>\
+				{{/if}}\
+				{{/if}}\
+			</ul>\
+		</fieldset>\
+	</div>\
+	<div id="library-edit-container" class="panel form-panel">\
+		<form action="core/admin/library.php" method="post" class="navigate" id="_formsubmit:sel._admin-lib-panel">\
+			<fieldset >\
+				<legend class="head">Issue ${book.isbn}</legend>\
+				<input type="hidden" name="do" value="issue"/>\
+				<input type="hidden" name="isbn" value="${book.isbn}"/>\
+				<input type="text" name="bookname" value="${book.bookname}" disabled="disabled"/>\
+				<label>User ID\
+					<input type="text" name="issuedto" class="required"/>\
+				</label>\
+					<p class="error hidden margin5">Invalid User ID</p>\
+				<input name="submit" type="submit" value="Issue" class="margin5"/>\
+				<input name="reset" type="reset" value="Reset" class="margin5"/>\
+				<div class="status"></div>\
+			</fieldset>\
+		</form>\
+	</div>\
+</div>');
+
+/**
+ *	@template LibraryBrowse
+ *
+**/
+IITBHUCSE.jquery.template.LibraryBrowse = $.template('\
+<div id="library-container">\
+	<div id="grid-panel"></div>\
+	<div id="library-menu-container" class="panel left">\
+		<fieldset>\
+			<legend class="head">All Books by Collection</legend>\
+			<ul class="horizontal menu">\
+				<li>\
+					<a class="navigate" href="#tplload:cntr=#grid-panel:tpl=tpl-lib-vw:url=core/library/library-all.php:arg=allbooks~true"\>\
+					All...</a>\
+				</li>\
+				{{each books}}\
+				<li>\
+					<a class="navigate" \
+	href="#tplload:cntr=#grid-panel:tpl=tpl-lib-vw:url=core/library/library-all.php:arg=bookcollection~${bookcollection}"\
+					>${bookcollection}</a>\
+				</li>\
+				{{/each}}\
+			</ul>\
+		</fieldset>\
+	</div>\
+</div>');
+
+/**
+ *	@template LibraryView
+ *
+**/
+IITBHUCSE.jquery.template.LibraryView = $.template('\
+<div id="library-view-container" class="panel left"><fieldset>\
+		<legend class="head">All books in Collection ${bookcollection}</legend>\
+		{{each books}}\
+		<table class="margin5">\
+			<tbody>\
+				<tr>\<td class="bold">${isbn}</td></tr>\
+				<tr><td class="bold">${bookname}</td></tr>\
+				<tr><td>${bookauthor}</td></tr>\
+				<tr><td>${bookdescription}</td></tr>\
+				<tr><td>Pages : ${bookpages}</td></tr>\
+				<tr><td>${IITBHUCSE.jquery.helper.getBookStatus(status)}</td></tr>\
+				{{if ServiceClient.jquery.helper.equals(status, 2)}}\
+				<tr><td>Issued to (User ID): ${issuedto}</td></tr>{{/if}}\
+				</tr>\
+			</tbody>\
+		</table>\
+		{{/each}}\
+	</fieldset>\
+</div>');
+
+/**
+ *	@helper getBookStatus
+ *
+**/
+IITBHUCSE.jquery.helper.getBookStatus = function(index){
+	switch(index){
+		case '1' :
+			return 'Available';
+		case '2' :
+			return 'Not Available';
+		default :
+			return 'Unknown';
+	}
+}
+
+/**
+ *	@template ElibraryAll
+ *
+**/
+IITBHUCSE.jquery.template.ElibraryAll = $.template('\
+<div id="elibrary-container">\
+	<div id="edit-panel"></div>\
+	<div id="elibrary-all-container" class="panel left">\
+		<fieldset>\
+			<legend class="head">All Books</legend>\
+			<ul class="horizontal menu">\
+				<li>\
+					<a href="#htmlload:cntr=#edit-panel:url=ui/html/form-elibrary-add.html" \
+						class="navigate" >Create New ...</a>\
+				</li>\
+				{{each ebooks}}\
+				<li>\
+					<a class="navigate" \
+			href="#tplload:cntr=#edit-panel:tpl=tpl-elb-edt:url=core/admin/elibrary.php:arg=do~get&bookid~${$value.bookid}"\
+				>${$value.bookname}</a>\
+				</li>\
+				{{/each}}\
+			</ul>\
+		</fieldset>\
+	</div>\
+</div>');
+
+/**
+ *	@template ElibraryEdit
+ *
+**/
+IITBHUCSE.jquery.template.ElibraryEdit = $.template('\
+<div id="admin-elib-panel">\
+	<div id="file-panel"></div>\
+	<div id="library-options-container" class="panel left">\
+		<fieldset>\
+			<legend class="head">Edit Book #${ebook.bookid}</legend>\
+			<ul class="horizontal menu">\
+				{{if admin}}\
+				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/elibrary.php:arg=do~rem&bookid~${ebook.bookid}:cf=true" \
+				class="navigate" >Remove</a></li>{{/if}}\
+				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-fl-edt:url=core/admin/space.php:arg=do~get&spid~${ebook.bookid}&type~E-Book" class="navigate" >Upload</a>\
+				</li>\
+			</ul>\
+		</fieldset>\
+	</div>\
+	<div id="elibrary-edit-container" class="panel form-panel">\
+		<form action="core/admin/elibrary.php" method="post" class="navigate" id="_formsubmit:sel._admin-elib-panel">\
+			<fieldset >\
+				<legend class="head">Edit Book #${ebook.bookid}</legend>\
+				<input type="hidden" name="do" value="edit"/>\
+				<input type="hidden" name="bookid" value="${ebook.bookid}"/>\
+				<label>Book Name\
+					<input type="text" name="bookname" value="${ebook.bookname}" class="required"/>\
+				</label>\
+					<p class="error hidden margin5">Invalid Book Name</p>\
+				<label>Author Name\
+					<input type="text" name="bookauthor" value="${ebook.bookauthor}" class="required"/>\
+				</label>\
+					<p class="error hidden margin5">Invalid Author Name</p>\
+				<label>Book Description\
+					<textarea name="bookdescription">${ebook.bookdescription}</textarea>\
+				</label>\
+				<label>Pages\
+					<input type="text" name="bookpages" value="${ebook.bookpages}" />\
+				</label>\
+				<label>Book Collection\
+					<input type="text" name="bookcollection" value="${ebook.bookcollection}" />\
+				</label>\
+				<input name="submit" type="submit" value="Submit" class="margin5"/>\
+				<input name="reset" type="reset" value="Reset" class="margin5"/>\
+				<div class="status"></div>\
+			</fieldset>\
+		</form>\
+	</div>\
+</div>');
+
+
+/**
+ *	@template ElibraryBrowse
+ *
+**/
+IITBHUCSE.jquery.template.ElibraryBrowse = $.template('\
+<div id="elibrary-container">\
+	<div id="grid-panel"></div>\
+	<div id="elibrary-menu-container" class="panel left">\
+		<fieldset>\
+			<legend class="head">All E-Books by Collection</legend>\
+			<ul class="horizontal menu">\
+				<li>\
+					<a class="navigate" href="#tplload:cntr=#grid-panel:tpl=tpl-elb-vw:url=core/elibrary/elibrary-all.php:arg=allbooks~true"\>\
+					All...</a>\
+				</li>\
+				{{each ebooks}}\
+				<li>\
+					<a class="navigate" \
+	href="#tplload:cntr=#grid-panel:tpl=tpl-elb-vw:url=core/elibrary/elibrary-all.php:arg=bookcollection~${bookcollection}"\
+					>${bookcollection}</a>\
+				</li>\
+				{{/each}}\
+			</ul>\
+		</fieldset>\
+	</div>\
+</div>');
+
+/**
+ *	@template ElibraryView
+ *
+**/
+IITBHUCSE.jquery.template.ElibraryView = $.template('\
+<div id="elibrary-view-container" class="panel left"><fieldset>\
+		<legend class="head">All E-Books in Collection ${bookcollection}</legend>\
+		{{each ebooks}}\
+		<table class="margin5">\
+			<tbody>\
+				<tr><td class="bold">${bookname}</td></tr>\
+				<tr><td>${bookauthor}</td></tr>\
+				<tr><td>${bookdescription}</td></tr>\
+				<tr><td>Pages : ${bookpages}</td></tr>\
+				<tr><td>\
+					{{if booksize}}\
+							Size : ${ServiceClient.jquery.helper.readFileSize(booksize)}\
+						<a href="core/space/read.php?spid=${bookid}" target="_blank">\
+						Download\
+						</a>\
+					{{/if}}\
+				</td></tr>\
+			</tbody>\
+		</table>\
+		{{/each}}\
+	</fieldset>\
+</div>');
+

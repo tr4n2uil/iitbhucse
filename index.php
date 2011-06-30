@@ -106,14 +106,19 @@
 			ServiceClient.Registry.save('tpl-lib-all', IITBHUCSE.jquery.template.LibraryAll);
 			ServiceClient.Registry.save('tpl-lib-edt', IITBHUCSE.jquery.template.LibraryEdit);
 			ServiceClient.Registry.save('tpl-lib-trs', IITBHUCSE.jquery.template.LibraryTransaction);
-			ServiceClient.Registry.save('tpl-lib-cpy', IITBHUCSE.jquery.template.LibraryCopy);
-			
+			ServiceClient.Registry.save('tpl-elb-edt', IITBHUCSE.jquery.template.ElibraryEdit);
+			ServiceClient.Registry.save('tpl-elb-all', IITBHUCSE.jquery.template.ElibraryAll);
+
 			ServiceClient.Registry.save('tpl-std-bws', IITBHUCSE.jquery.template.StudentBrowse);
 			ServiceClient.Registry.save('tpl-std-vw', IITBHUCSE.jquery.template.StudentView);
 			ServiceClient.Registry.save('tpl-fac-vw', IITBHUCSE.jquery.template.FacultyView);
 			ServiceClient.Registry.save('tpl-crs-bws', IITBHUCSE.jquery.template.CourseBrowse);
 			ServiceClient.Registry.save('tpl-crs-vw', IITBHUCSE.jquery.template.CourseView);
-			
+			ServiceClient.Registry.save('tpl-elb-bws', IITBHUCSE.jquery.template.ElibraryBrowse);
+			ServiceClient.Registry.save('tpl-elb-vw', IITBHUCSE.jquery.template.ElibraryView);
+			ServiceClient.Registry.save('tpl-lib-bws', IITBHUCSE.jquery.template.LibraryBrowse);
+			ServiceClient.Registry.save('tpl-lib-vw', IITBHUCSE.jquery.template.LibraryView);
+
 			ServiceClient.Kernel.run([{
 				service : ServiceClient.jquery.module.AlertStatus,
 				selector : '#load-status',
