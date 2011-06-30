@@ -421,18 +421,11 @@ CREATE TABLE IF NOT EXISTS `news` (
   `newsid` int(11) NOT NULL AUTO_INCREMENT,
   `newstitle` varchar(255) NOT NULL,
   `newstime` int(11) NOT NULL,
-<<<<<<< HEAD
   `newscontent` text,
   `newsauthor` varchar(255) NOT NULL,
   `newsexpiry` int(11) NOT NULL,
   `newsdescription` varchar(255) DEFAULT NULL,
   `newsattachment` bigint(20) DEFAULT NULL,
-=======
-  `newscontent` varchar(255) NOT NULL,
-  `newsauthor` varchar(255) NOT NULL,
-  `newsexpiry` int(11) NOT NULL,
-  `newsattachment` varchar(255) DEFAULT NULL,
->>>>>>> 8eb99ea2918041bd30d1a1fc6c21b64e0648a44e
   PRIMARY KEY (`newsid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -518,7 +511,6 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`sessionid`, `uid`, `time`, `expiry`) VALUES
-<<<<<<< HEAD
 ('c9vfunapnw8bphn62hk09fbyui32j4ww', 1, 1309259870, 1309346270),
 ('mze2wnut42y949ejvm4r1qi510pj2tjh', 1, 1309248513, 1309334913);
 
@@ -550,9 +542,6 @@ INSERT INTO `spaces` (`spid`, `owner`, `spvfpath`, `spvfname`, `stgid`) VALUES
 (9, 31, '/resume/', 'Dr.K.K.Shukla.pdf', 9),
 (10, 31, '/photo/', 'Dr.K.K.Shukla.png', 10),
 (11, 1, '/ebook/', 'B.Tech 1st Year.pdf', 11);
-=======
-('xpm14izxwems0b5rghlyro4zt79ylew6', 1, 1308557823, 1308644223);
->>>>>>> 8eb99ea2918041bd30d1a1fc6c21b64e0648a44e
 
 -- --------------------------------------------------------
 
@@ -598,7 +587,7 @@ CREATE TABLE IF NOT EXISTS `storages` (
 -- Dumping data for table `storages`
 --
 
-<<<<<<< HEAD
+
 INSERT INTO `storages` (`stgid`, `stgname`, `filepath`, `filename`, `mime`, `size`, `owner`, `access`, `protection`, `ctime`, `atime`, `mtime`, `links`) VALUES
 (3, 'Resume-Vibhaj Rajan', 'C:\\Users\\Shivang Mittal\\webroot\\iitbhucse\\storage\\resume\\', 'resume-vibhaj.pdf', 'application/pdf', 154532, 29, 2, 'd41d8cd98f00b204e9800998ecf8427e', 1308641630, 1309155924, 1308669106, 1),
 (4, 'Photo-Vibhaj Rajan', 'C:\\Users\\Shivang Mittal\\webroot\\iitbhucse\\storage\\photo\\', 'photo-vibhaj.png', 'image/png', 121022, 29, 2, 'd41d8cd98f00b204e9800998ecf8427e', 1308641630, 1309248548, 1308725563, 1),
@@ -607,13 +596,7 @@ INSERT INTO `storages` (`stgid`, `stgname`, `filepath`, `filename`, `mime`, `siz
 (9, 'Resume-Dr.K.K.Shukla', 'C:\\Users\\Shivang Mittal\\webroot\\iitbhucse/storage/resume/', 'Resume-kks.pdf', 'application/pdf', 0, 31, 2, 'd41d8cd98f00b204e9800998ecf8427e', 1309240448, 1309240448, 1309240448, 1),
 (10, 'Photo-Dr.K.K.Shukla', 'C:\\Users\\Shivang Mittal\\webroot\\iitbhucse/storage/photo/', 'Photo-kks.png', 'image/png', 0, 31, 2, 'd41d8cd98f00b204e9800998ecf8427e', 1309240448, 1309248654, 1309240448, 1),
 (11, 'E.Book-PHP and MySQL', 'C:\\Users\\Shivang Mittal\\webroot\\iitbhucse/storage/elibrary/', 'E.book-PHP and MySQL.pdf', 'application/pdf', 153972, 1, 2, 'd41d8cd98f00b204e9800998ecf8427e', 1309259919, 1309259940, 1309259940, 1);
-=======
-INSERT INTO `storages` (`stgid`, `stgname`, `filename`, `mime`, `owner`, `access`, `groupid`, `ctime`, `atime`, `mtime`, `dirid`) VALUES
-('c5v9bw1khuxtlwpqgn96wbqdfsv08sml', 'Vibhaj Rajan', '', 'application/pdf', 14, 4, 0, 1307787896, 1307787896, 1307787896, ''),
-('dyz8b3yizlo6vuhp6suxjuz751pumtdt', 'Shivang Mittal', '', 'application/pdf', 15, 4, 0, 1307820268, 1307820268, 1307820268, ''),
-('hlreu1r8eq86s8181u0ehwr7gepadvl3', 'Syed Wali Hamza', '', 'application/pdf', 24, 4, 0, 1308556004, 1308556004, 1308556004, ''),
-('xfxkz5qpko4oi8dynp43hwla535h5usk', 'Shivang Mittal', '', 'application/pdf', 22, 4, 0, 1308394156, 1308394156, 1308394156, '');
->>>>>>> 8eb99ea2918041bd30d1a1fc6c21b64e0648a44e
+
 
 -- --------------------------------------------------------
 
@@ -633,14 +616,10 @@ CREATE TABLE IF NOT EXISTS `students` (
   `stinternship` varchar(255) DEFAULT NULL,
   `stplacement` varchar(255) DEFAULT NULL,
   `ststatus` int(11) NOT NULL,
-<<<<<<< HEAD
   `stresume` bigint(20) NOT NULL,
   `stphoto` bigint(20) NOT NULL,
   `sthome` bigint(20) DEFAULT NULL,
   `stphone` varchar(255) DEFAULT NULL,
-=======
-  `stresume` varchar(32) DEFAULT NULL,
->>>>>>> 8eb99ea2918041bd30d1a1fc6c21b64e0648a44e
   PRIMARY KEY (`stuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -648,15 +627,11 @@ CREATE TABLE IF NOT EXISTS `students` (
 -- Dumping data for table `students`
 --
 
-<<<<<<< HEAD
+
 INSERT INTO `students` (`stuid`, `stname`, `strollno`, `stemail`, `stcourse`, `styear`, `stinterest`, `stcgpa`, `stinternship`, `stplacement`, `ststatus`, `stresume`, `stphoto`, `sthome`, `stphone`) VALUES
 (29, 'Vibhaj Rajan', '08400EN008', 'vibhaj.rajan.cse08@itbhu.ac.in', 2, 2008, 'Web Development', '8.23', '', '', 1, 3, 4, NULL, NULL),
 (30, 'Shivang Mittal', '10100EN009', 'shivang.mittal.cse10@itbhu.ac.in', 1, 2010, 'Web Development...', '8.64', NULL, NULL, 1, 7, 8, 4, '+91 78 6048 5449');
-=======
-INSERT INTO `students` (`stuid`, `stname`, `strollno`, `stemail`, `stcourse`, `styear`, `stinterest`, `stcgpa`, `stinternship`, `stplacement`, `ststatus`, `stresume`) VALUES
-(14, 'Vibhaj Rajan', '08400EN008', 'vibhaj.rajan.cse08@itbhu.ac.in', 2, 2008, NULL, '0.00', '', '', 1, 'c5v9bw1khuxtlwpqgn96wbqdfsv08sml'),
-(22, 'Shivang Mittal', '10100EN009', 'shivang.mittal.cse10@itbhu.ac.in', 1, 2010, '', '0.00', '', '', 1, 'xfxkz5qpko4oi8dynp43hwla535h5usk');
->>>>>>> 8eb99ea2918041bd30d1a1fc6c21b64e0648a44e
+
 
 -- --------------------------------------------------------
 
@@ -670,11 +645,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   PRIMARY KEY (`uid`)
-<<<<<<< HEAD
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
-=======
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
->>>>>>> 8eb99ea2918041bd30d1a1fc6c21b64e0648a44e
+
 
 --
 -- Dumping data for table `users`
@@ -682,16 +654,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`uid`, `username`, `password`, `email`) VALUES
 (1, 'enhancse', 'fc7c70a196d8c1bf619bef2aed0bf9e2', 'vibhaj.itbhu@gmail.com'),
-<<<<<<< HEAD
 (29, 'vibhaj', 'd7d069aee1cc1124e84d9a57632d20c9', 'vibhaj.rajan.cse08@itbhu.ac.in'),
 (30, 'shivang', 'e9e0442482a4da40f9b4ce32dd979d6c', 'shivang.mittal.cse10@itbhu.ac.in'),
 (31, 'kks', '75b5f7cc67cc2fbc14a2342c08ec472d', 'kks@itbhu.ac.in');
-=======
-(14, 'vibhaj', '69ceec29f74496b2bfb88b2533a0642b', 'vibhaj.rajan.cse08@itbhu.ac.in'),
-(22, 'shivang', 'e9e0442482a4da40f9b4ce32dd979d6c', 'shivang.mittal.cse10@itbhu.ac.in'),
-(23, 'kks', 'f63a72dab96e54d5c54c9c3f2ac25315', 'kks@itbhu.ac.in'),
-(25, 'arun', '8f46f680105f57822b75e658732831a1', 'arun@itbhu.ac.in');
->>>>>>> 8eb99ea2918041bd30d1a1fc6c21b64e0648a44e
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
