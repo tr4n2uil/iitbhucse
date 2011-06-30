@@ -70,7 +70,4 @@ IITBHUCSE.jquery.helper.getStatus = function(index){
 			return 'Unknown';
 	}
 }
-<<<<<<< HEAD:sys/dev/templates/FacultyView.js
-=======
 
->>>>>>> shivang/nimitz:sys/dev/templates/FacultView.js
