@@ -12,7 +12,7 @@ IITBHUCSE.jquery.template.ElibraryEdit = $.template('\
 				{{if admin}}\
 				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/elibrary.php:arg=do~rem&bookid~${ebook.bookid}:cf=true" \
 				class="navigate" >Remove</a></li>{{/if}}\
-				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-fl-edt:url=core/admin/space.php:arg=do~get&spid~${ebook.bookid}&type~E-Book" class="navigate" >Upload</a>\
+				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-spc-edt:url=core/admin/space.php:arg=do~get&spid~${ebook.bookid}" class="navigate" >Upload</a>\
 				</li>\
 			</ul>\
 		</fieldset>\
