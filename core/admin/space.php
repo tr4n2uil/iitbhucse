@@ -71,7 +71,7 @@
 			
 			$op = $cl->load("storage.create", ECROOT);
 			$model['stgname'] = 'File.file';
-			$model['filepath'] = INITROOT. '/storage/file/';
+			$model['filepath'] = '/storage/file/';
 			$model['filename'] = $model['stgname'];
 			$model['mime'] = 'text/plain';
 			$model['size'] = 0;

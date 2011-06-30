@@ -67,7 +67,7 @@ SCRIPT;
 	$op = $cl->load("storage.upload", ECROOT);
 	$model['filekey'] = 'stgfile';
 	$model['rename'] = $storage['filename'];
-	$model['savepath'] = $storage['filepath'];
+	$model['savepath'] = INITROOT.$storage['filepath'];
 	$model = $kernel->run($op, $model);
 	
 	if(!$model['valid']){

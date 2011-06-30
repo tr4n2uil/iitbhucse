@@ -79,8 +79,8 @@
 			$model['ststatus'] = $_POST['ststatus'];
 			$model['stphone'] = $_POST['stphone'];
 			$model['mail'] = false;
-			$model['strspath'] = INITROOT.'storage/resume/';
-			$model['stphpath'] = INITROOT.'storage/photo/';
+			$model['strspath'] = 'storage/resume/';
+			$model['stphpath'] = 'storage/photo/';
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
