@@ -16,11 +16,12 @@
 				if(isset($_POST['spid']))
 					$request = true;
 				break;
+				
 			case 'get' :
 				if(isset($_POST['spid']))
 					$request = true;
 				break;
-			case 'add' :
+
 			case 'all' :
 				$request = true;
 				break;
@@ -112,7 +113,6 @@
 				$result['success'] = true;
 				$result['space'] = $model['space'];
 				$result['admin'] = $admin;
-
 			}
 			else {
 				$result['success'] = false;
