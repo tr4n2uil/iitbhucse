@@ -14,6 +14,9 @@ IITBHUCSE.jquery.template.ElibraryEdit = $.template('\
 				class="navigate" >Remove</a></li>{{/if}}\
 				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-spc-edt:url=core/admin/space.php:arg=do~get&spid~${ebook.bookid}" class="navigate" >Upload</a>\
 				</li>\
+				<li><a href="core/space/read.php?spid=${ebook.bookid}" target="_blank">\
+						Download\
+						</a></li>\
 			</ul>\
 		</fieldset>\
 	</div>\
