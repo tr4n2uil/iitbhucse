@@ -95,7 +95,6 @@
 				$result['success'] = false;
 				$result['msg'] = '<p class="error">'.$model['msg'].'</p>';
 			}
-			
 			break;			
 
 		case 'edit' :

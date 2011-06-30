@@ -26,7 +26,7 @@ IITBHUCSE.jquery.template.FacultyView = $.template('\
 						{{/if}}\
 					</td></tr>\
 					<tr><td>\
-						{{if sthome}}\
+						{{if fhome}}\
 							<a href="#tplload:cntr=#main-container:url=core/content/view.php:arg=cntid~${fhome}" \
 							class="navigate" >Home Page</a>\
 						{{/if}}\

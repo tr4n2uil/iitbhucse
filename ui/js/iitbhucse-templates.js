@@ -236,6 +236,8 @@ IITBHUCSE.jquery.helper.getPart = function(index){
 			return 'Unknown';
 	}
 }
+
+
 /**
  *	@template ElibraryAll
  *
@@ -460,6 +462,37 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 		</form>\
 	</div>\
 </div>');
+
+
+/**
+ *	@template FileEdit
+ *
+**/
+IITBHUCSE.jquery.template.FileEdit = $.template('\
+<div id="file-edit-panel" class="panel form-panel">\
+	<form action="core/space/write.php" method="post" class="navigate" enctype="multipart/form-data" \
+		id="_upload:sel._file-edit-panel" target="upload_target" >\
+		<fieldset >\
+			<legend class="head">Change ${typename}</legend>\
+			<input type="hidden" name="spid" value="${space.spid}" />\
+			<label>File type\
+				<select name="stgmime">\
+					<option value="application/pdf">Adobe PDF (.pdf)</option>\
+					<option value="application/vnd.openxmlformats-officedocument.wordprocessingml.document">Microsoft Word Document (.docx)</option>\
+					<option value="application/msword">Microsoft Word Document (.doc)</option>\
+					<option value="image/png">PNG Image (.png)</option>\
+					<option value="image/gif">GIF Image (.gif)</option>\
+				</select>\
+			</label>\
+			<label>${typename}\
+				<input type="file" name="stgfile"/>\
+			</label>\
+			<input name="submit" type="submit" value="Submit"  class="margin5"/>\
+			<div class="status"></div>\
+		</fieldset>\
+	</form>\
+</div>');
+
 /**
  *	@template FacultyView
  *
@@ -488,7 +521,7 @@ IITBHUCSE.jquery.template.FacultyView = $.template('\
 						{{/if}}\
 					</td></tr>\
 					<tr><td>\
-						{{if sthome}}\
+						{{if fhome}}\
 							<a href="#tplload:cntr=#main-container:url=core/content/view.php:arg=cntid~${fhome}" \
 							class="navigate" >Home Page</a>\
 						{{/if}}\
@@ -592,41 +625,49 @@ IITBHUCSE.jquery.template.LibraryBrowse = $.template('\
  *
 **/
 IITBHUCSE.jquery.template.LibraryEdit = $.template('\
-<div id="admin-elib-panel">\
+<div id="admin-lib-panel">\
 	<div id="library-options-container" class="panel left">\
 		<fieldset>\
 			<legend class="head">Edit Book #${book.isbn}</legend>\
 			<ul class="horizontal menu">\
 				{{if admin}}\
-				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/elibrary.php:arg=do~rem&bookid~${ebook.bookid}:cf=true" \
-				class="navigate" >Remove</a></li>{{/if}}\
-				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-fl-edt:url=core/admin/space.php:arg=do~get&spid~${ebook.bookid}&type~E-Book" class="navigate" >Upload</a>\
-				</li>\
+				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/library.php:arg=do~rem&isbn~${book.isbn}:cf=true" \
+				class="navigate" >Remove</a></li>\
+				<li>{{if ServiceClient.jquery.helper.equals(book.status, 1)}}<a href="#tplload:tpl=tpl-lib-trs:cntr=#edit-panel:url=core/admin/library.php:arg=do~get&isbn~${book.isbn}" \
+				class="navigate" >Issue</a></li>\
+				{{/if}}\
+				<li>{{if ServiceClient.jquery.helper.equals(book.status, 2)}}<a href="#tplload:tpl=tpl-lib-trs:cntr=#edit-panel:url=core/admin/library.php:arg=do~return&isbn~${book.isbn}" \
+				class="navigate" >Return</a></li>\
+				{{/if}}\
+				{{/if}}\
 			</ul>\
 		</fieldset>\
 	</div>\
-	<div id="elibrary-edit-container" class="panel form-panel">\
-		<form action="core/admin/elibrary.php" method="post" class="navigate" id="_formsubmit:sel._admin-elib-panel">\
+	<div id="library-edit-container" class="panel form-panel">\
+		<form action="core/admin/library.php" method="post" class="navigate" id="_formsubmit:sel._admin-lib-panel">\
 			<fieldset >\
-				<legend class="head">Edit Book #${ebook.bookid}</legend>\
+				<legend class="head">Edit Book #${book.isbn}</legend>\
 				<input type="hidden" name="do" value="edit"/>\
-				<input type="hidden" name="bookid" value="${ebook.bookid}"/>\
+				<input type="hidden" name="isbn" value="${book.isbn}"/>\
+				<label>Book ID\
+					<input type="text" name="bookid" value="${book.bookid}"/>\
+				</label>\
 				<label>Book Name\
-					<input type="text" name="bookname" value="${ebook.bookname}" class="required"/>\
+					<input type="text" name="bookname" value="${book.bookname}" class="required"/>\
 				</label>\
 					<p class="error hidden margin5">Invalid Book Name</p>\
 				<label>Author Name\
-					<input type="text" name="bookauthor" value="${ebook.bookauthor}" class="required"/>\
+					<input type="text" name="bookauthor" value="${book.bookauthor}" class="required"/>\
 				</label>\
 					<p class="error hidden margin5">Invalid Author Name</p>\
 				<label>Book Description\
-					<textarea name="bookdescription">${ebook.bookdescription}</textarea>\
+					<textarea name="bookdescription">${book.bookdescription}</textarea>\
 				</label>\
 				<label>Pages\
-					<input type="text" name="bookpages" value="${ebook.bookpages}" />\
+					<input type="text" name="bookpages" value="${book.bookpages}" />\
 				</label>\
 				<label>Book Collection\
-					<input type="text" name="bookcollection" value="${ebook.bookcollection}" />\
+					<input type="text" name="bookcollection" value="${book.bookcollection}" />\
 				</label>\
 				<input name="submit" type="submit" value="Submit" class="margin5"/>\
 				<input name="reset" type="reset" value="Reset" class="margin5"/>\
