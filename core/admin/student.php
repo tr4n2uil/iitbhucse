@@ -13,7 +13,6 @@
 					$request = true;
 				break;
 			case 'edit' :
-<<<<<<< HEAD
 				if(isset($_POST['stuid']) && isset($_POST['stphone']) && isset($_POST['stcgpa']) && isset($_POST['stinterest']))
 					$request = true;
 				break;
@@ -22,16 +21,6 @@
 					$request = true;
 				break;
 			case 'get' :
-=======
-				if(isset($_POST['stuid']) && isset($_POST['stname']) && isset($_POST['stcourse']) && isset($_POST['styear']) && isset($_POST['strollno']) && isset($_POST['ststatus']))
-					$request = true;
-				break;
-			case 'rem' :
-			case 'get' :
-				if(isset($_POST['stuid']))
-					$request = true;
-				break;
->>>>>>> 8eb99ea2918041bd30d1a1fc6c21b64e0648a44e
 			case 'all' :
 				$request = true;
 				break;
@@ -64,14 +53,12 @@
 	/**
 	 * Check for valid privilege 
 	**/
+	$admin = false;
 	$op = $cl->load("privilege.check", ECROOT);
 	$model['privtype'] = 'ENHANCSE_ADMIN';
 	$model = $kernel->run($op, $model);
-	if(!$model['valid']){
-		$result['success'] = false;
-		$result['msg'] = "Not Authorized";
-		echo json_encode($result);
-		exit;
+	if($model['valid']){
+		$admin = true;
 	}
 	
 	switch($_POST['do']){

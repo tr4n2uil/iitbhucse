@@ -68,6 +68,7 @@
 		if($model['valid']){
 			$result['success'] = true;
 			$result['ebooks'] = $model['ebooks'];
+			$result['bookcollection'] = $model['bookcollection'];
 		}
 		else {
 			$result['success'] = false;
