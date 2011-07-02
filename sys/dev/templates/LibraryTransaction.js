@@ -23,7 +23,7 @@ IITBHUCSE.jquery.template.LibraryTransaction = $.template('\
 		<form action="core/admin/library.php" method="post" class="navigate" id="_formsubmit:sel._admin-lib-panel">\
 			<fieldset >\
 				<legend class="head">Issue ${book.isbn}</legend>\
-				<input type="hidden" name="do" value="$issue"/>\
+				<input type="hidden" name="do" value="issue"/>\
 				<input type="hidden" name="isbn" value="${book.isbn}"/>\
 				<input type="text" name="bookname" value="${book.bookname}" disabled="disabled"/>\
 				<label>User ID\

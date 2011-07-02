@@ -72,8 +72,8 @@
 			$model['fstatus'] = $_POST['fstatus'];
 			$model['finterest'] = $_POST['finterest'];
 			$model['mail'] = false;
-			$model['frspath'] = INITROOT.'storage/resume/';
-			$model['fphpath'] = INITROOT.'storage/photo/';
+			$model['frspath'] = 'storage/resume/';
+			$model['fphpath'] = 'storage/photo/';
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){

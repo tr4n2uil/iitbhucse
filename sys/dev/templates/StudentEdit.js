@@ -17,6 +17,7 @@ IITBHUCSE.jquery.template.StudentEdit = $.template('\
 				</li>\
 				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-spc-edt:url=core/admin/space.php:arg=do~get&spid~${student.stphoto}" class="navigate" >Photo</a>\
 				</li>\
+				<li><a href="#tplload:cntr=#main-container:url=core/content/view.php:arg=cntid~${student.sthome}" class="navigate" >Home Page</a>\</li>\
 			</ul>\
 		</fieldset>\
 	</div>\

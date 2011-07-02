@@ -74,7 +74,7 @@
 			$model['bookdescription'] = $_POST['bookdescription'];
 			$model['bookcollection'] = $_POST['bookcollection'];
 			$model['bookpages'] = isset($_POST['bookpages']) ? $_POST['bookpages'] : null;
-			$model['bookpath'] = INITROOT.'storage/elibrary/';
+			$model['bookpath'] = 'storage/elibrary/';
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){

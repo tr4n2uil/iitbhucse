@@ -12,6 +12,7 @@ IITBHUCSE.jquery.template.CourseEdit = $.template('\
 					<a href="#tplload:cntr=#edit-panel:url=core/admin/course.php:arg=do~rem&crsid~${course.crsid}:cf=true" \
 						class="navigate" >Delete</a>\
 				</li>\
+				<li><a href="#tplload:cntr=#main-container:url=core/content/view.php:arg=cntid~${course.crshome}" class="navigate" >Home Page</a>\</li>\
 			</ul>\
 		</fieldset>\
 	</div>\

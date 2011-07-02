@@ -13,7 +13,7 @@ IITBHUCSE.jquery.template.ElibraryBrowse = $.template('\
 					<a class="navigate" href="#tplload:cntr=#grid-panel:tpl=tpl-elb-vw:url=core/elibrary/elibrary-all.php:arg=allbooks~true"\>\
 					All...</a>\
 				</li>\
-				{{each bookcollection}}\
+				{{each ebooks}}\
 				<li>\
 					<a class="navigate" \
 	href="#tplload:cntr=#grid-panel:tpl=tpl-elb-vw:url=core/elibrary/elibrary-all.php:arg=bookcollection~${bookcollection}"\

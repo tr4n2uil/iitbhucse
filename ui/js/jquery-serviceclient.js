@@ -449,4 +449,3 @@ ServiceClient.jquery.helper.readFileSize = function(size){
 	}
 	return kb.toFixed(2) + ' KB';
 }
-

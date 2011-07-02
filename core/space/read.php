@@ -59,7 +59,7 @@ HTML;
 	
 	$storage = $model['storage'];
 	$op = $cl->load("storage.download", ECROOT);
-	$model['file'] = $storage['filepath'].$storage['filename'];
+	$model['file'] = INITROOT.$storage['filepath'].$storage['filename'];
 	$model['asname'] = $space['spvfname'];
 	$model['mime'] = $storage['mime'];
 	$model['size'] = $storage['size'];

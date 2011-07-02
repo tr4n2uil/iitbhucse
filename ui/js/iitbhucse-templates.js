@@ -158,6 +158,7 @@ IITBHUCSE.jquery.template.CourseEdit = $.template('\
 					<a href="#tplload:cntr=#edit-panel:url=core/admin/course.php:arg=do~rem&crsid~${course.crsid}:cf=true" \
 						class="navigate" >Delete</a>\
 				</li>\
+				<li><a href="#tplload:cntr=#main-container:url=core/content/view.php:arg=cntid~${course.crshome}" class="navigate" >Home Page</a>\</li>\
 			</ul>\
 		</fieldset>\
 	</div>\
@@ -236,8 +237,6 @@ IITBHUCSE.jquery.helper.getPart = function(index){
 			return 'Unknown';
 	}
 }
-
-
 /**
  *	@template ElibraryAll
  *
@@ -279,7 +278,7 @@ IITBHUCSE.jquery.template.ElibraryBrowse = $.template('\
 					<a class="navigate" href="#tplload:cntr=#grid-panel:tpl=tpl-elb-vw:url=core/elibrary/elibrary-all.php:arg=allbooks~true"\>\
 					All...</a>\
 				</li>\
-				{{each bookcollection}}\
+				{{each ebooks}}\
 				<li>\
 					<a class="navigate" \
 	href="#tplload:cntr=#grid-panel:tpl=tpl-elb-vw:url=core/elibrary/elibrary-all.php:arg=bookcollection~${bookcollection}"\
@@ -305,8 +304,11 @@ IITBHUCSE.jquery.template.ElibraryEdit = $.template('\
 				{{if admin}}\
 				<li><a href="#tplload:cntr=#edit-panel:url=core/admin/elibrary.php:arg=do~rem&bookid~${ebook.bookid}:cf=true" \
 				class="navigate" >Remove</a></li>{{/if}}\
-				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-fl-edt:url=core/admin/space.php:arg=do~get&spid~${ebook.bookid}&type~E-Book" class="navigate" >Upload</a>\
+				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-spc-edt:url=core/admin/space.php:arg=do~get&spid~${ebook.bookid}" class="navigate" >Upload</a>\
 				</li>\
+				<li><a href="core/space/read.php?spid=${ebook.bookid}" target="_blank">\
+						Download\
+						</a></li>\
 			</ul>\
 		</fieldset>\
 	</div>\
@@ -415,6 +417,7 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 				</li>\
 				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-fl-edt:url=core/admin/space.php:arg=do~get&spid~${faculty.fphoto}&type~Photo" class="navigate" >Photo</a>\
 				</li>\
+				<li><a href="#tplload:cntr=#main-container:url=core/content/view.php:arg=cntid~${faculty.fhome}" class="navigate" >Home Page</a>\</li>\
 			</ul>\
 		</fieldset>\
 	</div>\
@@ -462,37 +465,6 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 		</form>\
 	</div>\
 </div>');
-
-
-/**
- *	@template FileEdit
- *
-**/
-IITBHUCSE.jquery.template.FileEdit = $.template('\
-<div id="file-edit-panel" class="panel form-panel">\
-	<form action="core/space/write.php" method="post" class="navigate" enctype="multipart/form-data" \
-		id="_upload:sel._file-edit-panel" target="upload_target" >\
-		<fieldset >\
-			<legend class="head">Change ${typename}</legend>\
-			<input type="hidden" name="spid" value="${space.spid}" />\
-			<label>File type\
-				<select name="stgmime">\
-					<option value="application/pdf">Adobe PDF (.pdf)</option>\
-					<option value="application/vnd.openxmlformats-officedocument.wordprocessingml.document">Microsoft Word Document (.docx)</option>\
-					<option value="application/msword">Microsoft Word Document (.doc)</option>\
-					<option value="image/png">PNG Image (.png)</option>\
-					<option value="image/gif">GIF Image (.gif)</option>\
-				</select>\
-			</label>\
-			<label>${typename}\
-				<input type="file" name="stgfile"/>\
-			</label>\
-			<input name="submit" type="submit" value="Submit"  class="margin5"/>\
-			<div class="status"></div>\
-		</fieldset>\
-	</form>\
-</div>');
-
 /**
  *	@template FacultyView
  *
@@ -567,6 +539,34 @@ IITBHUCSE.jquery.helper.getStatus = function(index){
 }
 
 /**
+ *	@template FileEdit
+ *
+**/
+IITBHUCSE.jquery.template.FileEdit = $.template('\
+<div id="file-edit-panel" class="panel form-panel">\
+	<form action="core/space/write.php" method="post" class="navigate" enctype="multipart/form-data" \
+		id="_upload:sel._file-edit-panel" target="upload_target" >\
+		<fieldset >\
+			<legend class="head">Change ${typename}</legend>\
+			<input type="hidden" name="spid" value="${space.spid}" />\
+			<label>File type\
+				<select name="stgmime">\
+					<option value="application/pdf">Adobe PDF (.pdf)</option>\
+					<option value="application/vnd.openxmlformats-officedocument.wordprocessingml.document">Microsoft Word Document (.docx)</option>\
+					<option value="application/msword">Microsoft Word Document (.doc)</option>\
+					<option value="image/png">PNG Image (.png)</option>\
+					<option value="image/gif">GIF Image (.gif)</option>\
+				</select>\
+			</label>\
+			<label>${typename}\
+				<input type="file" name="stgfile"/>\
+			</label>\
+			<input name="submit" type="submit" value="Submit"  class="margin5"/>\
+			<div class="status"></div>\
+		</fieldset>\
+	</form>\
+</div>');
+/**
  *	@template LibraryAll
  *
 **/
@@ -618,7 +618,6 @@ IITBHUCSE.jquery.template.LibraryBrowse = $.template('\
 		</fieldset>\
 	</div>\
 </div>');
-
 
 /**
  *	@template LibraryEdit
@@ -701,7 +700,7 @@ IITBHUCSE.jquery.template.LibraryTransaction = $.template('\
 		<form action="core/admin/library.php" method="post" class="navigate" id="_formsubmit:sel._admin-lib-panel">\
 			<fieldset >\
 				<legend class="head">Issue ${book.isbn}</legend>\
-				<input type="hidden" name="do" value="$issue"/>\
+				<input type="hidden" name="do" value="issue"/>\
 				<input type="hidden" name="isbn" value="${book.isbn}"/>\
 				<input type="text" name="bookname" value="${book.bookname}" disabled="disabled"/>\
 				<label>User ID\
@@ -1032,6 +1031,7 @@ IITBHUCSE.jquery.template.StudentEdit = $.template('\
 				</li>\
 				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-spc-edt:url=core/admin/space.php:arg=do~get&spid~${student.stphoto}" class="navigate" >Photo</a>\
 				</li>\
+				<li><a href="#tplload:cntr=#main-container:url=core/content/view.php:arg=cntid~${student.sthome}" class="navigate" >Home Page</a>\</li>\
 			</ul>\
 		</fieldset>\
 	</div>\
