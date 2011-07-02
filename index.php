@@ -108,6 +108,8 @@
 			ServiceClient.Registry.save('tpl-lib-trs', IITBHUCSE.jquery.template.LibraryTransaction);
 			ServiceClient.Registry.save('tpl-elb-edt', IITBHUCSE.jquery.template.ElibraryEdit);
 			ServiceClient.Registry.save('tpl-elb-all', IITBHUCSE.jquery.template.ElibraryAll);
+			ServiceClient.Registry.save('tpl-nws-all', IITBHUCSE.jquery.template.NewsAll);
+			ServiceClient.Registry.save('tpl-nws-edt', IITBHUCSE.jquery.template.NewsEdit);
 
 			ServiceClient.Registry.save('tpl-std-bws', IITBHUCSE.jquery.template.StudentBrowse);
 			ServiceClient.Registry.save('tpl-std-vw', IITBHUCSE.jquery.template.StudentView);

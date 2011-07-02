@@ -5,7 +5,7 @@
 IITBHUCSE.jquery.template.ElibraryEdit = $.template('\
 <div id="admin-elib-panel">\
 	<div id="file-panel"></div>\
-	<div id="library-options-container" class="panel left">\
+	<div id="elibrary-options-container" class="panel left">\
 		<fieldset>\
 			<legend class="head">Edit Book #${ebook.bookid}</legend>\
 			<ul class="horizontal menu">\
