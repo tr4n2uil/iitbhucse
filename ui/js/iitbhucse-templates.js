@@ -158,6 +158,7 @@ IITBHUCSE.jquery.template.CourseEdit = $.template('\
 					<a href="#tplload:cntr=#edit-panel:url=core/admin/course.php:arg=do~rem&crsid~${course.crsid}:cf=true" \
 						class="navigate" >Delete</a>\
 				</li>\
+				<li><a href="#tplload:cntr=#main-container:url=core/content/view.php:arg=cntid~${course.crshome}" class="navigate" >Home Page</a>\</li>\
 			</ul>\
 		</fieldset>\
 	</div>\
@@ -416,6 +417,7 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 				</li>\
 				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-fl-edt:url=core/admin/space.php:arg=do~get&spid~${faculty.fphoto}&type~Photo" class="navigate" >Photo</a>\
 				</li>\
+				<li><a href="#tplload:cntr=#main-container:url=core/content/view.php:arg=cntid~${faculty.fhome}" class="navigate" >Home Page</a>\</li>\
 			</ul>\
 		</fieldset>\
 	</div>\
@@ -1029,6 +1031,7 @@ IITBHUCSE.jquery.template.StudentEdit = $.template('\
 				</li>\
 				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-spc-edt:url=core/admin/space.php:arg=do~get&spid~${student.stphoto}" class="navigate" >Photo</a>\
 				</li>\
+				<li><a href="#tplload:cntr=#main-container:url=core/content/view.php:arg=cntid~${student.sthome}" class="navigate" >Home Page</a>\</li>\
 			</ul>\
 		</fieldset>\
 	</div>\

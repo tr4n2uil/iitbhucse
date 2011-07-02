@@ -19,6 +19,7 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 				</li>\
 				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-fl-edt:url=core/admin/space.php:arg=do~get&spid~${faculty.fphoto}&type~Photo" class="navigate" >Photo</a>\
 				</li>\
+				<li><a href="#tplload:cntr=#main-container:url=core/content/view.php:arg=cntid~${faculty.fhome}" class="navigate" >Home Page</a>\</li>\
 			</ul>\
 		</fieldset>\
 	</div>\
