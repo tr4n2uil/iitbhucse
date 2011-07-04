@@ -22,6 +22,13 @@
 						include(INITROOT. 'ui/html/quick-student.html');
 					}
 					
+					$op = $cl->load("faculty.info", ICROOT);
+					$model['fid'] = $model['uid'];
+					$model = $kernel->run($op, $model);
+					if($model['valid']){
+						include(INITROOT. 'ui/html/quick-faculty.html');
+					}
+					
 					$op = $cl->load("privilege.check", ECROOT);
 					$model['privtype'] = 'ENHANCSE_ADMIN';
 					$model = $kernel->run($op, $model);
@@ -29,24 +36,41 @@
 						include(INITROOT. 'ui/html/quick-admin.html');
 					}
 					
+					$model['privtype'] = 'STUDENT_ADMIN';
+					$model = $kernel->run($op, $model);
+					if($model['valid']){
+						include(INITROOT. 'ui/html/quick-student-admin.html');
+					}
+					
 					$model['privtype'] = 'FACULTY_ADMIN';
 					$model = $kernel->run($op, $model);
 					if($model['valid']){
-						include(INITROOT. 'ui/html/quick-faculty.html');
+						include(INITROOT. 'ui/html/quick-faculty-admin.html');
 					}
 					
 					$model['privtype'] = 'EMAGAZINE_ADMIN';
 					$model = $kernel->run($op, $model);
 					if($model['valid']){
-						include(INITROOT. 'ui/html/quick-emagazine.html');
+						include(INITROOT. 'ui/html/quick-emagazine-admin.html');
 					}
 					
 					$model['privtype'] = 'LIBRARY_ADMIN';
 					$model = $kernel->run($op, $model);
 					if($model['valid']){
-						include(INITROOT. 'ui/html/quick-library.html');
+						include(INITROOT. 'ui/html/quick-library-admin.html');
 					}
 					
+					$model['privtype'] = 'COURSE_ADMIN';
+					$model = $kernel->run($op, $model);
+					if($model['valid']){
+						include(INITROOT. 'ui/html/quick-course-admin.html');
+					}
+					
+					$model['privtype'] = 'NEWS_ADMIN';
+					$model = $kernel->run($op, $model);
+					if($model['valid']){
+						include(INITROOT. 'ui/html/quick-news-admin.html');
+					}
 				}
 				else {
 					include(INITROOT. 'ui/html/quick-login.html');

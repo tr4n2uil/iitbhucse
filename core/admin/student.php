@@ -59,6 +59,11 @@
 	if($model['valid']){
 		$admin = true;
 	}
+	$model['privtype'] = 'STUDENT_ADMIN';
+	$model = $kernel->run($op, $model);
+	if($model['valid']){
+		$admin = true;
+	}
 	
 	switch($_POST['do']){
 		case 'add' :

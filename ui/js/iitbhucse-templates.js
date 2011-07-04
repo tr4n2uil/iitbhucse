@@ -413,9 +413,9 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 						class="navigate" >Delete</a>\
 				</li>\
 				{{/if}}\
-				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-fl-edt:url=core/admin/space.php:arg=do~get&spid~${faculty.fresume}&type~Resume" class="navigate" >Resume</a>\
+				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-spc-edt:url=core/admin/space.php:arg=do~get&spid~${faculty.fresume}" class="navigate" >Resume</a>\
 				</li>\
-				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-fl-edt:url=core/admin/space.php:arg=do~get&spid~${faculty.fphoto}&type~Photo" class="navigate" >Photo</a>\
+				<li><a href="#tplload:cntr=#file-panel:tpl=tpl-spc-edt:url=core/admin/space.php:arg=do~get&spid~${faculty.fphoto}" class="navigate" >Photo</a>\
 				</li>\
 				<li><a href="#tplload:cntr=#main-container:url=core/content/view.php:arg=cntid~${faculty.fhome}" class="navigate" >Home Page</a>\</li>\
 			</ul>\
@@ -430,6 +430,7 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 				<label>Email\
 					<input type="text" name="femail" value="${faculty.femail}" disabled="disabled"/>\
 				</label>\
+				{{if admin}}\
 				<label>Name\
 					<input type="text" name="fname" value="${faculty.fname}" class="required"/>\
 				</label>\
@@ -446,14 +447,15 @@ IITBHUCSE.jquery.template.FacultyEdit = $.template('\
 					<input type="text" name="fqualification" value="${faculty.fqualification}" class="required"/>\
 				</label>\
 					<p class="error hidden margin5">Invalid Qualification</p>\
-				<label>Phone No\
-					<input type="text" name="fphone" value="${faculty.fphone}" />\
-				</label>\
 				<label>Status\
 				<select name="fstatus">\
 				<option value="1" {{if ServiceClient.jquery.helper.equals(faculty.fstatus, 1)}}selected="selected"{{/if}}>Teaching</option>\
 				<option value="2" {{if ServiceClient.jquery.helper.equals(faculty.fstatus, 2)}}selected="selected"{{/if}}>Retired</option>\
 				</select>\
+				</label>\
+				{{/if}}\
+				<label>Phone No\
+					<input type="text" name="fphone" value="${faculty.fphone}" />\
 				</label>\
 				<label>Interests\
 					<textarea name="finterest" rows="5" >${faculty.finterest}</textarea>\

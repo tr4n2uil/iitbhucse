@@ -52,18 +52,28 @@
 	/**
 	 * Check for valid privilege 
 	**/
+	$admin = false;
 	$op = $cl->load("privilege.check", ECROOT);
 	$model['privtype'] = 'ENHANCSE_ADMIN';
 	$model = $kernel->run($op, $model);
-	if(!$model['valid']){
-		$result['success'] = false;
-		$result['msg'] = "Not Authorized";
-		echo json_encode($result);
-		exit;
+	if($model['valid']){
+		$admin = true;
+	}
+	$model['privtype'] = 'COURSE_ADMIN';
+	$model = $kernel->run($op, $model);
+	if($model['valid']){
+		$admin = true;
 	}
 	
 	switch($_POST['do']){
 		case 'add' :
+			if(!$admin){
+				$result['success'] = false;
+				$result['msg'] = '<p class="error">Not Authorized</p>';
+				echo json_encode($result);
+				exit;
+			}
+			
 			$op = $cl->load("course.create", ICROOT);
 			$model['crsid'] = $_POST['crsid'];
 			$model['crsname'] = $_POST['crsname'];
@@ -82,9 +92,16 @@
 			break;
 			
 		case 'edit' :
+			if(!$admin){
+				$result['success'] = false;
+				$result['msg'] = '<p class="error">Not Authorized</p>';
+				echo json_encode($result);
+				exit;
+			}
+			
 			$op = $cl->load("course.edit", ICROOT);
 			$model['crsid'] = $_POST['crsid'];
-			$model['admin'] = true;
+			$model['admin'] = $admin;
 			$model['crsname'] = $_POST['crsname'];
 			$model['crsdescription'] = $_POST['crsdescription'];
 			$model['crspart'] = $_POST['crspart'];
@@ -116,6 +133,13 @@
 			break;
 			
 		case 'rem' :
+			if(!$admin){
+				$result['success'] = false;
+				$result['msg'] = '<p class="error">Not Authorized</p>';
+				echo json_encode($result);
+				exit;
+			}
+			
 			$op = $cl->load("course.delete", ICROOT);
 			$model['crsid'] = $_POST['crsid'];
 			$model = $kernel->run($op, $model);
@@ -131,8 +155,15 @@
 			break;
 			
 		case 'all' :
+			if(!$admin){
+				$result['success'] = false;
+				$result['msg'] = '<p class="error">Not Authorized</p>';
+				echo json_encode($result);
+				exit;
+			}
+			
 			$op = $cl->load("Course.all", ICROOT);
-			$model['allparts'] = true;
+			$model['admin'] = $admin;
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){

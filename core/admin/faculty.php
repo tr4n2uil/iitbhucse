@@ -17,10 +17,10 @@
 					$request = true;
 				break;
 			case 'rem' :
-			case 'get' :
 				if(isset($_POST['fid']))
 					$request = true;
 				break;
+			case 'get' :
 			case 'all' :
 				$request = true;
 				break;
@@ -59,9 +59,21 @@
 	if($model['valid']){
 		$admin = true;
 	}
+	$model['privtype'] = 'FACULTY_ADMIN';
+	$model = $kernel->run($op, $model);
+	if($model['valid']){
+		$admin = true;
+	}
 	
 	switch($_POST['do']){
 		case 'add' :
+			if(!$admin){
+				$result['success'] = false;
+				$result['msg'] = '<p class="error">Not Authorized</p>';
+				echo json_encode($result);
+				exit;
+			}
+			
 			$op = $cl->load("faculty.create", ICROOT);
 			$model['fname'] = $_POST['fname'];
 			$model['username'] = $_POST['username'];
@@ -87,17 +99,26 @@
 			break;
 			
 		case 'edit' :
+			if(!$admin){
+				$result['success'] = false;
+				$result['msg'] = '<p class="error">Not Authorized</p>';
+				echo json_encode($result);
+				exit;
+			}
+			
 			$op = $cl->load("faculty.edit", ICROOT);
 			$model['fid'] = $_POST['fid'];
-			$model['admin'] = true;
+			$model['admin'] = $admin;
+			$model['fphone'] = $_POST['fphone'];
+			$model['finterest'] = $_POST['finterest'];
+			
+			if($admin){
 			$model['fname'] = $_POST['fname'];
 			$model['fqualification'] = $_POST['fqualification'];
 			$model['fdesignation'] = $_POST['fdesignation'];
-			$model['fphone'] = $_POST['fphone'];
-			$model['finterest'] = $_POST['finterest'];
 			$model['fstatus'] = $_POST['fstatus'];
+			}
 			$model = $kernel->run($op, $model);
-			
 			if($model['valid']){
 				$result['success'] = true;
 				$result['msg'] = '<p class="success">Faculty details edited successfully</p>';
@@ -110,7 +131,7 @@
 		
 		case 'get' :
 			$op = $cl->load("faculty.info", ICROOT);
-			$model['fid'] = $_POST['fid'];
+			$model['fid'] = isset($_POST['fid']) ? $_POST['fid'] : $user;
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
@@ -125,6 +146,13 @@
 			break;
 			
 		case 'rem' :
+			if(!$admin){
+				$result['success'] = false;
+				$result['msg'] = '<p class="error">Not Authorized</p>';
+				echo json_encode($result);
+				exit;
+			}
+			
 			$op = $cl->load("faculty.delete", ICROOT);
 			$model['fid'] = $_POST['fid'];
 			$model = $kernel->run($op, $model);
@@ -140,6 +168,13 @@
 			break;
 			
 		case 'all' :
+			if(!$admin){
+				$result['success'] = false;
+				$result['msg'] = '<p class="error">Not Authorized</p>';
+				echo json_encode($result);
+				exit;
+			}
+			
 			$op = $cl->load("faculty.all", ICROOT);
 			$model['fstatus'] = "1 or 2";
 			$model = $kernel->run($op, $model);
