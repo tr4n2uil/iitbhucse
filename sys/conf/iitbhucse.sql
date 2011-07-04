@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 02, 2011 at 05:13 PM
+-- Generation Time: Jul 04, 2011 at 05:19 PM
 -- Server version: 5.1.41
 -- PHP Version: 5.3.1
 
@@ -176,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `address` varchar(255) DEFAULT NULL,
   `time` bigint(20) NOT NULL,
   PRIMARY KEY (`lid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=150 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=170 ;
 
 --
 -- Dumping data for table `logs`
@@ -331,7 +331,27 @@ INSERT INTO `logs` (`lid`, `message`, `address`, `time`) VALUES
 (146, 'USER LOGIN with uid=33 and username=shivang', '::1', 1309429583),
 (147, 'USER LOGIN with uid=33 and username=shivang', '::1', 1309429817),
 (148, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1309430205),
-(149, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1309606076);
+(149, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1309606076),
+(150, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1309756829),
+(151, 'USER LOGIN with uid=31 and username=kks', '::1', 1309756857),
+(152, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1309757038),
+(153, 'USER LOGIN with uid=31 and username=kks', '::1', 1309757745),
+(154, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1309758523),
+(155, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1309776676),
+(156, 'USER LOGIN with uid=31 and username=kks', '::1', 1309776716),
+(157, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1309777007),
+(158, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1309777070),
+(159, 'USER LOGIN with uid=34 and username=shivang', '::1', 1309777090),
+(160, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1309777550),
+(161, 'USER LOGIN with uid=29 and username=vibhaj', '::1', 1309777747),
+(162, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1309778126),
+(163, 'USER LOGIN with uid=31 and username=kks', '::1', 1309778212),
+(164, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1309779123),
+(165, 'USER LOGIN with uid=34 and username=shivang', '::1', 1309779158),
+(166, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1309779241),
+(167, 'USER LOGIN with uid=31 and username=kks', '::1', 1309779269),
+(168, 'USER LOGIN with uid=1 and username=enhancse', '::1', 1309779404),
+(169, 'USER LOGIN with uid=29 and username=vibhaj', '::1', 1309779446);
 
 -- --------------------------------------------------------
 
@@ -394,7 +414,12 @@ CREATE TABLE IF NOT EXISTS `privileges` (
 --
 
 INSERT INTO `privileges` (`type`, `uid`) VALUES
-('ENHANCSE_ADMIN', 1);
+('COURSE_ADMIN', 29),
+('ENHANCSE_ADMIN', 1),
+('FACULTY_ADMIN', 31),
+('LIBRARY_ADMIN', 34),
+('NEWS_ADMIN', 29),
+('STUDENT_ADMIN', 34);
 
 -- --------------------------------------------------------
 
@@ -454,7 +479,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`sessionid`, `uid`, `time`, `expiry`) VALUES
-('8dhlr9k7r3orwpjexci3loitglutxfoh', 1, 1309606076, 1309692476);
+('nfiejnj853rxpm14izxwems0b5rghlyr', 1, 1309758523, 1309844923);
 
 -- --------------------------------------------------------
 
@@ -515,12 +540,12 @@ CREATE TABLE IF NOT EXISTS `storages` (
 --
 
 INSERT INTO `storages` (`stgid`, `stgname`, `filepath`, `filename`, `mime`, `size`, `owner`, `access`, `protection`, `ctime`, `atime`, `mtime`, `links`) VALUES
-(3, 'Resume-Vibhaj Rajan', 'C:\\Users\\Shivang Mittal\\webroot\\iitbhucse\\storage\\resume\\', 'resume-vibhaj.pdf', 'application/pdf', 154532, 29, 2, 'd41d8cd98f00b204e9800998ecf8427e', 1308641630, 1309422443, 1308669106, 1),
-(4, 'Photo-Vibhaj Rajan', 'C:\\Users\\Shivang Mittal\\webroot\\iitbhucse\\storage\\photo\\', 'photo-vibhaj.png', 'image/png', 121022, 29, 2, 'd41d8cd98f00b204e9800998ecf8427e', 1308641630, 1309431269, 1308725563, 1),
-(9, 'Resume-Dr.K.K.Shukla', 'C:\\Users\\Shivang Mittal\\webroot\\iitbhucse/storage/resume/', 'Resume-kks.pdf', 'application/pdf', 0, 31, 2, 'd41d8cd98f00b204e9800998ecf8427e', 1309240448, 1309240448, 1309240448, 1),
-(10, 'Photo-Dr.K.K.Shukla', 'C:\\Users\\Shivang Mittal\\webroot\\iitbhucse/storage/photo/', 'Photo-kks.png', 'image/png', 0, 31, 2, 'd41d8cd98f00b204e9800998ecf8427e', 1309240448, 1309423003, 1309240448, 1),
-(16, 'Resume-Shivang Mittal', 'C:\\Users\\Shivang Mittal\\webroot\\iitbhucse/storage/resume/', 'Resume-shivang.pdf', 'application/pdf', 0, 34, 2, 'd41d8cd98f00b204e9800998ecf8427e', 1309431113, 1309431113, 1309431113, 1),
-(17, 'Photo-Shivang Mittal', 'C:\\Users\\Shivang Mittal\\webroot\\iitbhucse/storage/photo/', 'Photo-shivang.png', 'image/gif', 75493, 34, 2, 'd41d8cd98f00b204e9800998ecf8427e', 1309431113, 1309431287, 1309431205, 1),
+(3, 'Resume-Vibhaj Rajan', 'storage/resume/', 'resume-vibhaj.pdf', 'application/pdf', 154532, 29, 2, 'd41d8cd98f00b204e9800998ecf8427e', 1308641630, 1309422443, 1308669106, 1),
+(4, 'Photo-Vibhaj Rajan', 'storage/photo/', 'photo-vibhaj.png', 'image/png', 121022, 29, 2, 'd41d8cd98f00b204e9800998ecf8427e', 1308641630, 1309759174, 1308725563, 1),
+(9, 'Resume-Dr.K.K.Shukla', 'storage/resume/', 'Resume-kks.pdf', 'application/pdf', 0, 31, 2, 'd41d8cd98f00b204e9800998ecf8427e', 1309240448, 1309240448, 1309240448, 1),
+(10, 'Photo-Dr.K.K.Shukla', 'storage/photo/', 'Photo-kks.png', 'image/png', 0, 31, 2, 'd41d8cd98f00b204e9800998ecf8427e', 1309240448, 1309778889, 1309240448, 1),
+(16, 'Resume-Shivang Mittal', 'storage/resume/', 'Resume-shivang.pdf', 'application/pdf', 0, 34, 2, 'd41d8cd98f00b204e9800998ecf8427e', 1309431113, 1309431113, 1309431113, 1),
+(17, 'Photo-Shivang Mittal', 'storage/photo/', 'Photo-shivang.png', 'image/gif', 75493, 34, 2, 'd41d8cd98f00b204e9800998ecf8427e', 1309431113, 1309778272, 1309431205, 1),
 (19, 'News-Admissions', 'storage/news/', 'News-2.pdf', 'application/pdf', 0, 1, 2, 'd41d8cd98f00b204e9800998ecf8427e', 1309606461, 1309606461, 1309606461, 1),
 (20, 'News-Results', 'storage/news/', 'News-3.pdf', 'application/pdf', 0, 1, 2, 'd41d8cd98f00b204e9800998ecf8427e', 1309606920, 1309606920, 1309606920, 1);
 
@@ -578,8 +603,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`uid`, `username`, `password`, `email`) VALUES
 (1, 'enhancse', 'fc7c70a196d8c1bf619bef2aed0bf9e2', 'vibhaj.itbhu@gmail.com'),
 (29, 'vibhaj', 'd7d069aee1cc1124e84d9a57632d20c9', 'vibhaj.rajan.cse08@itbhu.ac.in'),
-(31, 'kks', '75b5f7cc67cc2fbc14a2342c08ec472d', 'kks@itbhu.ac.in'),
-(34, 'shivang', 'a8431e9f6db7b4b14acaa1f5777df9f3', 'shivang.mittal.cse10@itbhu.ac.in');
+(31, 'kks', '07024072e9880760694a237275a5d83e', 'kks@itbhu.ac.in'),
+(34, 'shivang', 'e9e0442482a4da40f9b4ce32dd979d6c', 'shivang.mittal.cse10@itbhu.ac.in');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
