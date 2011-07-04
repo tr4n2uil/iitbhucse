@@ -15,51 +15,47 @@
 	require_once(INITROOT. 'sys/conf/iitbhucse.conf.php');
 	
 	/**
-	 * Initialize ServicePackages and include the essential classes
+	 * Initialize ServicePackages
 	**/
+	require_once(INITROOT. '../services/snowblozm/init.php');
 	require_once(INITROOT. '../services/enhancse-core/init.php');
 	require_once(INITROOT. '../services/iitbhucse-core/init.php');
+	
+	/**
+	 *	Initialize Snowblozm ServiceProviders
+	**/
+	Snowblozm::add('sb-local-demo', array(
+		'root' => SBROOT.'demo/',
+		'location' => 'local'
+	));
+	
+	Snowblozm::add('sb-remote-demo', array(
+		'root' => 'http://localhost/iitbhucse/launch.php?uri=',
+		'location' => 'remote',
+		'type' => 'json',
+		'map' => 'sb-local-demo',
+		'key' => ''
+	));
+	
+	/**
+	 *	WorkflowKernel instance and memory array
+	**/
 	require_once(SBWFKERNEL);
-	require_once(SBMDLLOADER);
-	require_once(SBMYSQL);
-	require_once(SBMAIL);
-	
-	/**
-	 *	Parse request to get service URI
-	**/
-	$uri = $_GET['uri'];
-	list($root, $service, $operation, $type) = explode('.', $uri);
-	
-	switch($root){
-		case 'snowblozm' :
-			$root = SBROOT;
-			break;
-		case 'sbdemo' :
-			$root = SBROOT.'demo/';
-			break;
-		case 'enhancse-core' :
-			$root = ECROOT;
-			break;
-		case 'iitbhucse-core' :
-			$root = ICROOT;
-			break;
-		default :
-			echo "Root not found";
-			exit;
-	}
-
-	/**
-	 *	WorkflowKernel instance and ModuleLoader instance
-	**/
 	$kernel = new WorkflowKernel();
-	$ml = new ModuleLoader();
+	$memory = array();
 	
 	/**
 	 *	MySQL class instance
 	**/
+	require_once(SBMYSQL);
 	$mysql = new Mysql($mysql_database, $mysql_user, $mysql_pass, $mysql_host);
-	$memory = array();
 	$memory['conn'] = $mysql;
+	
+	/**
+	 *	Configure the mail system
+	**/
+	require_once(SBMAIL);
+	Mail::initialize($mail_delegate, $mail_value, $mail_user, $mail_pass, $mail_from);
 	
 	/**
 	 *	Save the request host address and proxy address if any
@@ -70,19 +66,30 @@
 		$memory['address'] .= " / ".$_SERVER["HTTP_X_FORWARDED_FOR"];
 	
 	/**
-	 *	Configure the mail system
+	 *	Parse request to get service URI and restrict access to services
 	**/
-	Mail::initialize($mail_delegate, $mail_value, $mail_user, $mail_pass, $mail_from);
+	$uri = $_GET['uri'];
+	list($root, $service, $operation, $type) = explode('.' ,$uri);
+
+	/*if(!in_array($root, array('sb-local-demo'))){
+		echo 'Access Denied';
+		exit;
+	}
 	
 	/**
 	 *	Parse request for request type if any
 	**/
-	$memory['type'] = isset($_GET['request']) ? $_GET['request'].'.'.$type : $type;
+	$reqtype = isset($_GET['request']) ? $_GET['request'] : $type;
 	
 	/**
-	 *	Launch the service (workflow only) using WorkflowKernel and ModuleLoader
+	 *	Launch the service (workflow only) using WorkflowKernel
 	**/
-	$service = array('service' => $ml->load($service.'.'.$operation.'.workflow', $root));
+	$service = array(
+		'service' => $root.'.'.$service.'.'.$operation.'.workflow', 
+		'input' => array('conn' => 'conn', 'address' => 'address'),
+		'request-type' => $reqtype,
+		'response-type' => $type
+	);
 	$kernel->run($service, $memory);
 	
 	/**
