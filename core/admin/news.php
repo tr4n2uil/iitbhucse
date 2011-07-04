@@ -9,16 +9,16 @@
 	if(isset($_POST['do'])){
 		switch($_POST['do']){
 			case 'add' :
-				if(isset($_POST['crsid']) && isset($_POST['crsname']) && isset($_POST['crsdescription']) && isset($_POST['crspart']))
+				if(isset($_POST['newstitle']) && isset($_POST['newsauthor']) && isset($_POST['newsdescription']))
 					$request = true;
 				break;
 			case 'edit' :
-				if(isset($_POST['crsname']) && isset($_POST['crsdescription']) && isset($_POST['crspart'])) 
+				if(isset($_POST['newsid']) && isset($_POST['newstitle']) && isset($_POST['newsauthor']) && isset($_POST['newsdescription']))
 					$request = true;
 				break;
-			case 'rem' :
 			case 'get' :
-				if(isset($_POST['crsid']))
+			case 'rem' :
+				if(isset($_POST['newsid']))
 					$request = true;
 				break;
 			case 'all' :
@@ -47,7 +47,6 @@
 		echo json_encode($result);
 		exit;
 	}
-	$user = $model['uid'];
 	
 	/**
 	 * Check for valid privilege 
@@ -59,7 +58,7 @@
 	if($model['valid']){
 		$admin = true;
 	}
-	$model['privtype'] = 'COURSE_ADMIN';
+	$model['privtype'] = 'NEWS_ADMIN';
 	$model = $kernel->run($op, $model);
 	if($model['valid']){
 		$admin = true;
@@ -74,16 +73,18 @@
 				exit;
 			}
 			
-			$op = $cl->load("course.create", ICROOT);
-			$model['crsid'] = $_POST['crsid'];
-			$model['crsname'] = $_POST['crsname'];
-			$model['crsdescription'] = $_POST['crsdescription'];
-			$model['crspart'] = $_POST['crspart'];
+			$op = $cl->load("news.create", ICROOT);
+			$model['newstitle'] = $_POST['newstitle'];
+			$model['newsauthor'] = $_POST['newsauthor'];
+			$model['newsdescription'] = $_POST['newsdescription'];
+			$model['newscontent'] = isset($_POST['newscontent']) ? $_POST['newscontent'] : null;
+			$model['newsexpiry'] = isset($_POST['newsexpiry']) ? $_POST['newsexpiry'] : null;
+			$model['newspath'] = 'storage/news/';
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['msg'] = '<p class="success">Course created successfully</p>';
+				$result['msg'] = '<p class="success">News Added Successfully.</p>';
 			}
 			else {
 				$result['success'] = false;
@@ -92,46 +93,41 @@
 			break;
 			
 		case 'edit' :
-			if(!$admin){
-				$result['success'] = false;
-				$result['msg'] = '<p class="error">Not Authorized</p>';
-				echo json_encode($result);
-				exit;
-			}
-			
-			$op = $cl->load("course.edit", ICROOT);
-			$model['crsid'] = $_POST['crsid'];
-			$model['admin'] = $admin;
-			$model['crsname'] = $_POST['crsname'];
-			$model['crsdescription'] = $_POST['crsdescription'];
-			$model['crspart'] = $_POST['crspart'];
+			$op = $cl->load("news.edit", ICROOT);
+			$model['newsid'] = $_POST['newsid'];
+			$model['newstitle'] = $_POST['newstitle'];
+			$model['newsauthor'] = $_POST['newsauthor'];
+			$model['newsdescription'] = $_POST['newsdescription'];
+			$model['newscontent'] = isset($_POST['newscontent']) ? $_POST['newscontent'] : null;
+			$model['newsexpiry'] = isset($_POST['newsexpiry']) ? $_POST['newsexpiry'] : null;			
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['msg'] = '<p class="success">Course credentials edited successfully</p>';
+				$result['msg'] = '<p class="success">News edited successfully</p>';
 			}
 			else {
 				$result['success'] = false;
 				$result['msg'] = '<p class="error">'.$model['msg'].'</p>';
 			}
 			break;
-		
+			
 		case 'get' :
-			$op = $cl->load("course.info", ICROOT);
-			$model['crsid'] = $_POST['crsid'];
+			$op = $cl->load("news.info", ICROOT);
+			$model['newsid'] = $_POST['newsid'];
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['course'] = $model['course'];
+				$result['news'] = $model['news'];
+				$result['admin'] = $admin;
 			}
 			else {
 				$result['success'] = false;
 				$result['template'] = '<p class="error">'.$model['msg'].'</p>';
 			}
 			break;
-			
+		
 		case 'rem' :
 			if(!$admin){
 				$result['success'] = false;
@@ -140,13 +136,14 @@
 				exit;
 			}
 			
-			$op = $cl->load("course.delete", ICROOT);
-			$model['crsid'] = $_POST['crsid'];
+			$op = $cl->load("news.delete", ICROOT);
+			$model['newsid'] = $_POST['newsid'];
+			$model['admin'] = $admin;
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['template'] = '<p class="success">Course deleted successfully. ID='.$model['crsid'].'</p>';
+				$result['msg'] = '<p class="success">News Deleted successfully.</p>';
 			}
 			else {
 				$result['success'] = false;
@@ -162,13 +159,13 @@
 				exit;
 			}
 			
-			$op = $cl->load("Course.all", ICROOT);
+			$op = $cl->load("news.all", ICROOT);
 			$model['admin'] = $admin;
 			$model = $kernel->run($op, $model);
 			
 			if($model['valid']){
 				$result['success'] = true;
-				$result['courses'] = $model['courses'];
+				$result['news'] = $model['news'];
 			}
 			else {
 				$result['success'] = false;
