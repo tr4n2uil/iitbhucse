@@ -25,7 +25,7 @@
 	 *	Initialize Snowblozm ServiceProviders
 	**/
 	Snowblozm::add('sb-local-demo', array(
-		'root' => SBROOT.'demo/',
+		'root' => SBROOT.'demo/v2/',
 		'location' => 'local'
 	));
 	
