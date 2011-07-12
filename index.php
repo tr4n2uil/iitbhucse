@@ -144,6 +144,9 @@
 			ServiceClient.Registry.save('tpl-elb-vw', IITBHUCSE.jquery.template.ElibraryView);
 			ServiceClient.Registry.save('tpl-lib-bws', IITBHUCSE.jquery.template.LibraryBrowse);
 			ServiceClient.Registry.save('tpl-lib-vw', IITBHUCSE.jquery.template.LibraryView);
+			ServiceClient.Registry.save('tpl-nws-upd', IITBHUCSE.jquery.template.NewsUpdate);
+			ServiceClient.Registry.save('tpl-nws-vw', IITBHUCSE.jquery.template.NewsView);
+			ServiceClient.Registry.save('tpl-nws-aen', IITBHUCSE.jquery.template.NewsAllEntry);
 
 			ServiceClient.Kernel.run([{
 				service : ServiceClient.jquery.module.AlertStatus,
@@ -168,6 +171,7 @@
 				delay : 1000
 			}]);
 			
+			//ServiceClient.Kernel.navigate('#tplload:cntr=#quick-panel:tpl=tpl-nws-upd:url=core/news/news-all.php:arg=top~5');
 		});
 	</script>
 	</body>

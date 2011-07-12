@@ -43,7 +43,7 @@
 	require_once('../../init.php');	
 	if(!$model['valid'] || !isset($model['uid'])){
 		$result['success'] = false;
-		$result['msg'] = "Session Expired. Please Login";
+		$result['template'] = "Session Expired. Please Login";
 		echo json_encode($result);
 		exit;
 	}
