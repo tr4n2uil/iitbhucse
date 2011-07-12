@@ -76,6 +76,7 @@
 					include(INITROOT. 'ui/html/quick-login.html');
 				}
 			?>
+			<div id="update-panel"></div>
 		</div>
 		
 		<div id="main-container">
@@ -171,7 +172,7 @@
 				delay : 1000
 			}]);
 			
-			//ServiceClient.Kernel.navigate('#tplload:cntr=#quick-panel:tpl=tpl-nws-upd:url=core/news/news-all.php:arg=top~5');
+			ServiceClient.Kernel.navigate('#tplload:cntr=#update-panel:tpl=tpl-nws-upd:url=core/news/news-all.php:arg=top~5');
 		});
 	</script>
 	</body>
