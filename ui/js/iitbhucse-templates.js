@@ -783,6 +783,32 @@ IITBHUCSE.jquery.template.NewsAll = $.template('\
 	</div>\
 </div>');
 /**
+ *	@template NewsAllEntry
+ *
+**/
+IITBHUCSE.jquery.template.NewsAllEntry = $.template('\
+<div id="news-view-container" class="panel left"><fieldset>\
+		<legend class="head">All Updates</legend>\
+		{{each news}}\
+		<table class="margin5">\
+			<tbody>\
+				<tr>\<td class="bold">${newstitle}</td></tr>\
+				<tr><td>${newsauthor}</td></tr>\
+				<tr><td>${newscontent}</td></tr>\
+				</tr>\
+				<tr><td>\
+					{{if newssize >0}}\
+						<a href="core/space/read.php?spid=${newsattachment}" target="_blank">\
+							Attachment [${ServiceClient.jquery.helper.readFileSize(newssize)}]\
+						</a>\
+					{{/if}}\
+				</td></tr>\
+			</tbody>\
+		</table>\
+		{{/each}}\
+	</fieldset>\
+</div>');
+/**
  *	@template NewsEdit
  *
 **/
@@ -835,6 +861,54 @@ IITBHUCSE.jquery.template.NewsEdit = $.template('\
 		</form>\
 	</div>\
 </div>');
+/**
+ *	@template NewsUpdate
+ *
+**/
+IITBHUCSE.jquery.template.NewsUpdate = $.template('\
+<div id="news-panel" class="panel">\
+<div id="grid-panel"></div>\
+	<fieldset>\
+		<legend class="head">Latest Updates</legend>\
+		<ul class="vertical menu">\
+			{{each news}}\
+				<li><a class="navigate bold" \
+						href="#tplload:cntr=#main-container:tpl=tpl-nws-vw:url=core/admin/news.php:arg=do~get&newsid~${newsid}"\
+						>${newstitle}<br /></a>\
+						${newsdescription}\
+				</li>\
+			{{/each}}\
+			<li><a class="navigate" \
+					href="#tplload:cntr=#main-container:tpl=tpl-nws-aen:url=core/news/news-all.php:arg=all~true"\
+					>See All...</a><br />\
+			</li>\
+		</ul>\
+	</fieldset>\
+</div>');
+/**
+ *	@template NewsView
+ *
+**/
+IITBHUCSE.jquery.template.NewsView = $.template('\
+<div id="news-view-container" class="panel left"><fieldset>\
+		<legend class="head">All Updates</legend>\
+		<table class="margin5">\
+			<tbody>\
+				<tr>\<td class="bold">${news.newstitle}</td></tr>\
+				<tr><td>Author : ${news.newsauthor}</td></tr>\
+				<tr><td>${news.newscontent}</td></tr>\
+				</tr>\
+				<tr><td>\
+					{{if news.newssize}}\
+						<a href="core/space/read.php?spid=${news.newsattachment}" target="_blank">\
+							Attachment [${ServiceClient.jquery.helper.readFileSize(news.newssize)}]\
+						</a>\
+					{{/if}}\
+				</td></tr>\
+			</tbody>\
+		</table>\
+	</fieldset>\
+</div>');		
 /**
  *	@template PrivilegeAll
  *
